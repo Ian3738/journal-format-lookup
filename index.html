@@ -65,7 +65,8 @@ button{font-family:inherit; font-size:inherit; cursor:pointer}
   border-bottom:1px solid var(--line);
 }
 .top-in{max-width:1560px; margin:0 auto; padding:14px 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center}
-.brand{display:flex; align-items:baseline; gap:10px; margin-right:auto}
+.brand{display:flex; align-items:baseline; gap:10px; margin-right:auto; border:0; background:none; padding:0; color:inherit; border-radius:6px}
+.brand:hover h1{color:var(--indigo-text)}
 .brand h1{font-family:var(--serif); font-size:20px; letter-spacing:.01em}
 .brand .sub{font-size:12px; color:var(--ink-4); font-family:var(--mono); letter-spacing:.02em}
 
@@ -292,6 +293,69 @@ table.cmp .diff{background:var(--indigo-soft)}
 .legend{display:grid; gap:8px; margin:10px 0}
 .legend div{display:flex; gap:9px; align-items:flex-start; font-size:13.5px}
 
+/* ============ home ============ */
+.home{display:flex; flex-direction:column; gap:40px; max-width:1120px}
+.hero{display:flex; flex-direction:column; gap:15px}
+.hero .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-4)}
+/* 中文以 em 計寬，ch 是西文 "0" 的寬度，用在中文會嚴重低估 */
+.hero h2{font-family:var(--serif); font-size:clamp(26px,3.4vw,38px); line-height:1.3; letter-spacing:.01em; max-width:20em}
+.hero .lede{margin:0; font-size:15.5px; color:var(--ink-2); max-width:62ch; line-height:1.85}
+.hero .metaline{display:flex; flex-wrap:wrap; gap:6px 16px; font-family:var(--mono); font-size:11.5px; color:var(--ink-4); align-items:center}
+.hero .metaline .d{color:var(--line-strong)}
+
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden}
+.stat{background:var(--surface); padding:15px 18px 16px}
+.stat .n{font-family:var(--mono); font-size:27px; font-weight:600; line-height:1.05; font-variant-numeric:tabular-nums}
+.stat .k{font-size:12px; color:var(--ink-4); margin-top:6px; line-height:1.5}
+
+.spread{display:flex; flex-direction:column; gap:9px}
+.spread .bar{display:flex; height:11px; gap:2px}
+.spread .bar i{display:block; border-radius:2px; min-width:4px}
+.spread .key{display:flex; flex-wrap:wrap; gap:5px 16px; font-size:12px; color:var(--ink-4)}
+.spread .key span{display:inline-flex; align-items:center; gap:6px}
+.spread .key b{font-family:var(--mono); font-weight:500; color:var(--ink-3); font-variant-numeric:tabular-nums}
+
+.hsec > h3{font-family:var(--serif); font-size:18.5px; margin-bottom:5px}
+.hsec > .sub{margin:0 0 15px; font-size:13px; color:var(--ink-3); line-height:1.7; max-width:64ch}
+
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{
+  display:inline-flex; align-items:center; gap:9px; border:1px solid var(--line);
+  background:var(--surface); color:var(--ink-2); padding:8px 13px; border-radius:8px;
+  font-size:13.5px; font-family:inherit; text-align:left;
+  transition:border-color .12s, color .12s, transform .12s;
+}
+.chip:hover{border-color:var(--line-strong); color:var(--ink); transform:translateY(-1px)}
+.chip .n{font-family:var(--mono); font-size:11.5px; color:var(--ink-4); font-variant-numeric:tabular-nums}
+
+.tools{display:grid; grid-template-columns:repeat(auto-fit,minmax(238px,1fr)); gap:13px}
+.tool{
+  border:1px solid var(--line); background:var(--surface); border-radius:var(--r);
+  padding:18px 20px 16px; text-align:left; display:flex; flex-direction:column; gap:7px;
+  font-family:inherit; color:inherit;
+  transition:border-color .12s, box-shadow .12s, transform .12s;
+}
+.tool:hover{border-color:var(--line-strong); box-shadow:var(--shadow); transform:translateY(-1px)}
+.tool .step{font-family:var(--mono); font-size:11px; color:var(--ink-4); letter-spacing:.09em}
+.tool h4{font-family:var(--serif); font-size:16.5px}
+.tool p{margin:0; font-size:13px; color:var(--ink-3); line-height:1.65}
+.tool .go{margin-top:auto; padding-top:9px; font-size:12.5px; color:var(--indigo-text); font-weight:500}
+
+.vgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:13px}
+.vcard{border:1px solid var(--line); background:var(--surface); border-radius:var(--r); padding:15px 17px}
+.vcard .vt{display:flex; align-items:center; gap:7px; font-size:13px; font-weight:600; margin-bottom:6px}
+.vcard .vn{font-family:var(--mono); font-size:20px; font-weight:600; font-variant-numeric:tabular-nums; margin-bottom:4px}
+.vcard p{margin:0; font-size:12.5px; color:var(--ink-4); line-height:1.6}
+
+/* ============ group headings ============ */
+.gsec{margin-bottom:32px}
+.gsec:last-child{margin-bottom:6px}
+.ghead{display:flex; align-items:baseline; gap:11px; margin-bottom:13px; padding-bottom:8px; border-bottom:1px solid var(--line)}
+.ghead .gt{font-family:var(--serif); font-size:16.5px; font-weight:600}
+.ghead .gn{font-family:var(--mono); font-size:11.5px; color:var(--ink-4); font-variant-numeric:tabular-nums}
+.ghead .gd{font-size:12.5px; color:var(--ink-4); margin-left:auto; text-align:right; max-width:46ch}
+@media(max-width:640px){ .ghead{flex-wrap:wrap} .ghead .gd{margin-left:0; text-align:left; flex-basis:100%} }
+
 /* ============ credit ============ */
 .credit{border-top:1px solid var(--line); background:var(--surface); margin-top:20px}
 .credit-in{
@@ -311,17 +375,18 @@ table.cmp .diff{background:var(--indigo-soft)}
 
 <header class="top">
   <div class="top-in">
-    <div class="brand">
+    <button class="brand" id="brand" aria-label="回首頁">
       <h1>投稿格式速查台</h1>
       <span class="sub">TSSCI · SSCI</span>
-    </div>
+    </button>
     <div class="search">
       <span class="ico">⌕</span>
       <input id="q" type="search" placeholder="搜尋刊名、出版者、領域…" autocomplete="off" aria-label="搜尋期刊">
       <button class="clr hide" id="qclr" aria-label="清除搜尋">×</button>
     </div>
     <div class="tabs" role="tablist">
-      <button role="tab" aria-selected="true" data-view="browse">瀏覽</button>
+      <button role="tab" aria-selected="true" data-view="home">首頁</button>
+      <button role="tab" aria-selected="false" data-view="browse">期刊總覽</button>
       <button role="tab" aria-selected="false" data-view="compare">比較 <span id="cmpn"></span></button>
       <button role="tab" aria-selected="false" data-view="check">檢查清單</button>
       <button role="tab" aria-selected="false" data-view="apa">APA 7</button>
@@ -1317,18 +1382,42 @@ const J = [
 /* =====================================================================
    狀態與工具
    ===================================================================== */
-const S = { view:"browse", q:"", f:{tier:new Set(), field:new Set(), fee:new Set(), verified:new Set()}, picked:new Set(), open:null, clJournal:"" };
+const S = { view:"home", q:"", f:{grp:new Set(), field:new Set(), fee:new Set(), verified:new Set()}, picked:new Set(), open:null, clJournal:"" };
 
-const TIERS = [
-  {k:"TSSCI·第一級", t:"TSSCI", tier:"第一級", c:"var(--vermilion)"},
-  {k:"TSSCI·第二級", t:"TSSCI", tier:"第二級", c:"var(--amber)"},
-  {k:"TSSCI·心理學門", t:"TSSCI", tier:"心理學門核心", c:"var(--vermilion)"},
-  {k:"TSSCI·社會學門", t:"TSSCI", tier:"社會學門核心", c:"var(--vermilion)"},
-  {k:"TSSCI·管理學門", t:"TSSCI", tier:"管理學門核心", c:"var(--vermilion)"},
-  {k:"SSCI·Q1", t:"SSCI", tier:"Q1", c:"var(--violet)"},
-  {k:"SSCI·Q2", t:"SSCI", tier:"Q2", c:"var(--indigo)"},
-  {k:"非核心·第三級", t:"非核心", tier:"第三級", c:"var(--ink-4)"}
+/* 學門歸屬：TSSCI 的評比是分學門進行的，同樣是「第一級」在不同學門並不互通。
+   未列出者預設為教育學門；SSCI 另成一類。 */
+const DIVISION = {
+  bep:"心理學門", pt:"心理學門", cjgc:"心理學門", cjp:"心理學門",
+  agc:"心理學門", rap:"心理學門", ipr:"心理學門",
+  mcr:"社會學門", tjs:"社會學門", ts:"社會學門", sw:"社會學門",
+  tjpa:"政治學門", jhrm:"管理學門", jim:"管理學門"
+};
+const divOf = j => j.idx==="SSCI" ? "國際" : (DIVISION[j.id] || "教育學門");
+
+/* 期刊總覽的分組，順序即呈現順序 */
+const GROUPS = [
+  { id:"edu1", title:"TSSCI 教育學門・第一級", note:"2025 年評比最高等級，教育領域最主要的發表管道",
+    match:j=>j.idx==="TSSCI" && divOf(j)==="教育學門" && j.tier==="第一級" },
+  { id:"edu2", title:"TSSCI 教育學門・第二級", note:"同屬 TSSCI 核心期刊，收錄地位與第一級相同",
+    match:j=>j.idx==="TSSCI" && divOf(j)==="教育學門" && j.tier==="第二級" },
+  { id:"psy", title:"TSSCI 心理學門", note:"2024 年評比收錄，教育心理、輔導諮商與測驗評量",
+    match:j=>j.idx==="TSSCI" && divOf(j)==="心理學門" },
+  { id:"soc", title:"TSSCI 社會・政治・管理學門", note:"跨足教育議題時的替代發表管道",
+    match:j=>j.idx==="TSSCI" && ["社會學門","政治學門","管理學門"].includes(divOf(j)) },
+  { id:"q1", title:"SSCI Q1", note:"JCR 第一四分位，國際教育類主要期刊",
+    match:j=>j.idx==="SSCI" && j.tier==="Q1" },
+  { id:"q2", title:"SSCI Q2", note:"JCR 第二四分位",
+    match:j=>j.idx==="SSCI" && j.tier==="Q2" },
+  { id:"other", title:"非核心・領域相關", note:"2025 年評比第三級，不屬核心期刊，但為該主題少數專門刊物",
+    match:j=>j.idx==="非核心" }
 ];
+const GRP_COLOR = {
+  edu1:["var(--vermilion)","1"], edu2:["var(--amber)","1"], psy:["var(--vermilion)",".62"],
+  soc:["var(--ink-4)",".8"], q1:["var(--violet)","1"], q2:["var(--indigo)","1"],
+  other:["var(--line-strong)","1"]
+};
+const grpOf = j => (GROUPS.find(g=>g.match(j)) || {id:"other"}).id;
+
 const FIELDS = ["教育學","師資培育","課程與教科書","教育心理","輔導諮商","測驗評量","數位學習","科學教育","數學教育","特殊教育","高等教育","教育行政","教育社會學","圖書資訊學","通識教育","社會學與傳播","公共行政與管理"];
 const FEES = [
   {k:"free", label:"不收費・開放取用"},
@@ -1346,7 +1435,6 @@ const VLABEL = {official:["●","已核對官方稿約"], partial:["◐","官方
 
 const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!==undefined)e.innerHTML=h; return e;};
 const esc = s => String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
-const tierKey = j => `${j.idx}·${j.tier==="第一級"||j.tier==="第二級"||j.tier==="第三級"||j.tier==="Q1"||j.tier==="Q2" ? j.tier : j.tier.replace("核心","")}`;
 
 function matches(j){
   const q = S.q.trim().toLowerCase();
@@ -1354,7 +1442,7 @@ function matches(j){
     const hay = [j.name,j.en,j.pub,j.scope,(j.field||[]).join(" "),j.issn,j.tier,j.idx].join(" ").toLowerCase();
     if(!hay.includes(q)) return false;
   }
-  if(S.f.tier.size && !S.f.tier.has(tierKey(j))) return false;
+  if(S.f.grp.size && !S.f.grp.has(grpOf(j))) return false;
   if(S.f.field.size && !(j.field||[]).some(f=>S.f.field.has(f))) return false;
   if(S.f.fee.size && !S.f.fee.has(j.feeType||"unknown")) return false;
   if(S.f.verified.size && !S.f.verified.has(j.verified)) return false;
@@ -1373,7 +1461,7 @@ function renderSide(){
   side.innerHTML = "";
 
   const countBy = (fn) => { const m={}; J.forEach(j=>{ const ks=fn(j); (Array.isArray(ks)?ks:[ks]).forEach(k=>{ if(k) m[k]=(m[k]||0)+1; }); }); return m; };
-  const cTier = countBy(tierKey), cField = countBy(j=>j.field||[]), cFee = countBy(j=>j.feeType||"unknown"), cVer = countBy(j=>j.verified);
+  const cGrp = countBy(grpOf), cField = countBy(j=>j.field||[]), cFee = countBy(j=>j.feeType||"unknown"), cVer = countBy(j=>j.verified);
 
   const group = (title, items, setName) => {
     const g = el("div","fgroup");
@@ -1384,7 +1472,7 @@ function renderSide(){
       const b = el("button","fopt");
       b.type="button";
       b.setAttribute("aria-pressed", S.f[setName].has(it.k) ? "true":"false");
-      b.innerHTML = (it.c?`<span class="dot" style="background:${it.c}"></span>`:"") +
+      b.innerHTML = (it.c?`<span class="dot" style="background:${it.c};opacity:${it.o||1}"></span>`:"") +
                     `<span>${esc(it.label)}</span><span class="n">${it.n}</span>`;
       b.onclick = ()=>{ S.f[setName].has(it.k) ? S.f[setName].delete(it.k) : S.f[setName].add(it.k); render(); };
       box.appendChild(b);
@@ -1393,12 +1481,15 @@ function renderSide(){
     return g;
   };
 
-  side.appendChild(group("索引與分級", TIERS.map(t=>({k:t.k,label:t.k.replace("·"," "),c:t.c,n:cTier[t.k]||0})), "tier"));
+  side.appendChild(group("索引與分級", GROUPS.map(g=>({
+    k:g.id, label:g.title.replace("TSSCI 教育學門・","教育・").replace("TSSCI ","").replace("・領域相關",""),
+    c:GRP_COLOR[g.id][0], o:GRP_COLOR[g.id][1], n:cGrp[g.id]||0
+  })), "grp"));
   side.appendChild(group("學科領域", FIELDS.map(f=>({k:f,label:f,n:cField[f]||0})), "field"));
   side.appendChild(group("費用型態", FEES.map(f=>({k:f.k,label:f.label,n:cFee[f.k]||0})), "fee"));
   side.appendChild(group("資料查證程度", VERI.map(v=>({k:v.k,label:v.label,n:cVer[v.k]||0})), "verified"));
 
-  const active = S.f.tier.size+S.f.field.size+S.f.fee.size+S.f.verified.size;
+  const active = S.f.grp.size+S.f.field.size+S.f.fee.size+S.f.verified.size;
   if(active){
     const r = el("button","reset",`清除 ${active} 項篩選`);
     r.type="button";
@@ -1562,9 +1653,159 @@ function viewBrowse(){
     m.appendChild(el("div","empty","<strong>沒有符合的期刊</strong>試著放寬篩選條件，或改用刊名關鍵字搜尋。"));
     return;
   }
-  const g = el("div","grid");
-  r.forEach(j=>g.appendChild(card(j)));
-  m.appendChild(g);
+  let shown = 0;
+  GROUPS.forEach(grp=>{
+    const list = r.filter(grp.match);
+    if(!list.length) return;
+    shown += list.length;
+    const sec = el("section","gsec");
+    sec.innerHTML = `<div class="ghead">
+        <span class="gt">${esc(grp.title)}</span>
+        <span class="gn">${list.length} 本</span>
+        ${grp.note?`<span class="gd">${esc(grp.note)}</span>`:""}
+      </div>`;
+    const g = el("div","grid");
+    list.forEach(j=>g.appendChild(card(j)));
+    sec.appendChild(g);
+    m.appendChild(sec);
+  });
+  // 保險：任何未落入分組的期刊仍要出現
+  const rest = r.filter(j=>!GROUPS.some(grp=>grp.match(j)));
+  if(rest.length){
+    const sec = el("section","gsec");
+    sec.innerHTML = `<div class="ghead"><span class="gt">其他</span><span class="gn">${rest.length} 本</span></div>`;
+    const g = el("div","grid");
+    rest.forEach(j=>g.appendChild(card(j)));
+    sec.appendChild(g);
+    m.appendChild(sec);
+  }
+}
+
+/* =====================================================================
+   首頁
+   ===================================================================== */
+function goto(view, filters){
+  Object.values(S.f).forEach(s=>s.clear());
+  S.q = ""; document.getElementById("q").value = "";
+  if(filters) Object.entries(filters).forEach(([k,vals])=>vals.forEach(v=>S.f[k].add(v)));
+  S.view = view;
+  render();
+  window.scrollTo({top:0});
+}
+
+function viewHome(){
+  const m = document.getElementById("main");
+  const n = k => J.filter(j=>j.verified===k).length;
+  const cnt = fn => J.filter(fn).length;
+
+  const spread = GROUPS.map(g=>({
+    label:g.title.replace("TSSCI 教育學門・","教育學門 ").replace("TSSCI ","").replace("・領域相關",""),
+    n:cnt(g.match),
+    c:g.id==="edu1"?"var(--vermilion)":g.id==="edu2"?"var(--amber)":g.id==="psy"?"var(--vermilion)"
+      :g.id==="soc"?"var(--ink-4)":g.id==="q1"?"var(--violet)":g.id==="q2"?"var(--indigo)":"var(--line-strong)",
+    o:g.id==="psy"?".62":g.id==="soc"?".8":"1"
+  })).filter(x=>x.n);
+  const total = spread.reduce((a,b)=>a+b.n,0);
+
+  const chipsTier = GROUPS.filter(g=>cnt(g.match)).map(g=>
+    `<button class="chip" data-go="browse" data-grp="${g.id}"><span>${esc(g.title)}</span><span class="n">${cnt(g.match)}</span></button>`
+  ).join("");
+
+  const topFields = FIELDS.map(f=>({f,n:cnt(j=>(j.field||[]).includes(f))}))
+    .filter(x=>x.n).sort((a,b)=>b.n-a.n);
+  const chipsField = topFields.map(x=>
+    `<button class="chip" data-go="browse" data-field="${esc(x.f)}"><span>${esc(x.f)}</span><span class="n">${x.n}</span></button>`
+  ).join("");
+
+  const TOOLS = [
+    {v:"browse", step:"查", h:"期刊總覽", p:"52 本期刊依索引體系分組排列。卡片正面就顯示字數上限、摘要字數與參考文獻格式，點開看完整規範。", go:"開始查期刊"},
+    {v:"compare", step:"比", h:"並排比較", p:"選兩本以上並排對照，只有與其他期刊不同的欄位會標色。決定投稿標的時最省時間。", go:"比較期刊格式"},
+    {v:"check", step:"投", h:"投稿前檢查清單", p:"選定期刊後依該刊實際規定產生逐項清單，可直接勾選。送出前最後一輪自檢。", go:"產生檢查清單"},
+    {v:"apa", step:"寫", h:"APA 7 速查", p:"內文引用、參考文獻體例、統計符號與圖表規範，含中文期刊特有的在地規則。", go:"查 APA 體例"}
+  ];
+
+  m.innerHTML = `<div class="home">
+    <section class="hero">
+      <span class="eyebrow">TSSCI ・ SSCI ・ 投稿格式</span>
+      <h2>投稿前要查的格式規定，集中在這一頁</h2>
+      <p class="lede">字數上限、摘要字數、參考文獻體例、審查方式與費用——這些散落在各刊稿約 PDF 裡的規定，這裡逐本整理好，可以篩選、並排比較，也能依選定期刊產生投稿前檢查清單。</p>
+      <div class="metaline">
+        <span>資料查證基準日 2026-08-28</span><span class="d">·</span>
+        <span>名單依國科會人社中心 2025 與 2024 年核心期刊收錄</span>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><div class="n">${J.length}</div><div class="k">收錄期刊</div></div>
+      <div class="stat"><div class="n" style="color:var(--vermilion-text)">${cnt(j=>j.idx==="TSSCI")}</div><div class="k">TSSCI 核心期刊</div></div>
+      <div class="stat"><div class="n" style="color:var(--violet-text)">${cnt(j=>j.idx==="SSCI")}</div><div class="k">SSCI Q1／Q2</div></div>
+      <div class="stat"><div class="n" style="color:var(--green-text)">${n("official")}</div><div class="k">已核對官方稿約全文</div></div>
+      <div class="stat"><div class="n" style="color:var(--green-text)">${cnt(j=>j.feeType==="free")}</div><div class="k">作者免付費・開放取用</div></div>
+    </section>
+
+    <section class="hsec">
+      <h3>依索引分級查</h3>
+      <p class="sub">臺灣的核心期刊用第一級、第二級分等，國際期刊用 JCR 四分位——這是兩套不同的制度，不能互相對照。各學門的評比也是分開進行的，同樣是「第一級」在不同學門並不互通。</p>
+      <div class="spread">
+        <div class="bar">${spread.map(s=>`<i style="flex:${s.n};background:${s.c};opacity:${s.o}" title="${esc(s.label)} ${s.n} 本"></i>`).join("")}</div>
+        <div class="key">${spread.map(s=>`<span><i style="width:9px;height:9px;border-radius:2px;background:${s.c};opacity:${s.o};display:inline-block"></i>${esc(s.label)} <b>${s.n}</b></span>`).join("")}</div>
+      </div>
+      <div class="chips" style="margin-top:15px">${chipsTier}</div>
+    </section>
+
+    <section class="hsec">
+      <h3>依學科領域查</h3>
+      <p class="sub">一本期刊可能同時屬於多個領域，例如《數位學習科技期刊》同時標記教育學與數位學習。</p>
+      <div class="chips">${chipsField}</div>
+    </section>
+
+    <section class="hsec">
+      <h3>四個工具</h3>
+      <div class="tools">${TOOLS.map(t=>`
+        <button class="tool" data-go="${t.v}">
+          <span class="step">${esc(t.step)}</span>
+          <h4>${esc(t.h)}</h4>
+          <p>${esc(t.p)}</p>
+          <span class="go">${esc(t.go)} →</span>
+        </button>`).join("")}</div>
+    </section>
+
+    <section class="hsec">
+      <h3>資料查得多深，卡片上都標著</h3>
+      <p class="sub">格式規範逐本取自各刊自己公告的稿約。沒有查到的欄位一律寫「須查官網」，不做推測填補——所以每一筆都附了查證程度，你可以自己判斷要不要再去對一次原文。</p>
+      <div class="vgrid">
+        <div class="vcard">
+          <div class="vt v-official">● 已核對官方稿約</div>
+          <div class="vn" style="color:var(--green-text)">${n("official")}</div>
+          <p>逐字讀過該刊官方稿約或撰稿體例全文，欄位數字直接來自原文。</p>
+        </div>
+        <div class="vcard">
+          <div class="vt v-partial">◐ 官方頁面摘錄</div>
+          <div class="vn" style="color:var(--amber-text)">${n("partial")}</div>
+          <p>取自該刊官方頁面，但未能取得完整稿約文件，可能有未涵蓋的細項。</p>
+        </div>
+        <div class="vcard">
+          <div class="vt v-listed">○ 僅收錄分級</div>
+          <div class="vn" style="color:var(--ink-3)">${n("listed")}</div>
+          <p>只確認了收錄狀態與評比級別，格式細節未查證，請走卡片裡的官網連結。</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:14px"><b>稿約會改版</b>　這裡的資料用來快速篩選與比較，不能取代官方文件。正式投稿前請以該刊官網當下的版本為準。詳細說明見<button class="linkbtn" data-go="about" style="padding:2px 8px;font-size:12.5px;margin:0 2px">資料說明</button>分頁。</div>
+    </section>
+  </div>`;
+
+  m.querySelectorAll("[data-go]").forEach(b=>{
+    b.onclick = ()=>{
+      const v = b.dataset.go;
+      if(b.dataset.grp){
+        goto("browse", {grp:[b.dataset.grp]});
+      } else if(b.dataset.field){
+        goto("browse", {field:[b.dataset.field]});
+      } else {
+        goto(v);
+      }
+    };
+  });
 }
 
 const CMP_ROWS = [
@@ -1800,13 +2041,25 @@ function viewAbout(){
       <li><strong>字數的計算範圍各刊不同。</strong>有的含參考文獻與圖表、有的不含；有的同時卡字數與頁數（如《教育心理學報》《測驗學刊》）。看數字時要一併看括號裡的計算方式。</li>
     </ul>
 
+    <h3>期刊怎麼分組的</h3>
+    <p>期刊總覽依「索引體系 × 學門」分組，而不是把 52 本排成一片。這樣分是因為<strong>各學門的評比是分開進行的</strong>——同樣掛「第一級」，教育學門與政治學門是兩份互不相干的名單，混在一起看會誤判競爭程度。</p>
+    <ul>
+      <li><strong>TSSCI 教育學門・第一級</strong>（12 本）與<strong>第二級</strong>（7 本）——2025 年評比，適用至 2028 年底。兩級同屬核心期刊，收錄地位相同。</li>
+      <li><strong>TSSCI 心理學門</strong>（7 本）——2024 年評比，含教育心理、輔導諮商與測驗評量。</li>
+      <li><strong>TSSCI 社會・政治・管理學門</strong>（7 本）——跨足教育議題時的替代管道。</li>
+      <li><strong>SSCI Q1</strong>（16 本）與 <strong>Q2</strong>（2 本）——JCR 四分位。</li>
+      <li><strong>非核心・領域相關</strong>（1 本）——《師資培育與教師專業發展期刊》為 2025 年評比第三級，不屬核心期刊，但是國內師資培育少數的專門刊物，所以一併收錄並明確標示。</li>
+    </ul>
+
     <h3>怎麼用這個系統</h3>
     <ul>
-      <li><strong>瀏覽</strong>——用左側篩選縮小範圍，卡片正面就顯示字數、摘要、文獻格式三個最常查的欄位；點卡片看完整規範。</li>
-      <li><strong>比較</strong>——在卡片上點「加入比較」選 2 本以上，並排看差異，有差異的欄位會標色。決定要投哪一本時最好用。</li>
-      <li><strong>檢查清單</strong>——選定期刊後，依該刊實際規定產生逐項清單，可直接勾選。投稿前最後一輪自檢用。</li>
+      <li><strong>首頁</strong>——依索引分級或學科領域點進去，會直接帶著篩選條件跳到期刊總覽。</li>
+      <li><strong>期刊總覽</strong>——分組排列，左側可再用領域、費用、查證程度縮小範圍。卡片正面就顯示字數、摘要、文獻格式三個最常查的欄位；點卡片看完整規範。</li>
+      <li><strong>比較</strong>——在卡片上點「加入比較」選 2 本以上並排，只有與其他期刊不同的欄位會標色。決定要投哪一本時最好用。</li>
+      <li><strong>檢查清單</strong>——選定期刊後依該刊實際規定產生逐項清單，可直接勾選。投稿前最後一輪自檢用。</li>
       <li><strong>APA 7</strong>——常用體例速查，含中文期刊特有的在地規範（文獻排序、中文文獻英譯、全形半形標點）。</li>
     </ul>
+    <p style="color:var(--ink-4);font-size:13px">鍵盤：按 <code>/</code> 跳到搜尋框，按 <code>Esc</code> 關閉期刊詳情。點左上角刊名回首頁。</p>
   </div>`;
 }
 
@@ -1818,12 +2071,13 @@ function render(){
   document.getElementById("cmpn").textContent = S.picked.size ? `(${S.picked.size})` : "";
   document.getElementById("qclr").classList.toggle("hide", !S.q);
   renderSide();
-  ({browse:viewBrowse, compare:viewCompare, check:viewCheck, apa:viewApa, about:viewAbout})[S.view]();
+  ({home:viewHome, browse:viewBrowse, compare:viewCompare, check:viewCheck, apa:viewApa, about:viewAbout})[S.view]();
 }
 
 document.querySelectorAll('.tabs button').forEach(b=>{
   b.onclick = ()=>{ S.view = b.dataset.view; render(); window.scrollTo({top:0,behavior:"instant"}); };
 });
+document.getElementById("brand").onclick = ()=>{ S.view="home"; render(); window.scrollTo({top:0}); };
 const qi = document.getElementById("q");
 qi.oninput = e => { S.q = e.target.value; if(S.view!=="browse"&&S.view!=="compare"){S.view="browse";} render(); };
 document.getElementById("qclr").onclick = ()=>{ S.q=""; qi.value=""; qi.focus(); render(); };
