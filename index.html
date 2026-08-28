@@ -435,6 +435,22 @@ table.wtab tr.sum th, table.wtab tr.sum td{border-top:1px solid var(--line); fon
 
 .layoutbox{background:var(--surface-2); padding:11px 13px; border-radius:8px; font-size:13px;
   line-height:1.75; color:var(--ink-2); margin-bottom:8px}
+
+.fmtgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:9px 13px; margin:12px 0}
+.fmtgrid label{display:flex; align-items:center; gap:7px; font-size:13px; color:var(--ink-3)}
+.fmtgrid input, .fmtgrid select{
+  font-family:var(--mono); font-size:13px; padding:6px 9px; border-radius:7px;
+  border:1px solid var(--line); background:var(--surface-2); color:var(--ink);
+  min-width:0; flex:1; font-variant-numeric:tabular-nums;
+}
+.fmtgrid select{font-family:var(--sans)}
+.fmtgrid label > span{color:var(--ink-4); font-size:12px; flex:none}
+.fmtopts{display:flex; flex-direction:column; gap:9px; margin:4px 0 14px}
+.fmtopts label{display:flex; gap:9px; align-items:flex-start; font-size:12.5px;
+  color:var(--ink-3); line-height:1.65; cursor:pointer}
+.fmtopts input{margin-top:3px; accent-color:var(--indigo); width:15px; height:15px; flex:none}
+.fmtopts b{color:var(--ink-2)}
+@media(max-width:600px){ .fmtgrid{grid-template-columns:minmax(0,1fr)} }
 .rblock.unchecked{border-color:var(--line-strong)}
 .rblock.unchecked ul{margin:0; padding-left:19px; font-size:13px; color:var(--ink-2); line-height:1.75}
 .rblock.unchecked li{margin-bottom:5px}
@@ -1973,8 +1989,10 @@ function viewHome(){
     {v:"browse", step:"查", h:"期刊總覽", p:"52 本期刊依索引體系分組排列。卡片正面就顯示字數上限、摘要字數與參考文獻格式，點開看完整規範。", go:"開始查期刊"},
     {v:"compare", step:"比", h:"並排比較", p:"選兩本以上並排對照，只有與其他期刊不同的欄位會標色。決定投稿標的時最省時間。", go:"比較期刊格式"},
     {v:"check", step:"投", h:"投稿前檢查清單", p:"選定期刊後依該刊實際規定產生逐項清單，可直接勾選。送出前最後一輪自檢。", go:"產生檢查清單"},
+    {v:"lint", step:"改", h:"稿件檢查與套版", p:"上傳 Word 檔，算字數、掃匿名審查殘留，並把邊界字型行距套成該刊要求的樣子。圖表與文獻欄位不受影響。", go:"檢查我的稿件"},
     {v:"apa", step:"寫", h:"APA 7 速查", p:"內文引用、參考文獻體例、統計符號與圖表規範，含中文期刊特有的在地規則。", go:"查 APA 體例"}
-  ];
+  // 附加功能若因舊瀏覽器沒載入，這張卡就不該出現，免得點了沒反應
+  ].filter(t => VIEWS[t.v]);
 
   m.innerHTML = `<div class="home">
     <section class="hero">
@@ -2614,6 +2632,9 @@ function judge(actual, t){
 let CAN_DOCX = false;
 try { new DecompressionStream('deflate-raw'); CAN_DOCX = true; } catch(e){}
 
+// 讀 zip 時把每個 entry 的原始壓縮位元組留著。
+// 之後重打包時，沒改到的 entry 直接複製這段位元組，連解壓都不做，
+// 圖片、註腳、方程式、文獻管理軟體的欄位因此不可能在過程中受損。
 async function zipOpen(buf){
   const dv=new DataView(buf), u8=new Uint8Array(buf);
   let eocd=-1, lim=Math.max(0, u8.length-65558);
@@ -2622,26 +2643,115 @@ async function zipOpen(buf){
   const n=dv.getUint16(eocd+10,true);
   if(n===0xFFFF) throw new Error('這個檔案用了 ZIP64 格式，本工具讀不了。');
   let p=dv.getUint32(eocd+16,true);
-  const map=new Map(), dec=new TextDecoder();
+  const map=new Map(), list=[], dec=new TextDecoder();
   for(let k=0;k<n;k++){
     if(dv.getUint32(p,true)!==0x02014b50) throw new Error('檔案結構讀不下去，可能已損毀。');
-    const method=dv.getUint16(p+10,true), csize=dv.getUint32(p+20,true);
+    const method=dv.getUint16(p+10,true);
+    const mtime=dv.getUint16(p+12,true), mdate=dv.getUint16(p+14,true);
+    const crc=dv.getUint32(p+16,true);
+    const csize=dv.getUint32(p+20,true), usize=dv.getUint32(p+24,true);
     const nlen=dv.getUint16(p+28,true), elen=dv.getUint16(p+30,true), clen=dv.getUint16(p+32,true);
     const lho=dv.getUint32(p+42,true);
-    map.set(dec.decode(u8.subarray(p+46,p+46+nlen)), {method,csize,lho});
+    const name=dec.decode(u8.subarray(p+46,p+46+nlen));
+    const lnlen=dv.getUint16(lho+26,true), lelen=dv.getUint16(lho+28,true);
+    const start=lho+30+lnlen+lelen;
+    const e={name, method, crc, csize, usize, mtime, mdate, raw:u8.subarray(start, start+csize)};
+    map.set(name, e); list.push(e);
     p += 46+nlen+elen+clen;
   }
-  return {dv,u8,map};
+  return {dv,u8,map,list};
 }
 async function zipText(z, name){
   const e=z.map.get(name); if(!e) return null;
-  const nlen=z.dv.getUint16(e.lho+26,true), elen=z.dv.getUint16(e.lho+28,true);
-  const start=e.lho+30+nlen+elen;
-  const raw=z.u8.subarray(start, start+e.csize);
-  if(e.method===0) return new TextDecoder().decode(raw);
+  if(e.method===0) return new TextDecoder().decode(e.raw);
   if(e.method!==8) throw new Error('不支援的壓縮方式。');
-  const s=new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+  const s=new Blob([e.raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
   return await new Response(s).text();
+}
+
+/* ---------- 重打包：只置換改過的 part，其餘照抄 ---------- */
+const CRC32 = (function(){
+  const t=new Uint32Array(256);
+  for(let i=0;i<256;i++){ let c=i; for(let k=0;k<8;k++) c = c&1 ? 0xEDB88320^(c>>>1) : c>>>1; t[i]=c>>>0; }
+  return function(b){ let c=0xFFFFFFFF; for(let i=0;i<b.length;i++) c=t[(c^b[i])&0xFF]^(c>>>8); return (c^0xFFFFFFFF)>>>0; };
+})();
+async function zipWrite(list){
+  const enc=new TextEncoder(), parts=[], central=[];
+  let off=0;
+  for(const e of list){
+    let method=e.method, crc=e.crc, csize=e.csize, usize=e.usize, raw=e.raw;
+    if(e.replaceWith !== undefined){
+      const data=enc.encode(e.replaceWith);
+      const s=new Blob([data]).stream().pipeThrough(new CompressionStream('deflate-raw'));
+      raw=new Uint8Array(await new Response(s).arrayBuffer());
+      method=8; crc=CRC32(data); csize=raw.length; usize=data.length;
+    }
+    const nm=enc.encode(e.name);
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0,true);
+    lh.setUint16(8,method,true); lh.setUint16(10,e.mtime,true); lh.setUint16(12,e.mdate,true);
+    lh.setUint32(14,crc,true); lh.setUint32(18,csize,true); lh.setUint32(22,usize,true);
+    lh.setUint16(26,nm.length,true); lh.setUint16(28,0,true);
+    parts.push(new Uint8Array(lh.buffer), nm, raw);
+    const ch=new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true);
+    ch.setUint16(8,0,true); ch.setUint16(10,method,true);
+    ch.setUint16(12,e.mtime,true); ch.setUint16(14,e.mdate,true);
+    ch.setUint32(16,crc,true); ch.setUint32(20,csize,true); ch.setUint32(24,usize,true);
+    ch.setUint16(28,nm.length,true); ch.setUint32(42,off,true);
+    central.push(new Uint8Array(ch.buffer), nm);
+    off += 30+nm.length+csize;
+  }
+  let clen=0; central.forEach(c=>clen+=c.length);
+  const eo=new DataView(new ArrayBuffer(22));
+  eo.setUint32(0,0x06054b50,true);
+  eo.setUint16(8,list.length,true); eo.setUint16(10,list.length,true);
+  eo.setUint32(12,clen,true); eo.setUint32(16,off,true);
+  return new Blob([...parts,...central,new Uint8Array(eo.buffer)],
+    {type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+
+const TW = cm => Math.round(cm*567);
+function patchSectPr(xml, o){
+  const sects = xml.match(/<w:sectPr[\s\S]*?<\/w:sectPr>|<w:sectPr[^>]*\/>/g) || [];
+  const pgSz = '<w:pgSz w:w="11906" w:h="16838"/>';
+  const pgMar = '<w:pgMar w:top="'+TW(o.top)+'" w:right="'+TW(o.right)+'" w:bottom="'+TW(o.bottom)+
+                '" w:left="'+TW(o.left)+'" w:header="851" w:footer="992" w:gutter="0"/>';
+  let out = xml;
+  for(const s of sects){
+    let t = s;
+    t = /<w:pgSz[^>]*\/>/.test(t) ? t.replace(/<w:pgSz[^>]*\/>/, pgSz)
+                                  : t.replace(/(<w:sectPr[^>]*>)/, '$1'+pgSz);
+    t = /<w:pgMar[^>]*\/>/.test(t) ? t.replace(/<w:pgMar[^>]*\/>/, pgMar)
+                                   : t.replace(/(<w:pgSz[^>]*\/>)/, '$1'+pgMar);
+    out = out.replace(s, t);
+  }
+  return {xml:out, sections:sects.length};
+}
+function patchDocDefaults(xml, o){
+  const rF = '<w:rFonts w:ascii="'+o.enFont+'" w:hAnsi="'+o.enFont+'" w:eastAsia="'+o.zhFont+'" w:cs="'+o.enFont+'"/>';
+  const sz = '<w:sz w:val="'+(o.size*2)+'"/><w:szCs w:val="'+(o.size*2)+'"/>';
+  const sp = '<w:spacing w:line="'+o.line+'" w:lineRule="auto" w:before="0" w:after="0"/>';
+  const dd = '<w:docDefaults><w:rPrDefault><w:rPr>'+rF+sz+'</w:rPr></w:rPrDefault>'+
+             '<w:pPrDefault><w:pPr>'+sp+'</w:pPr></w:pPrDefault></w:docDefaults>';
+  if(/<w:docDefaults>[\s\S]*?<\/w:docDefaults>/.test(xml))
+    return xml.replace(/<w:docDefaults>[\s\S]*?<\/w:docDefaults>/, dd);
+  return xml.replace(/(<w:styles[^>]*>)/, '$1'+dd);
+}
+// 清掉文中手動設定的字型與字級，讓上面的預設真的生效。
+// 只動字型與字級，粗體、斜體、底線、顏色、對齊一概不碰。
+function stripRunFonts(xml){
+  let n=0;
+  const bump = ()=>{ n++; return ''; };
+  const out = xml.replace(/<w:rFonts[^>]*\/>/g, bump)
+                 .replace(/<w:sz w:val="[^"]*"\s*\/>/g, bump)
+                 .replace(/<w:szCs w:val="[^"]*"\s*\/>/g, bump);
+  return {xml:out, removed:n};
+}
+function stripParaSpacing(xml){
+  let n=0;
+  const out = xml.replace(/<w:spacing[^>]*w:line="[^"]*"[^>]*\/>/g, ()=>{ n++; return ''; });
+  return {xml:out, removed:n};
 }
 const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 function paragraphsOf(xml){
@@ -2690,8 +2800,11 @@ async function readDocx(file){
   const app  = await zipText(z,'docProps/app.xml').catch(()=>null);
   const pick=(xml,tag)=>{ if(!xml) return ''; const m=xml.match(new RegExp('<'+tag+'[^>]*>([^<]*)</'+tag+'>')); return m?m[1].trim():''; };
   const zot = /ZOTERO_ITEM|ADDIN EN\.CITE|CITAVI|MENDELEY/.test(docXml);
+  const sectCount = (docXml.match(/<w:sectPr/g) || []).length;
   return {
-    text, notes: notes.trim(),
+    text, notes: notes.trim(), zip:z, sectCount,
+    entryCount: z.list.length,
+    mediaCount: z.list.filter(e=>/^word\/media\//.test(e.name)).length,
     meta:{
       creator: pick(core,'dc:creator'),
       lastModifiedBy: pick(core,'cp:lastModifiedBy'),
@@ -2704,8 +2817,42 @@ async function readDocx(file){
   };
 }
 
+/* ---------- 從期刊的 layout 原文抽出版面數字 ----------
+   抽不到的欄位一律留空，介面上標「本刊未載明」讓使用者自己填，不猜。 */
+function parseLayout(raw){
+  const o = {top:null,bottom:null,left:null,right:null,zhFont:null,enFont:null,size:null,line:null, found:[]};
+  if(!raw) return o;
+  const s = String(raw);
+  let m;
+  m = s.match(/上下[^\d]{0,6}([\d.]+)\s*(?:公分|cm)/);
+  if(m){ o.top=o.bottom=+m[1]; o.found.push('上下邊界'); }
+  m = s.match(/左右[^\d]{0,6}([\d.]+)\s*(?:公分|cm)/);
+  if(m){ o.left=o.right=+m[1]; o.found.push('左右邊界'); }
+  m = s.match(/上下左右[^\d]{0,6}([\d.]+)\s*(?:公分|cm)/);
+  if(m){ o.top=o.bottom=o.left=o.right=+m[1]; o.found.push('四邊邊界'); }
+  m = s.match(/(新細明體|標楷體|細明體|微軟正黑體|Times New Roman)/);
+  if(/新細明體|標楷體|細明體|微軟正黑體/.test(s)){
+    o.zhFont = (s.match(/(新細明體|標楷體|細明體|微軟正黑體)/)||[])[1]; o.found.push('中文字型');
+  }
+  if(/Times New Roman/.test(s)){ o.enFont='Times New Roman'; o.found.push('英文字型'); }
+  m = s.match(/內文[^\d]{0,8}(\d{1,2})\s*(?:級|號)|(\d{1,2})\s*(?:級|號)字?體?[^）]{0,4}(?:內文)?/);
+  const sizeM = s.match(/內文[^\d]{0,8}(\d{1,2})\s*[級號]/) || s.match(/(\d{1,2})\s*[級號](?:字體?)?/);
+  if(sizeM){ o.size = +(sizeM[1]||sizeM[2]); o.found.push('字級'); }
+  if(/單行間距/.test(s)){ o.line=240; o.found.push('行距'); }
+  else if(/1\.5\s*倍/.test(s)){ o.line=360; o.found.push('行距'); }
+  else if(/雙行間距|２倍|2\s*倍/.test(s)){ o.line=480; o.found.push('行距'); }
+  return o;
+}
+const LINE_LABEL = {240:'單行間距', 360:'1.5 倍行高', 480:'2 倍行高'};
+
 /* ---------- 介面 ---------- */
-const St = { jid:'', typeIdx:0, lang:'zh', text:'', src:'', meta:null, err:'' };
+const St = { jid:'', typeIdx:0, lang:'zh', text:'', src:'', meta:null, err:'', doc:null,
+             fmt:null, fmtMsg:'', busy:false };
+// 這個環境能不能讓頁面自己觸發下載。Artifact 的檢視器會封鎖，GitHub Pages 版不會。
+const CAN_DOWNLOAD = (function(){
+  try{ return typeof window.claude === 'undefined' && typeof URL.createObjectURL === 'function'; }
+  catch(e){ return false; }
+})();
 
 function limitsOf(j){
   const isEn = j.idx==='SSCI';
@@ -2731,10 +2878,11 @@ function viewLint(){
   let h = '<div class="lint">';
   h += `<section class="lint-intro">
     <h2>稿件檢查</h2>
-    <p class="lede">把稿子貼進來或上傳 Word 檔，這裡會算字數、掃出匿名審查可能殘留的個人資訊，
-    再對照本站收錄的規定，告訴你哪幾項可能不合、哪幾項本站根本查不到。</p>
-    <div class="note"><b>它不會改你的檔案</b>　標點與引用格式只會告訴你位置和該在 Word 裡搜尋什麼。
-    改壞了你多半不會發現，所以這一步留給你自己做。也不會產生排好版的稿件，版面的部分給你的是一張設定清單。</div>
+    <p class="lede">上傳 Word 檔或把稿子貼進來，這裡會算字數、掃出匿名審查可能殘留的個人資訊，
+    對照本站收錄的規定告訴你哪幾項可能不合，並把頁面邊界、字型、字級、行距套成該刊要求的樣子，另存成新檔。</p>
+    <div class="note"><b>版面會自動套用，文字不會被改</b>
+    邊界、字型、字級、行距可以直接套到你的 Word 檔。標點與引用格式則只告訴你位置和該在 Word 裡搜尋什麼，
+    因為那要動到你寫的字，改壞了你多半不會發現。</div>
     <div class="note note-ok"><b>檔案不會離開你的電腦</b>　整個過程都在瀏覽器裡跑，沒有上傳到任何伺服器，
     因為這個網站沒有後端。你可以斷網之後再用一次確認。</div>
   </section>`;
@@ -2785,16 +2933,28 @@ function viewLint(){
   });
   const ta=document.getElementById('lintText');
   const run=document.getElementById('lintRun');
-  if(run) run.onclick=()=>{ St.text=ta.value; if(!St.src) St.src='貼上的文字'; St.err=''; A.render(); };
+  if(run) run.onclick=()=>{
+    const v = ta.value;
+    // 文字被改過就不能再套版面：報告會是新文字的，檔案卻是舊的那份，
+    // 產出來的東西兩邊對不起來，比不給功能更糟。
+    if(St.doc && v !== St.docText){
+      St.doc=null; St.meta=null; St.fmtMsg='';
+      St.src='貼上的文字（內容已與上傳的檔案不同）';
+    }
+    St.text=v; if(!St.src) St.src='貼上的文字';
+    St.err=''; A.render();
+  };
   const fi=document.getElementById('lintFile');
   if(fi) fi.onchange=async e=>{
     const f=e.target.files && e.target.files[0]; if(!f) return;
     try{
       const r=await readDocx(f);
       St.text=r.text + (r.notes?('\n'+r.notes):''); St.meta=r.meta; St.src=f.name; St.err='';
-    }catch(err){ St.err=err.message||String(err); St.meta=null; }
+      St.doc=r; St.docText=St.text; St.fmt=null; St.fmtMsg='';
+    }catch(err){ St.err=err.message||String(err); St.meta=null; St.doc=null; }
     A.render();
   };
+  wireFormat(m);
 }
 
 function report(j, L, multi){
@@ -2904,16 +3064,68 @@ function report(j, L, multi){
   unchecked.push('圖片內容、圖片 EXIF、檔名本身、截圖裡的路徑。這些本工具看不到。');
   h += `</div>`;
 
-  // 版面設定
-  h += `<div class="rblock"><h4>版面設定　<span class="muted">請在 Word 裡這樣設定</span></h4>`;
-  if(j.layout){
-    h += `<div class="layoutbox">${esc(j.layout)}</div>`;
-    if(j.heads) h += `<div class="layoutbox">標題層級：${esc(j.heads)}</div>`;
-    h += `<p class="muted">在「版面配置」與「樣式」面板裡改，大約五分鐘。本工具不會替你排版，因為重排會弄丟你的圖表與文獻欄位。</p>`;
-  } else {
-    h += `<div class="verdict b-na">本站無資料<span>這本期刊的版面規定本站沒有收錄，請看官網稿約</span></div>`;
-    unchecked.push('版面設定。本站沒有收錄這本期刊的版面規定。');
+  // 版面設定：可直接套用到原檔
+  const P = parseLayout(j.layout);
+  const D = {
+    top:   P.top    != null ? P.top    : 2.54,
+    bottom:P.bottom != null ? P.bottom : 2.54,
+    left:  P.left   != null ? P.left   : 3.18,
+    right: P.right  != null ? P.right  : 3.18,
+    zhFont:P.zhFont || '新細明體',
+    enFont:P.enFont || 'Times New Roman',
+    size:  P.size   != null ? P.size   : 12,
+    line:  P.line   != null ? P.line   : 240
+  };
+  h += `<div class="rblock"><h4>套用版面到你的 Word 檔</h4>`;
+  if(j.layout) h += `<div class="layoutbox">${esc(j.layout)}</div>`;
+  if(j.heads)  h += `<div class="layoutbox">標題層級：${esc(j.heads)}</div>`;
+  if(!j.layout){
+    h += `<div class="verdict b-na">本刊版面規定本站無資料<span>以下數字是通用預設值，請自行對照該刊稿約修改</span></div>`;
+    unchecked.push('版面設定。本站沒有收錄這本期刊的版面規定，表單裡是通用預設值。');
+  } else if(P.found.length){
+    h += `<p class="muted">已從上面的規定讀出：${P.found.join('、')}。其餘欄位是通用預設值，請自行核對。</p>`;
   }
+  h += `<div class="fmtgrid">
+      <label>上邊界 <input type="number" step="0.01" id="f-top" value="${D.top}"><span>cm</span></label>
+      <label>下邊界 <input type="number" step="0.01" id="f-bottom" value="${D.bottom}"><span>cm</span></label>
+      <label>左邊界 <input type="number" step="0.01" id="f-left" value="${D.left}"><span>cm</span></label>
+      <label>右邊界 <input type="number" step="0.01" id="f-right" value="${D.right}"><span>cm</span></label>
+      <label>中文字型 <input type="text" id="f-zh" value="${esc(D.zhFont)}"></label>
+      <label>英文字型 <input type="text" id="f-en" value="${esc(D.enFont)}"></label>
+      <label>字級 <input type="number" step="0.5" id="f-size" value="${D.size}"><span>級</span></label>
+      <label>行距 <select id="f-line">
+        <option value="240"${D.line===240?' selected':''}>單行間距</option>
+        <option value="360"${D.line===360?' selected':''}>1.5 倍行高</option>
+        <option value="480"${D.line===480?' selected':''}>2 倍行高</option>
+      </select></label>
+    </div>
+    <div class="fmtopts">
+      <label><input type="checkbox" id="o-strip" checked>
+        <span><b>清除文中手動設定的字型與字級</b>，讓上面的設定真的生效。
+        中文論文多半是逐段手動設字型的，不清的話新設定會被蓋掉。
+        粗體、斜體、底線、顏色、對齊、縮排都不會動到。</span></label>
+      <label><input type="checkbox" id="o-line">
+        <span><b>一併統一行距</b>。會清掉段落層級的行距設定，包括你為了排版特意調過的段落。
+        不確定就不要勾。</span></label>
+    </div>`;
+  if(!St.doc){
+    h += `<div class="note"><b>要套用版面，請用上傳 Word 檔的方式提供稿件</b>　貼上純文字只有字，沒有版面可以改。</div>`;
+  } else if(St.doc.sectCount > 1){
+    h += `<div class="note note-bad"><b>這份文件有 ${St.doc.sectCount} 個章節設定</b>
+      通常表示中間有橫向頁面或不同的頁面配置（例如放大表格那幾頁）。
+      全部套用同一組邊界會把那些頁面弄壞，所以這份檔案不提供自動套用，請在 Word 裡逐節處理。</div>`;
+  } else if(!CAN_DOWNLOAD){
+    h += `<div class="note"><b>這個檢視環境不能讓網頁自己觸發下載</b>
+      請改用 <a href="https://ian3738.github.io/journal-format-lookup/" target="_blank" rel="noopener">GitHub Pages 版</a>，
+      功能相同且可以直接存檔。</div>`;
+  } else {
+    h += `<button class="runbtn" id="fmtBtn"${St.busy?' disabled':''}>${St.busy?'處理中…':'套用版面並下載'}</button>`;
+    if(St.fmtMsg) h += `<div class="note note-ok" style="margin-top:10px">${St.fmtMsg}</div>`;
+  }
+  h += `<div class="note" style="margin-top:10px"><b>會改什麼、不會改什麼</b>
+    只置換頁面大小與邊界、預設字型字級行距這兩處設定，其餘每一個內部檔案都是原始位元組直接複製，
+    所以圖片、圖說、表格、註腳、方程式、Zotero 或 EndNote 的欄位都不會受影響。
+    檔案會另存為新檔，你的原稿不會被動到。存下來之後請在 Word 裡開一次確認。</div>`;
   h += `</div>`;
 
   // 未檢查的項目
@@ -2928,6 +3140,64 @@ function report(j, L, multi){
     送出前請對照該刊官網的現行稿約。${links.length?'<div class="linkrow" style="margin-top:9px">'+links.join('')+'</div>':''}</div>`;
   h += '</section>';
   return h;
+}
+
+/* ---------- 套用版面並下載 ---------- */
+function wireFormat(root){
+  const btn = root.querySelector('#fmtBtn');
+  if(!btn) return;
+  btn.onclick = async ()=>{
+    const num = (id,d)=>{ const v=parseFloat((root.querySelector(id)||{}).value); return isFinite(v)?v:d; };
+    const txt = (id,d)=>{ const v=((root.querySelector(id)||{}).value||'').trim(); return v||d; };
+    const o = {
+      top:num('#f-top',2.54), bottom:num('#f-bottom',2.54),
+      left:num('#f-left',3.18), right:num('#f-right',3.18),
+      zhFont:txt('#f-zh','新細明體'), enFont:txt('#f-en','Times New Roman'),
+      size:num('#f-size',12), line:num('#f-line',240)
+    };
+    const doStrip = !!(root.querySelector('#o-strip')||{}).checked;
+    const doLine  = !!(root.querySelector('#o-line')||{}).checked;
+    St.busy = true; St.fmtMsg=''; A.render();
+    try{
+      const z = St.doc.zip;
+      const dec = new TextDecoder();
+      const docE = z.map.get('word/document.xml');
+      let xml = await zipText(z, 'word/document.xml');
+      const sp = patchSectPr(xml, o);
+      xml = sp.xml;
+      let stripped = 0, lineCleared = 0;
+      if(doStrip){ const r = stripRunFonts(xml); xml = r.xml; stripped = r.removed; }
+      if(doLine){ const r = stripParaSpacing(xml); xml = r.xml; lineCleared = r.removed; }
+      docE.replaceWith = xml;
+
+      const styE = z.map.get('word/styles.xml');
+      if(styE) styE.replaceWith = patchDocDefaults(await zipText(z,'word/styles.xml'), o);
+
+      const blob = await zipWrite(z.list);
+      // 用完就清掉，免得再按一次時把已改過的內容當成原檔又改一遍
+      z.list.forEach(e=>{ delete e.replaceWith; });
+
+      const base = (St.src||'稿件.docx').replace(/\.docx$/i,'');
+      const name = base + '_' + (A.J.find(x=>x.id===St.jid)||{}).name + '格式.docx';
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = name; document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+
+      const kb = (blob.size/1048576).toFixed(2);
+      St.fmtMsg = '已產生 <b>'+esc(name)+'</b>（'+kb+' MB）。'+
+        '共 '+St.doc.entryCount+' 個內部檔案，只置換了 2 個（版面與樣式），'+
+        '其中 '+St.doc.mediaCount+' 張圖片是原始位元組直接複製。'+
+        (stripped?'另清除了 '+stripped+' 處手動字型與字級設定。':'')+
+        (lineCleared?'清除了 '+lineCleared+' 處段落行距設定。':'')+
+        ' 請在 Word 裡開一次確認再送出。';
+    }catch(err){
+      St.fmtMsg = '';
+      St.err = '產生失敗：' + (err.message||String(err));
+    }
+    St.busy = false; A.render();
+  };
 }
 
 A.registerView('lint', viewLint, '稿件檢查');
