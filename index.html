@@ -1,0 +1,1827 @@
+<title>投稿格式速查台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+TC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@600;700&display=swap">
+
+<style>
+/* ============ tokens ============ */
+:root{
+  --ink:#16202e; --ink-2:#38455a; --ink-3:#5d6b81; --ink-4:#8593a8;
+  --ground:#f7f8fa; --surface:#ffffff; --surface-2:#eef1f6; --surface-3:#e3e8f0;
+  --line:#d8dfe9; --line-strong:#b9c4d4;
+  --indigo:#29457a; --indigo-soft:#dde5f4; --indigo-text:#29457a;
+  --vermilion:#b33a2b; --vermilion-soft:#f8e2de; --vermilion-text:#96301f;
+  --violet:#5b4b8a; --violet-soft:#e8e3f4; --violet-text:#4c3d79;
+  --amber:#b77f2e; --amber-soft:#f8ecd8; --amber-text:#8f6118;
+  --green:#3f7a52; --green-soft:#dff0e4; --green-text:#2e6540;
+  --shadow:0 1px 2px rgba(22,32,46,.06),0 8px 24px -12px rgba(22,32,46,.18);
+  --shadow-lg:0 2px 6px rgba(22,32,46,.08),0 24px 56px -20px rgba(22,32,46,.3);
+  --sans:"IBM Plex Sans TC","IBM Plex Sans","Helvetica Neue",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  --serif:"Noto Serif TC","Songti TC",Georgia,serif;
+  --mono:"IBM Plex Mono","SF Mono",ui-monospace,Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e5eaf2; --ink-2:#b9c4d4; --ink-3:#8d9bb0; --ink-4:#6b7a90;
+    --ground:#0e141d; --surface:#161e2a; --surface-2:#1e2836; --surface-3:#273343;
+    --line:#2b3747; --line-strong:#3d4c60;
+    --indigo:#8fb0e6; --indigo-soft:#1d2c47; --indigo-text:#a6c1ef;
+    --vermilion:#e8836f; --vermilion-soft:#3a2019; --vermilion-text:#f0977f;
+    --violet:#a698d8; --violet-soft:#272141; --violet-text:#b5a8e2;
+    --amber:#dfa958; --amber-soft:#33280f; --amber-text:#e6b96f;
+    --green:#7ec293; --green-soft:#16301f; --green-text:#8fd0a4;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+    --shadow-lg:0 2px 6px rgba(0,0,0,.5),0 24px 56px -20px rgba(0,0,0,.75);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e5eaf2; --ink-2:#b9c4d4; --ink-3:#8d9bb0; --ink-4:#6b7a90;
+  --ground:#0e141d; --surface:#161e2a; --surface-2:#1e2836; --surface-3:#273343;
+  --line:#2b3747; --line-strong:#3d4c60;
+  --indigo:#8fb0e6; --indigo-soft:#1d2c47; --indigo-text:#a6c1ef;
+  --vermilion:#e8836f; --vermilion-soft:#3a2019; --vermilion-text:#f0977f;
+  --violet:#a698d8; --violet-soft:#272141; --violet-text:#b5a8e2;
+  --amber:#dfa958; --amber-soft:#33280f; --amber-text:#e6b96f;
+  --green:#7ec293; --green-soft:#16301f; --green-text:#8fd0a4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.5),0 24px 56px -20px rgba(0,0,0,.75);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0; text-wrap:balance; font-weight:600; line-height:1.3}
+a{color:var(--indigo-text)}
+button{font-family:inherit; font-size:inherit; cursor:pointer}
+:focus-visible{outline:2px solid var(--indigo); outline-offset:2px; border-radius:4px}
+
+/* ============ shell ============ */
+.top{
+  position:sticky; top:0; z-index:40; background:var(--surface);
+  border-bottom:1px solid var(--line);
+}
+.top-in{max-width:1560px; margin:0 auto; padding:14px 22px; display:flex; flex-wrap:wrap; gap:16px; align-items:center}
+.brand{display:flex; align-items:baseline; gap:10px; margin-right:auto}
+.brand h1{font-family:var(--serif); font-size:20px; letter-spacing:.01em}
+.brand .sub{font-size:12px; color:var(--ink-4); font-family:var(--mono); letter-spacing:.02em}
+
+.search{position:relative; flex:1 1 320px; max-width:460px}
+.search input{
+  width:100%; padding:9px 34px 9px 34px; font-family:inherit; font-size:14px;
+  background:var(--surface-2); color:var(--ink);
+  border:1px solid var(--line); border-radius:var(--r);
+}
+.search input::placeholder{color:var(--ink-4)}
+.search .ico{position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--ink-4); pointer-events:none; font-size:13px}
+.search .clr{position:absolute; right:6px; top:50%; transform:translateY(-50%); border:0; background:none; color:var(--ink-4); padding:4px 7px; font-size:15px; line-height:1; border-radius:6px}
+.search .clr:hover{color:var(--ink); background:var(--surface-3)}
+
+.tabs{display:flex; gap:2px; background:var(--surface-2); padding:3px; border-radius:var(--r); border:1px solid var(--line)}
+.tabs button{
+  border:0; background:none; color:var(--ink-3); padding:6px 13px;
+  border-radius:7px; font-size:13.5px; font-weight:500; white-space:nowrap;
+}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--surface); color:var(--ink); box-shadow:var(--shadow); font-weight:600}
+
+.icon-btn{
+  border:1px solid var(--line); background:var(--surface-2); color:var(--ink-2);
+  width:36px; height:36px; border-radius:var(--r); display:grid; place-items:center; font-size:15px;
+}
+.icon-btn:hover{background:var(--surface-3); color:var(--ink)}
+
+/* ============ layout ============ */
+.wrap{max-width:1560px; margin:0 auto; padding:22px; display:grid; grid-template-columns:238px minmax(0,1fr); gap:26px; align-items:start}
+.wrap.solo{grid-template-columns:minmax(0,1fr)}
+@media(max-width:1000px){ .wrap{grid-template-columns:1fr; gap:16px} }
+
+aside{position:sticky; top:78px; display:flex; flex-direction:column; gap:20px; max-height:calc(100vh - 100px); overflow-y:auto; padding-right:4px}
+@media(max-width:1000px){ aside{position:static; max-height:none; overflow:visible} }
+.fgroup h3{
+  font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-4);
+  font-weight:600; margin-bottom:9px; font-family:var(--mono);
+}
+.fopts{display:flex; flex-direction:column; gap:1px}
+@media(max-width:1000px){ .fopts{flex-direction:row; flex-wrap:wrap; gap:6px} }
+.fopt{
+  display:flex; align-items:center; gap:8px; padding:5px 9px; border-radius:7px;
+  font-size:13.5px; color:var(--ink-2); border:0; background:none; text-align:left; width:100%;
+}
+@media(max-width:1000px){ .fopt{width:auto; border:1px solid var(--line); background:var(--surface)} }
+.fopt:hover{background:var(--surface-2); color:var(--ink)}
+.fopt[aria-pressed="true"]{background:var(--indigo-soft); color:var(--indigo-text); font-weight:600}
+.fopt .n{margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-4); font-variant-numeric:tabular-nums}
+.fopt[aria-pressed="true"] .n{color:var(--indigo-text)}
+.dot{width:8px; height:8px; border-radius:2px; flex:none}
+
+.reset{
+  border:1px solid var(--line); background:var(--surface); color:var(--ink-3);
+  padding:7px 12px; border-radius:var(--r); font-size:13px; width:100%;
+}
+.reset:hover{border-color:var(--line-strong); color:var(--ink)}
+
+/* ============ results ============ */
+.rhead{display:flex; align-items:baseline; gap:12px; margin-bottom:14px; flex-wrap:wrap}
+.rcount{font-family:var(--mono); font-size:13px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.rhead .hint{font-size:12.5px; color:var(--ink-4); margin-left:auto}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:14px}
+
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:15px 16px 13px; display:flex; flex-direction:column; gap:11px;
+  text-align:left; width:100%; font:inherit; color:inherit;
+  transition:border-color .12s, box-shadow .12s, transform .12s;
+}
+.card:hover{border-color:var(--line-strong); box-shadow:var(--shadow); transform:translateY(-1px)}
+.card.picked{border-color:var(--indigo); box-shadow:0 0 0 1px var(--indigo)}
+
+.badges{display:flex; flex-wrap:wrap; gap:5px; align-items:center}
+.badge{
+  font-size:11px; font-weight:600; padding:2.5px 7px; border-radius:5px;
+  font-family:var(--mono); letter-spacing:.01em; white-space:nowrap;
+}
+.b-t1{background:var(--vermilion-soft); color:var(--vermilion-text)}
+.b-t2{background:var(--amber-soft); color:var(--amber-text)}
+.b-t3{background:var(--surface-3); color:var(--ink-3)}
+.b-q1{background:var(--violet-soft); color:var(--violet-text)}
+.b-q2{background:var(--indigo-soft); color:var(--indigo-text)}
+.b-oa{background:var(--green-soft); color:var(--green-text)}
+.b-free{background:var(--green-soft); color:var(--green-text)}
+
+.cname{font-family:var(--serif); font-size:17.5px; font-weight:600; line-height:1.35; letter-spacing:.01em}
+.cname-en{font-size:12px; color:var(--ink-4); line-height:1.45; margin-top:3px; font-style:italic}
+.cpub{font-size:12px; color:var(--ink-3)}
+
+.facts{display:grid; grid-template-columns:auto 1fr; gap:4px 12px; font-size:12.5px; margin-top:1px}
+.facts dt{color:var(--ink-4); white-space:nowrap}
+.facts dd{margin:0; color:var(--ink-2); font-family:var(--mono); font-size:12px; font-variant-numeric:tabular-nums}
+.facts dd.q{color:var(--ink-4); font-style:italic; font-family:var(--sans)}
+
+.cfoot{display:flex; align-items:center; gap:8px; margin-top:2px; padding-top:9px; border-top:1px solid var(--line)}
+.vstat{font-size:11px; font-family:var(--mono); display:flex; align-items:center; gap:5px}
+.v-official{color:var(--green-text)}
+.v-partial{color:var(--amber-text)}
+.v-listed{color:var(--ink-4)}
+.pickbtn{
+  margin-left:auto; border:1px solid var(--line); background:var(--surface-2); color:var(--ink-3);
+  font-size:11.5px; padding:3px 9px; border-radius:6px; font-family:var(--mono);
+}
+.pickbtn:hover{border-color:var(--line-strong); color:var(--ink)}
+.pickbtn[aria-pressed="true"]{background:var(--indigo); border-color:var(--indigo); color:#fff}
+:root[data-theme="dark"] .pickbtn[aria-pressed="true"], :root:not([data-theme="light"]) .pickbtn[aria-pressed="true"]{color:var(--ground)}
+@media (prefers-color-scheme:light){ :root:not([data-theme="dark"]) .pickbtn[aria-pressed="true"]{color:#fff} }
+
+.empty{padding:60px 20px; text-align:center; color:var(--ink-4)}
+.empty strong{display:block; color:var(--ink-2); font-size:16px; margin-bottom:6px; font-family:var(--serif)}
+
+/* ============ drawer ============ */
+.scrim{position:fixed; inset:0; background:rgba(14,20,29,.42); z-index:50; opacity:0; pointer-events:none; transition:opacity .18s}
+.scrim.on{opacity:1; pointer-events:auto}
+.drawer{
+  position:fixed; top:0; right:0; bottom:0; width:min(660px,100%); z-index:51;
+  background:var(--surface); border-left:1px solid var(--line); box-shadow:var(--shadow-lg);
+  transform:translateX(100%); transition:transform .22s cubic-bezier(.32,.72,0,1);
+  display:flex; flex-direction:column;
+}
+.drawer.on{transform:none}
+@media(prefers-reduced-motion:reduce){ .drawer,.scrim{transition:none} }
+.dhead{padding:20px 24px 15px; border-bottom:1px solid var(--line); display:flex; gap:14px; align-items:flex-start}
+.dhead .x{border:0; background:var(--surface-2); color:var(--ink-3); width:30px; height:30px; border-radius:7px; flex:none; font-size:16px; line-height:1}
+.dhead .x:hover{background:var(--surface-3); color:var(--ink)}
+.dbody{padding:20px 24px 40px; overflow-y:auto; flex:1}
+
+.sect{margin-bottom:24px}
+.sect > h4{
+  font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-4);
+  font-family:var(--mono); font-weight:600; margin-bottom:10px;
+  padding-bottom:6px; border-bottom:1px solid var(--line);
+}
+.rows{display:grid; grid-template-columns:118px minmax(0,1fr); gap:9px 16px; font-size:13.5px}
+@media(max-width:520px){ .rows{grid-template-columns:1fr; gap:2px 0} .rows dt{margin-top:8px} }
+.rows dt{color:var(--ink-4); font-size:12.5px; padding-top:1px}
+.rows dd{margin:0; color:var(--ink); line-height:1.6}
+.rows dd .num{font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:500}
+.rows dd small{display:block; color:var(--ink-3); font-size:12px; margin-top:2px; line-height:1.55}
+
+.note{
+  background:var(--amber-soft); border-left:2.5px solid var(--amber);
+  padding:10px 13px; border-radius:0 7px 7px 0; font-size:13px; color:var(--ink-2); line-height:1.6;
+}
+.note + .note{margin-top:8px}
+.note b{color:var(--amber-text)}
+
+.linkrow{display:flex; flex-wrap:wrap; gap:8px}
+.linkbtn{
+  display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+  border:1px solid var(--line); background:var(--surface-2); color:var(--ink-2);
+  padding:7px 12px; border-radius:8px; font-size:13px;
+}
+.linkbtn:hover{border-color:var(--line-strong); color:var(--ink); background:var(--surface-3)}
+.linkbtn .ar{color:var(--ink-4); font-size:11px}
+
+.srcbox{font-size:12px; color:var(--ink-3); line-height:1.6; background:var(--surface-2); padding:11px 13px; border-radius:8px}
+.srcbox code{font-family:var(--mono); font-size:11.5px; color:var(--ink-2)}
+
+/* ============ compare ============ */
+.cmp-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); background:var(--surface)}
+table.cmp{border-collapse:collapse; width:100%; min-width:640px; font-size:13.5px}
+table.cmp th, table.cmp td{padding:11px 14px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line)}
+table.cmp thead th{
+  position:sticky; top:0; background:var(--surface-2); font-family:var(--serif); font-size:15px;
+  font-weight:600; border-bottom:1px solid var(--line-strong); z-index:1;
+}
+table.cmp thead th:first-child{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-4); font-weight:600}
+table.cmp tbody th{font-weight:400; color:var(--ink-4); font-size:12.5px; white-space:nowrap; background:var(--surface); width:120px}
+table.cmp td{color:var(--ink); font-variant-numeric:tabular-nums}
+table.cmp tr:last-child th, table.cmp tr:last-child td{border-bottom:0}
+table.cmp .diff{background:var(--indigo-soft)}
+
+/* ============ checklist ============ */
+.cl-pick{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; align-items:center}
+.cl-pick select{
+  font-family:inherit; font-size:14px; padding:8px 11px; border-radius:var(--r);
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); min-width:260px;
+}
+.sheet{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:26px 30px; max-width:780px;
+}
+.sheet-head{border-bottom:2px solid var(--ink); padding-bottom:12px; margin-bottom:18px}
+.sheet-head h2{font-family:var(--serif); font-size:21px}
+.sheet-head p{margin:5px 0 0; font-size:12.5px; color:var(--ink-3)}
+.cl-group{margin-bottom:20px}
+.cl-group h4{
+  font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-4);
+  font-family:var(--mono); font-weight:600; margin-bottom:9px;
+}
+.cl-item{display:flex; gap:10px; padding:7px 0; border-bottom:1px dotted var(--line); align-items:flex-start}
+.cl-item:last-child{border-bottom:0}
+.cl-item input{margin-top:4px; accent-color:var(--indigo); width:15px; height:15px; flex:none}
+.cl-item label{font-size:13.5px; line-height:1.6; cursor:pointer}
+.cl-item .v{font-family:var(--mono); font-weight:500; color:var(--indigo-text); font-variant-numeric:tabular-nums}
+.cl-item input:checked + label{color:var(--ink-4); text-decoration:line-through; text-decoration-color:var(--line-strong)}
+
+/* ============ apa ============ */
+.apa{max-width:900px; display:flex; flex-direction:column; gap:26px}
+.apa-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:20px 24px}
+.apa-card > h3{font-family:var(--serif); font-size:17px; margin-bottom:4px}
+.apa-card > p.lead{margin:0 0 14px; font-size:13px; color:var(--ink-3)}
+.ex{
+  font-family:var(--mono); font-size:12.5px; line-height:1.75; background:var(--surface-2);
+  padding:11px 14px; border-radius:8px; color:var(--ink-2); overflow-x:auto; white-space:pre-wrap;
+  word-break:break-word;
+}
+.ex .hl{color:var(--vermilion-text); font-weight:500}
+.apa-rows{display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px 18px; font-size:13.5px}
+@media(max-width:560px){ .apa-rows{grid-template-columns:1fr; gap:3px 0} .apa-rows dt{margin-top:10px} }
+.apa-rows dt{color:var(--ink-4); font-size:12.5px}
+.apa-rows dd{margin:0}
+
+/* ============ about ============ */
+.about{max-width:760px; font-size:14px; line-height:1.75; color:var(--ink-2)}
+.about h3{font-family:var(--serif); font-size:17px; color:var(--ink); margin:22px 0 8px}
+.about h3:first-child{margin-top:0}
+.about ul{padding-left:20px; margin:8px 0}
+.about li{margin-bottom:6px}
+.about code{font-family:var(--mono); font-size:12.5px; background:var(--surface-2); padding:1px 5px; border-radius:4px}
+.legend{display:grid; gap:8px; margin:10px 0}
+.legend div{display:flex; gap:9px; align-items:flex-start; font-size:13.5px}
+
+.hide{display:none !important}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>投稿格式速查台</h1>
+      <span class="sub">TSSCI · SSCI</span>
+    </div>
+    <div class="search">
+      <span class="ico">⌕</span>
+      <input id="q" type="search" placeholder="搜尋刊名、出版者、領域…" autocomplete="off" aria-label="搜尋期刊">
+      <button class="clr hide" id="qclr" aria-label="清除搜尋">×</button>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-view="browse">瀏覽</button>
+      <button role="tab" aria-selected="false" data-view="compare">比較 <span id="cmpn"></span></button>
+      <button role="tab" aria-selected="false" data-view="check">檢查清單</button>
+      <button role="tab" aria-selected="false" data-view="apa">APA 7</button>
+      <button role="tab" aria-selected="false" data-view="about">資料說明</button>
+    </div>
+    <button class="icon-btn" id="theme" aria-label="切換深淺色">◐</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside id="side"></aside>
+  <section id="main"></section>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="期刊格式細節"></div>
+
+<script>
+/* =====================================================================
+   資料。verified 欄位標示查證程度：
+     official = 已逐字讀過該刊官方稿約／撰稿體例全文
+     partial  = 取自官方頁面的摘錄（搜尋引擎擷取或官方頁面片段）
+     listed   = 僅確認收錄與分級，格式細節未查證，須以官網為準
+   ===================================================================== */
+const J = [
+/* ---------- TSSCI 教育學門 第一級 ---------- */
+{
+  id:"jres", name:"教育科學研究期刊", en:"Journal of Research in Education Sciences",
+  pub:"國立臺灣師範大學圖書館出版中心", issn:"2073-753X",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"official",
+  scope:"教學、學習與評量之原理；教育行政與政策；課程；科學與技術教育。實徵性研究（量化／質性／混合）為主，亦收具批判性與創發思考的評論性論文。",
+  freq:"季刊（3、6、9、12 月）", intake:"全年徵稿，隨到隨審",
+  wcZh:"20,000 字", wcEn:"7,500 字", wcNote:"含摘要、關鍵詞、正文、圖表、註解、參考文獻、附錄",
+  absZh:"300–500 字", absEn:"300–500 字", absNote:"以不分段呈現為原則。中文稿於修後刊登一個月內須另提供 1,000–1,200 字英文長摘要，含研究動機與目的、文獻探討、研究方法、研究結果、討論與建議。",
+  kw:"3–5 個", kwNote:"中文關鍵詞由小到大依筆畫排列；英文關鍵詞依中文順序排列。",
+  ref:"APA 第 7 版",
+  layout:"A4；上下邊界 2.54 cm、左右 3.18 cm；單行間距；每頁加註頁碼。中文新細明體、英文 Times New Roman，內文 12 級。",
+  heads:"壹（16 級粗體置中）→ 一（14 級粗體齊左）→（一）（12 級粗體齊左）→ 1.（12 級）→ (1)（標題後加句號直接接內文）",
+  review:"雙向匿名審查", timeline:"收稿後約半年內交付評審意見書",
+  fee:"刊登費：臺灣 NT$3,000／海外 US$100", feeType:"paid",
+  system:"https://journal.ntnu.edu.tw/login.asp", site:"http://jories.ntnu.edu.tw",
+  contact:"j.ntnu@ntnu.edu.tw ・ (02) 7749-5279",
+  alerts:[
+    "投稿前須自行完成 Turnitin 比對並附結果檔：中文連續 20 字元、英文連續 10 字彙相同即判為剽竊，全篇相似度須 15% 以下。若判為「修後刊登」會再比對一次，超過 15% 逕行退稿。",
+    "來稿一經送審不得撤稿；非特殊理由自行撤稿者，兩年內不接受該作者投稿。",
+    "接受刊登後，第一作者與通訊作者須於五年內有償為本刊審查論文兩篇。",
+    "統計數值以四捨五入取至小數點後第二位為原則。"
+  ],
+  src:"《教育科學研究期刊》稿約與論文撰寫體例（華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"ber", name:"教育研究集刊", en:"Bulletin of Educational Research",
+  pub:"國立臺灣師範大學教育學系", issn:"1028-8708",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"partial",
+  scope:"教育哲史、教育社會學、教育行政與政策、課程與教學等；亦歡迎比較教育、各級教育等其他教育相關領域來稿。",
+  freq:"季刊", intake:"全年徵稿",
+  wcZh:"學術論文 25,000 字／研究紀要・學術評論 15,000 字",
+  wcEn:"學術論文 8,000 字／研究紀要・學術評論 5,000 字",
+  wcNote:"以此為原則",
+  absZh:"≤ 350 字", absEn:"≤ 200 字", absNote:"",
+  kw:"中英文各 3–5 個", kwNote:"",
+  ref:"中文依雙葉書局《教育論文格式》；英文依 APA 第 7 版",
+  layout:"編排順序：中文摘要 → 英文摘要 → 正文（當頁註）→ 參考文獻 → 附錄。",
+  heads:"",
+  review:"匿名審查", timeline:"投稿後原則上五個月內奉覆採用與否",
+  fee:"未於可取得之公告中載明", feeType:"unknown",
+  system:"http://jrs.edubook.com.tw/BER/index.zul", site:"",
+  contact:"edber@deps.ntnu.edu.tw ・ +886-2-77493892",
+  alerts:[
+    "致謝詞請於通知接受刊登後再加上，置於正文後，長度不超過 60 字。",
+    "本刊網站於查證時正在改版，舊網址 bulletin.ed.ntnu.edu.tw 之稿約頁面已失效。投稿前請務必向編輯部索取現行版撰稿原則。"
+  ],
+  src:"《教育研究集刊》撰稿原則（2022 年 7 月 1 日起適用）官方頁面摘錄"
+},
+{
+  id:"cerq", name:"當代教育研究季刊", en:"Contemporary Educational Research Quarterly",
+  pub:"國立臺灣師範大學教育研究與創新中心", issn:"1814-4810",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"official",
+  scope:"當代教育理論與實務之研究論文、學術評論、研究紀要、書評。",
+  freq:"季刊（3、6、9、12 月）", intake:"全年徵稿",
+  wcZh:"研究論文 20,000 字／學術評論・研究紀要 15,000 字／書評 5,000 字",
+  wcEn:"研究論文 10,000 字／學術評論・研究紀要 7,000 字／書評 3,000 字",
+  wcNote:"含所有圖表、註釋、附錄、中英文摘要及參考書目",
+  absZh:"研究論文 ≤ 1,000 字／學術評論 ≤ 800 字／研究紀要 ≤ 600 字",
+  absEn:"研究論文 ≤ 800 字／學術評論 ≤ 600 字／研究紀要 ≤ 400 字",
+  absNote:"摘要須分點敘寫五項：(1) 研究目的 (2) 研究設計／方法／取徑 (3) 研究發現或結論 (4) 研究原創性／價值性 (5) 教育政策建議或實務意涵。",
+  kw:"4–8 個", kwNote:"",
+  ref:"APA 第 7 版",
+  layout:"首頁為中文標題、摘要與關鍵詞；第二頁為英文標題、摘要與關鍵詞。",
+  heads:"",
+  review:"形式審 → 初審 → 二位以上專業審查者匿名外審 → 編輯審",
+  timeline:"約六個月內回覆",
+  fee:"外審行政處理費 NT$2,000；刊登排版費 臺灣 NT$3,000／國外 US$100", feeType:"paid",
+  system:"https://ojs.lib.ntnu.edu.tw/index.php/CERQ", site:"http://contemporary.cere.ntnu.edu.tw/",
+  contact:"",
+  alerts:[
+    "摘要的五點結構是本刊最容易被形式審退件的一項，撰寫時請逐點標示，不要寫成一段連續敘述。",
+    "本刊撰稿體例載明 APA 第 7 版，但投稿頁另有一處寫「英文來稿遵守 APA 第六版」。以現行撰稿體例（第 7 版）為準，如有疑義請先向編輯部確認。"
+  ],
+  src:"《當代教育研究季刊》投稿須知與撰稿體例（期刊 OJS 官方頁面）"
+},
+{
+  id:"ciq", name:"課程與教學季刊", en:"Curriculum & Instruction Quarterly",
+  pub:"中華民國課程與教學學會", issn:"1560-1277",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"official",
+  scope:"課程與教學相關之量化與質性實徵研究、理論論述、資訊新知。每期含主題論文 2–4 篇、其他論文 3–5 篇，另有學術動態報導與新書評介。",
+  freq:"季刊（1、4、7、10 月）", intake:"全年徵稿",
+  wcZh:"15,000 字為上限，如超過以 20,000 字為原則", wcEn:"10,000 字",
+  wcNote:"含中英文摘要、參考書目與圖表",
+  absZh:"≤ 350 字", absEn:"≤ 350 字", absNote:"",
+  kw:"中英文各 3–5 個", kwNote:"",
+  ref:"APA 第 7 版",
+  layout:"稿件首頁與正文請勿出現可辨識個人身分之訊息。",
+  heads:"壹、→ 一、→（一）→ 1. →（1）→ ①（括號為全形新細明體）",
+  review:"匿名雙審；經審查委員要求修改者，修改並經複審通過後方行刊登",
+  timeline:"未載明",
+  fee:"投稿費 NT$3,000（投稿前劃撥，含手續費 20 元）；刊登費 NT$3,000", feeType:"paid",
+  system:"https://aci.cloudreview.tw/CIQ/", site:"https://811051206.wixsite.com/acitaiwan",
+  contact:"ciqtaiwan@gmail.com（文稿）・ciqtaiwan2@gmail.com（費用）",
+  alerts:[
+    "投稿費須在寄出稿件前先劃撥（郵局帳號 5039 5632，戶名「中華民國課程與教學學會」），初審通過後將劃撥單掃描上傳。劃撥單須正楷註明作者姓名、投稿篇名、投稿費三項。",
+    "圖表編號與標題一律置於圖表「上方」；圖表須為黑白，不可用彩色圖檔。",
+    "研究專案改寫之論文，待通過審查後再於文末說明委託單位、研究團隊、致謝對象等。"
+  ],
+  src:"《課程與教學季刊》稿約與撰寫體例及格式（華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"bse", name:"特殊教育研究學刊", en:"Bulletin of Special Education",
+  pub:"國立臺灣師範大學特殊教育學系", issn:"1026-4485",
+  idx:"TSSCI", tier:"第一級", field:["教育學","特殊教育"], verified:"official",
+  scope:"特殊教育及相關專業領域之研究論文與文獻評論。不接受翻譯、一般性文章、實務報告。",
+  freq:"一年三期（3、7、11 月）", intake:"全年收稿，隨到隨審",
+  wcZh:"25,000 字", wcEn:"7,500 字",
+  wcNote:"含標題、中英文摘要、正文、圖表、參考文獻",
+  absZh:"400–600 字", absEn:"400–600 字",
+  absNote:"接受刊登後一個月內須提供 1,000–1,200 字英文摘要，含 Rationale & Purpose、Methods、Results/Findings、Conclusions/Implications 四部分。",
+  kw:"最多 5 個", kwNote:"",
+  ref:"依本刊網頁之「撰稿體例」",
+  layout:"單行間距 12 號新細明體或 Times New Roman；A4；上下左右各留白 2.5 cm；頁碼置於頁末中央。",
+  heads:"",
+  review:"形式審 → 主編／執行編輯／責任編輯預審 → 2–3 名雙向匿名審查",
+  timeline:"收件後六個月內回覆第一次審查意見",
+  fee:"未於稿約中載明", feeType:"unknown",
+  system:"http://bse.spe.ntnu.edu.tw", site:"",
+  contact:"",
+  alerts:[
+    "格式不符或字數超過者會先退請作者修改才送審；重新來稿時須就先前審查意見提出修改說明，並以一次為限。",
+    "送預審後非經編審委員會同意不得撤稿，若撤銷兩年內不接受投稿。",
+    "第一作者每期刊登文章以 2 篇為限。學位論文改寫本，指導教授不得掛名為作者群中之第一位。",
+    "不接受與專案報告題目或內容雷同之改寫後學位論文。"
+  ],
+  src:"《特殊教育研究學刊》投稿須知（華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"cjse", name:"科學教育學刊", en:"Contemporary Journal of Science Education",
+  pub:"中華民國科學教育學會", issn:"1027-507X",
+  idx:"TSSCI", tier:"第一級", field:["教育學","科學教育"], verified:"official",
+  scope:"幼兒園、中小學至高等教育各學習階段之數學教育、科學教育、科技教育、科普教育、醫護教育、環境教育、能源教育。收實驗、個案、調查、義（哲）理、歷史等研究法之成果，及文獻評論、理論分析。",
+  freq:"季刊（3、6、9、12 月）", intake:"全年徵稿",
+  wcZh:"以頁數計：30 頁上限", wcEn:"以頁數計：30 頁上限",
+  wcNote:"含摘要、正文、圖表、附註、參考文獻、附錄。特殊邀稿不在此限。",
+  absZh:"≤ 500 字（不分段）", absEn:"未載明", absNote:"",
+  kw:"3–5 個", kwNote:"依筆畫順序由少到多排列",
+  ref:"依「科學教育學刊論文撰寫體例」",
+  layout:"頁首短題（running head）≤ 15 字，12 級，置基本資料頁第一行靠左。論文題目 20 級粗體置中。內文 12 級新細明體單行間距。基本資料頁頁底提供通訊作者姓名、電話、E-mail、地址、ORCID iD。",
+  heads:"壹、→ 一、→（一）→ 1. →（1）→ ①（不可省略或錯亂）",
+  review:"匿名審查", timeline:"未載明",
+  fee:"有國科會或其他單位補助：每頁 NT$500；無補助：每篇 NT$3,000", feeType:"paid",
+  system:"", site:"https://www.ase.org.tw/",
+  contact:"",
+  alerts:[
+    "刊登費依「誌謝是否載明補助單位」分兩種算法，投稿時就要把誌謝規劃清楚。",
+    "標點全形半形有明文規定：中文標點全形、英文標點半形（後空一格）；中英文交界處一律用全形；所有括號、阿拉伯數字、希臘字母一律半形。",
+    "現行稿約為 2025 年 8 月 8 日實施版。"
+  ],
+  src:"《科學教育學刊》稿約（2025 年 5 月 5 日修訂、2025 年 8 月 8 日實施；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"jepr", name:"教育實踐與研究", en:"Journal of Educational Practice and Research",
+  pub:"國立臺北教育大學", issn:"1993-5633",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"official",
+  scope:"以教育實踐為核心。收研究論文（原創性未發表學術論文）、研究筆記（具前瞻性與創新性之實徵研究成果、資料分析或方法論議題論述）、文獻評論（特定主題之系統性回顧與評析）。",
+  freq:"2024 年起一卷三期（4、8、12 月）", intake:"全年徵稿，隨到隨審",
+  wcZh:"未於稿約頁載明", wcEn:"未於稿約頁載明", wcNote:"請見投稿網頁之徵稿規則",
+  absZh:"未於稿約頁載明", absEn:"未於稿約頁載明", absNote:"",
+  kw:"未於稿約頁載明", kwNote:"",
+  ref:"見投稿網頁「引用文獻註明格式」",
+  layout:"上傳稿件全文（含中英文摘要及關鍵詞）限 PDF 格式、不加密，論文全文及檔案內容均不得註記作者相關訊息。",
+  heads:"",
+  review:"預審 → 決審", timeline:"未載明",
+  fee:"2026 年 5 月 1 日起：審查費 NT$3,000（預審通過後通知）、刊登費 NT$6,000（決審通過後通知）", feeType:"paid",
+  system:"", site:"",
+  contact:"jepr@tea.ntue.edu.tw ・ 02-27321104 分機 82014、82231",
+  alerts:[
+    "收費制度自 2026 年 5 月 1 日起實施，刊登費 NT$6,000 是目前所收錄期刊中較高者，投稿前請確認經費來源。",
+    "英文文章或英文摘要如需專業編修，編修費用由作者負擔。",
+    "若來稿作者群為二人以上，一律以登錄系統投稿者為通訊作者。",
+    "本刊另獲 EBSCO、ProQuest 與中文社會科學引文索引（CSSCI）收錄。"
+  ],
+  src:"《教育實踐與研究》稿約（華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"joemls", name:"教育資料與圖書館學", en:"Journal of Educational Media & Library Sciences",
+  pub:"淡江大學出版中心；淡江大學資訊與圖書館學系、覺生紀念圖書館合編", issn:"1013-090X",
+  idx:"TSSCI", tier:"第一級", field:["教育學","圖書資訊學"], verified:"official",
+  scope:"圖書館學、資訊科學與科技、書業與出版研究，以及符合圖書資訊學應用發展之教學科技與資訊傳播論述。不刊登非本人著作之全譯稿。",
+  freq:"一年三期（3、7、11 月）", intake:"全年徵稿",
+  wcZh:"研究論文・回顧評論 10,000–20,000 字／短文論述 ≥ 4,000 字／觀察報告 ≥ 8,000 字／書評 3,000–6,000 字／給主編的信 1,500 字",
+  wcEn:"研究論文・回顧評論 6,000–12,000 字／短文論述 約 2,500 字／觀察報告 ≥ 4,000 字／書評 ≥ 2,000 字／給主編的信 1,500 字",
+  wcNote:"不含參考文獻。研究論文應以呈現 IMRAD 格式為佳。",
+  absZh:"≤ 300 字", absEn:"≤ 300 字",
+  absNote:"接受刊登後須再繳交 1,200–1,500 字英文摘錄（English Summary，含適當引註）及「捷點」（InSight Point）導讀簡報。",
+  kw:"中英文各 ≤ 6 個", kwNote:"",
+  ref:"芝加哥 Note 格式（Chicago-Turabian）或 APA author-date 格式，擇一遵守",
+  layout:"圖與表合計不超過 16 個、附錄不超過 5 個為原則。",
+  heads:"",
+  review:"雙盲同儕評閱", timeline:"未載明；逾期未回修訂稿視為退稿，逾期修訂稿可視同新遞稿件重啟評閱",
+  fee:"不收取文章處理費（APC）", feeType:"free",
+  oa:true,
+  system:"", site:"http://joemls.tku.edu.tw",
+  contact:"joemls@mail2.tku.edu.tw",
+  alerts:[
+    "本刊是名單中少數同時做到「不收 APC」「開放取用」「作者保留著作權」三項的期刊，讀者可依 CC BY-NC 4.0 使用。",
+    "參考文獻可用芝加哥 Note 格式或 APA author-date，這在教育類 TSSCI 期刊中相當少見——動筆前先決定用哪一套，全文一致。",
+    "編輯部提供 English Summary 末之中文引用文獻羅馬拼音暨翻譯服務。"
+  ],
+  src:"《教育資料與圖書館學》投稿須知（63 卷 2 期，2026；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"jerd", name:"教育研究與發展期刊", en:"Journal of Educational Research and Development",
+  pub:"國家教育研究院", issn:"1816-6504",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"partial",
+  scope:"提供國內學術成果交流平臺，促進學術界與教育議題之研究風氣。",
+  freq:"季刊", intake:"見官方投審稿系統公告",
+  wcZh:"15,000 字為原則，至多 20,000 字", wcEn:"≤ 12,000 字",
+  wcNote:"含中英文摘要、註釋、參考書目、附錄、圖表。經審查通過之修正文稿字數不得超過 22,000 字。",
+  absZh:"≤ 500 字", absEn:"≤ 300 字", absNote:"",
+  kw:"中英文各至少 3–5 個", kwNote:"",
+  ref:"APA 格式最新版",
+  layout:"註釋採當頁註。投稿正文及中英文摘要中請勿出現任何個人資料。",
+  heads:"",
+  review:"匿名審查", timeline:"未載明",
+  fee:"未於可取得之公告中載明", feeType:"unknown",
+  system:"https://journal.naer.edu.tw/contribution.asp", site:"https://journal.naer.edu.tw/",
+  contact:"",
+  alerts:[
+    "「修正稿不得超過 22,000 字」是一條容易忽略的硬限制——回應審查意見增補內容時要預留這個上限。",
+    "投稿須於系統詳填共同作者、服務機關、最高學歷、專長領域、聯絡電話、電子郵件。"
+  ],
+  src:"《教育研究與發展期刊》撰寫格式說明與線上投審稿頁面摘錄"
+},
+{
+  id:"epf", name:"教育政策論壇", en:"Educational Policy Forum",
+  pub:"國立暨南國際大學教育政策與行政學系", issn:"1560-8298",
+  idx:"TSSCI", tier:"第一級", field:["教育學","教育行政"], verified:"partial",
+  scope:"當前國內外教育政策和教育行政之理論與實務問題。",
+  freq:"季刊", intake:"全年徵稿",
+  wcZh:"未於可取得之公告中載明", wcEn:"未於可取得之公告中載明", wcNote:"",
+  absZh:"未載明", absEn:"未載明", absNote:"",
+  kw:"未載明", kwNote:"",
+  ref:"APA 第 7 版",
+  layout:"", heads:"",
+  review:"匿名審查", timeline:"未載明",
+  fee:"未於可取得之公告中載明", feeType:"unknown",
+  system:"https://hedu.cloudreview.tw/EPFORUM", site:"http://www.epf.ncnu.edu.tw/epf/",
+  contact:"epforum@mail.ncnu.edu.tw ・ 049-2910960 轉 2761、3605",
+  alerts:["投稿資料表電子檔須另寄至 epforum@mail.ncnu.edu.tw。字數與摘要規定請向編輯部索取現行徵稿辦法。"],
+  src:"高等教育出版《教育政策論壇》徵稿頁面"
+},
+{
+  id:"tjse", name:"臺灣教育社會學研究", en:"Taiwan Journal of Sociology of Education",
+  pub:"臺灣教育社會學學會", issn:"1680-2004",
+  idx:"TSSCI", tier:"第一級", field:["教育學","教育社會學"], verified:"listed",
+  scope:"教育社會學領域之學術論文。國內教育社會學專門刊物之先驅。",
+  freq:"一年兩期（6、12 月）", intake:"隨到隨審",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"",
+  absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網",
+  layout:"", heads:"", review:"匿名審查", timeline:"",
+  fee:"須查官網", feeType:"unknown",
+  system:"", site:"https://www.tase.url.tw/",
+  contact:"",
+  alerts:[], src:"2025 年核心期刊名單；臺灣教育社會學學會官網"
+},
+{
+  id:"jep-nccu", name:"教育與心理研究", en:"Journal of Education & Psychology",
+  pub:"國立政治大學教育與心理研究期刊編輯委員會", issn:"1024-9885",
+  idx:"TSSCI", tier:"第一級", field:["教育學","教育心理"], verified:"listed",
+  scope:"教育與心理理論剖析與應用；教育與心理研究結果之實徵報告；教育與心理實際問題之探討；教育與心理最新方法學之評論與應用。",
+  freq:"季刊", intake:"全年徵稿",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"",
+  absZh:"中英文各 300 字以內（依較早版本稿約）", absEn:"300 字以內（依較早版本稿約）",
+  absNote:"內文順序：篇名 → 中英文摘要 → 中英文關鍵詞（≤ 5 個）→ 正文 → 參考文獻 →（必要時）附錄。",
+  kw:"≤ 5 個", kwNote:"",
+  ref:"須查官網現行版本",
+  layout:"", heads:"", review:"匿名審查", timeline:"",
+  fee:"須查官網", feeType:"unknown",
+  system:"", site:"http://www.joep.nccu.edu.tw",
+  contact:"",
+  alerts:["可取得的稿約掃描檔標示 APA 第 5 版，明顯是舊版本，不可據以撰稿。投稿前務必向編輯部索取現行撰稿須知。"],
+  src:"2025 年核心期刊名單；《教育與心理研究》撰稿須知舊版掃描檔（僅供對照，勿直接引用）"
+},
+
+/* ---------- TSSCI 教育學門 第二級 ---------- */
+{
+  id:"jtr", name:"教科書研究", en:"Journal of Textbook Research",
+  pub:"國家教育研究院", issn:"1999-8856",
+  idx:"TSSCI", tier:"第二級", field:["教育學","課程與教科書"], verified:"partial",
+  scope:"教科書與課程教材相關研究。收專論、研究紀要、論壇、書評、教科書評論、報導。",
+  freq:"一年三期", intake:"全年徵稿",
+  wcZh:"專論 15,000 字為原則、至多 20,000 字／研究紀要 10,000 字／論壇・書評・教科書評論・報導 約 5,000 字",
+  wcEn:"專論 8,000 字為原則、至多 10,000 字／研究紀要 5,000 字",
+  wcNote:"論壇、書評、教科書評論、報導僅接受中文。",
+  absZh:"≤ 350 字", absEn:"≤ 200 字", absNote:"",
+  kw:"中英文各 3–5 個", kwNote:"",
+  ref:"APA 第 7 版",
+  layout:"", heads:"",
+  review:"匿名審查", timeline:"未載明",
+  fee:"未於可取得之公告中載明", feeType:"unknown",
+  system:"", site:"https://ej.naer.edu.tw/JTR/",
+  contact:"ej@mail.naer.edu.tw",
+  alerts:["專論的中文「原則字數」與「至多字數」是兩個數字（15,000／20,000），形式審是以 20,000 為硬上限，但編輯部期待落在 15,000 上下。"],
+  src:"《教科書研究》徵稿簡則與投稿須知（國家教育研究院期刊網頁摘錄）"
+},
+{
+  id:"tjge", name:"通識教育學刊", en:"Taiwan Journal of General Education",
+  pub:"中華民國通識教育學會", issn:"1999-3331",
+  idx:"TSSCI", tier:"第二級", field:["教育學","通識教育"], verified:"official",
+  scope:"通識教育之理論與實務。收經匿名審查之原創學術論文（研究論文、教學實務研究）與非正式學術論文（書評）。",
+  freq:"一年兩期", intake:"全年公開徵稿",
+  wcZh:"正式學術論文 8,000–20,000 字／非正式學術論文 2,500–3,500 字",
+  wcEn:"正式學術論文 6,000–10,000 字／非正式學術論文 800–1,500 字",
+  wcNote:"含中英文摘要、註釋、參考文獻、附錄、圖表",
+  absZh:"300–500 字", absEn:"200–500 字",
+  absNote:"接受刊登之中文稿件須再繳交含適當引註、經編修之英文長摘要，始予刊登。",
+  kw:"中英文關鍵字以 5 字為限", kwNote:"",
+  ref:"MLA 第 9 版 或 APA 第 7 版，由作者自行選擇其中一種",
+  layout:"首頁為中英文題名與作者聯絡方式（附親筆簽署）。正文撰寫請勿透露作者相關資料，引用作者自身文獻時請迴避使用第一人稱。",
+  heads:"",
+  review:"編輯部初審 → 兩位專家匿名複審 → 四月初及十月初編輯委員會議決",
+  timeline:"依編委會會期（4 月初、10 月初）",
+  fee:"不向投稿者及作者收取文章處理費", feeType:"free",
+  oa:true,
+  system:"", site:"https://sites.google.com/site/journalcge/",
+  contact:"",
+  alerts:[
+    "本刊為開放取用且不收費，在 TSSCI 教育學門中相當少見。",
+    "參考文獻可選 MLA 9 或 APA 7——這在教育類期刊中極為罕見，投稿前先確定用哪一套並全文一致。",
+    "本刊訂有 AI 運用之學術倫理與自我揭露原則，使用生成式 AI 須依規定揭露。",
+    "現行版本為 2026 年 1 月修訂版。"
+  ],
+  src:"《通識教育學刊》投稿須知（2026 年 1 月修訂版；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"ijdlt", name:"數位學習科技期刊", en:"International Journal on Digital Learning Technology",
+  pub:"臺灣數位學習與內容學會", issn:"2071-260X",
+  idx:"TSSCI", tier:"第二級", field:["教育學","數位學習"], verified:"partial",
+  scope:"提供數位學習產業、學校教師及研究人員交流之園地。歡迎中英文投稿。",
+  freq:"季刊", intake:"全年徵稿",
+  wcZh:"5,000–15,000 字", wcEn:"5,000–15,000 字",
+  wcNote:"含摘要、關鍵字、正文、圖表、註解、參考文獻、附錄",
+  absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"依本刊論文撰寫體例",
+  layout:"", heads:"", review:"匿名審查", timeline:"未載明",
+  fee:"須查官網", feeType:"unknown",
+  system:"https://pss.ijdlt.com/", site:"http://www.teldca.org/",
+  contact:"eijdlt@gmail.com",
+  alerts:["本刊字數規定有下限（5,000 字），短篇實務性文章不適用。"],
+  src:"高等教育出版《數位學習科技期刊》徵稿頁面與論文撰寫體例"
+},
+{
+  id:"jse-ncue", name:"特殊教育學報", en:"Journal of Special Education",
+  pub:"國立彰化師範大學特殊教育學系", issn:"2074-5583",
+  idx:"TSSCI", tier:"第二級", field:["教育學","特殊教育"], verified:"listed",
+  scope:"特殊教育相關研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+},
+{
+  id:"er-nknu", name:"教育學刊", en:"Educational Review",
+  pub:"國立高雄師範大學教育學系", issn:"1563-3527",
+  idx:"TSSCI", tier:"第二級", field:["教育學"], verified:"listed",
+  scope:"教育理論與實務相關研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+},
+{
+  id:"ej-cuhk", name:"教育學報", en:"Education Journal",
+  pub:"香港中文大學香港教育研究所", issn:"",
+  idx:"TSSCI", tier:"第二級", field:["教育學"], verified:"listed",
+  scope:"教育研究。香港出版之中文教育學術期刊。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+},
+{
+  id:"tjme", name:"臺灣數學教育期刊", en:"Taiwan Journal of Mathematics Education",
+  pub:"國立臺灣師範大學數學系、臺灣數學教育學會", issn:"2312-5810",
+  idx:"TSSCI", tier:"第二級", field:["教育學","數學教育"], verified:"listed",
+  scope:"數學教育相關研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+},
+
+/* ---------- TSSCI 心理學門（2024 年名單） ---------- */
+{
+  id:"bep", name:"教育心理學報", en:"Bulletin of Educational Psychology",
+  pub:"國立臺灣師範大學教育心理與輔導學系", issn:"1011-5714",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理","輔導諮商"], verified:"official",
+  scope:"教育心理與諮商輔導領域之原創性研究論文，以實徵性研究成果報告為主；整合實徵研究並具理論貢獻之文獻回顧亦在考慮之列。",
+  freq:"一年四期（9、12、3、6 月）", intake:"全年徵稿",
+  wcZh:"25,000 字且 30 頁為限", wcEn:"12,000 字且 30 頁為限",
+  wcNote:"含論文全文、參考文獻、中英文摘要及圖表、空白所佔之版面。多個實驗之論文若因回應審查意見無法壓回頁數，可額外付費保留至多 40 頁。",
+  absZh:"依本刊常用格式說明", absEn:"依本刊常用格式說明",
+  absNote:"接受刊登之稿件須提供 1,200–1,500 字英文長摘要，內容包括緒論（重要文獻、研究目的）、研究方法、研究結果與結論。",
+  kw:"依本刊常用格式說明", kwNote:"",
+  ref:"APA 第 7 版",
+  layout:"單行間距、12 號新細明體或 Times New Roman；A4 橫向；上下各留 2.54 cm、左右各留 3.17 cm；圖表置於文中。",
+  heads:"",
+  review:"專家審查（預審 → 複審）", timeline:"未載明",
+  fee:"刊登費 NT$3,000；誌謝補助單位者加收 NT$1,000；2025 年 1 月 1 日起另加收行政處理費及審稿費 NT$1,000（預審通過後收取）。超頁費：超過 2–5 頁加收 NT$500，超過 6–10 頁加收 NT$1,000。",
+  feeType:"paid",
+  system:"https://epbulletin.epc.ntnu.edu.tw/", site:"",
+  contact:"psy-edu@deps.ntnu.edu.tw ・ (02) 7749-3757",
+  alerts:[
+    "本刊同時卡「字數」與「頁數」兩道門檻：25,000 字「且」30 頁。排版時頁數往往先爆，圖表要壓縮。",
+    "於初審、複審，或經審查採用後撤稿者，一年內不再接受該作者投稿。",
+    "建議「修改後再審」之稿件，若作者主動放棄修改並提出書面說明且經編審會同意，以退稿處理，不視為撤稿。",
+    "自 2025 年 1 月 1 日起取消紙本出版。"
+  ],
+  src:"《教育心理學報》稿約（113 年 12 月 30 日編審委員會修訂通過；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"pt", name:"測驗學刊", en:"Psychological Testing",
+  pub:"中國測驗學會", issn:"1609-4905",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理","測驗評量"], verified:"official",
+  scope:"測驗理論；教育心理之統計方法與原理；測驗編製；測驗與統計理論在教育與心理之應用；評量與評鑑方法與應用。",
+  freq:"季刊", intake:"來稿時間不限",
+  wcZh:"一般論文 12,000 字／短文論述 5,000 字／回顧評論 10,000 字",
+  wcEn:"一般論文 8,000 字",
+  wcNote:"含中文摘要、英文短摘要、圖表、參考文獻、附錄、空白所占版面。全文版面 30 頁上限；若字數未超限但頁數超出，以頁數為最終審查標準。",
+  absZh:"500 字為原則", absEn:"短摘要 500 字為原則",
+  absNote:"中文稿件經接受刊登後，須繳交英文長摘要，至少 1,000 字、上限 2,000 字。",
+  kw:"依【投稿注意事項】", kwNote:"",
+  ref:"最新版 APA。參考文獻之中文文獻須附上英文翻譯。",
+  layout:"若正文為中文，第一頁為中文標題、摘要與關鍵字，第二頁為英文標題、摘要與關鍵字；英文稿順序相反。上傳稿件請勿附加謝誌、封面頁等含作者資料之訊息。",
+  heads:"",
+  review:"格式審查（兩週內完成）→ 兩位審查者第一階段匿名複審",
+  timeline:"格式審查於收到稿件後兩週內完成",
+  fee:"未於編審及徵稿辦法中載明", feeType:"unknown",
+  system:"https://www.ipress.tw/J0219", site:"",
+  contact:"",
+  alerts:[
+    "「頁數為最終審查標準」——字數壓在 12,000 內但版面超過 30 頁一樣會被退。",
+    "中文文獻必須附英文翻譯，這是本刊特有的形式審查項目，補做很花時間。",
+    "即將或正在另一期刊（書）審查中之稿件請勿投稿。",
+    "現行版本為 114 年 12 月 12 日編輯委員會修正。"
+  ],
+  src:"《測驗學刊》編審及徵稿辦法（114.12.12 編輯委員會修正；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"cjgc", name:"中華輔導與諮商學報", en:"Chinese Journal of Guidance and Counseling",
+  pub:"台灣輔導與諮商學會", issn:"1728-5186",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理","輔導諮商"], verified:"official",
+  scope:"輔導與諮商領域之實徵性與非實徵性學術論文。",
+  freq:"一年三期", intake:"全年徵稿",
+  wcZh:"≤ 25,000 字", wcEn:"≤ 12,000 字",
+  wcNote:"含摘要、文獻與圖表",
+  absZh:"中文摘要頁 ≤ 600 字（含題目與關鍵詞）", absEn:"依撰寫體例",
+  absNote:"實徵性文章摘要應含括：背景與目的、方法、結果、結論與建議；非實徵性文章之摘要組成由作者自訂。",
+  kw:"≤ 5 個", kwNote:"依首字筆劃順序排列，12 號新細明體粗體",
+  ref:"APA 第 7 版（本刊撰寫體例訂有詳細引用規範）",
+  layout:"行距 1.5 倍；A4 橫向；上下各留 2.54 cm、左右各留 3.17 cm；中文新細明體 12 號、英文 Times New Roman 12 號。全文（含摘要與正文）請勿透露任何作者姓名及基本資料。",
+  heads:"壹、緒論／貳、研究方法／參、研究結果／肆、討論與建議（第一級，置中 14 號粗體）→ 一、→（一）→ 1. →（1）→ a.（第二、三級齊左；第四、五級內縮四個半形字）",
+  review:"匿名審查", timeline:"未載明",
+  fee:"未於撰寫體例中載明", feeType:"unknown",
+  system:"", site:"https://www.guidance.org.tw/",
+  contact:"",
+  alerts:[
+    "研究方法一節須清楚說明研究倫理，例如是否通過某專業機構之倫理審查，或研究倫理之處理方式——這是本刊明文要求的段落。",
+    "訪談逐字稿須用標楷體、以引號涵括並附編碼，編號置於引號外且使用全形括號；逐字稿自成段落時左右內縮 4 個半形字元。",
+    "統計符號規範細緻：除希臘字母與統計縮寫（α、β、ANOVA、SEM）外一律斜體；相關係數、機率值、比率等不可能大於 1 之數字，小數點前不加 0。",
+    "現行版本 2025 年 8 月 20 日修正，適用 2025 年 10 月第 75 期起出刊之文章。"
+  ],
+  src:"《中華輔導與諮商學報》撰寫體例（2025 年 8 月 20 日第三次編輯委員會議修正通過；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+{
+  id:"cjp", name:"中華心理學刊", en:"Chinese Journal of Psychology",
+  pub:"台灣心理學會", issn:"1013-9656",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"listed",
+  scope:"心理學各領域之實徵研究。", freq:"季刊", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"APA（須查現行版本）", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"agc", name:"輔導與諮商學報", en:"The Archive of Guidance & Counseling",
+  pub:"國立彰化師範大學輔導與諮商學系", issn:"",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理","輔導諮商"], verified:"listed",
+  scope:"輔導與諮商相關研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"rap", name:"應用心理研究", en:"Research in Applied Psychology",
+  pub:"台灣應用心理學會、應用心理研究雜誌社", issn:"1560-9251",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"listed",
+  scope:"應用心理學相關研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"ipr", name:"本土心理學研究", en:"Indigenous Psychological Research in Chinese Societies",
+  pub:"國立臺灣大學心理學系本土心理學研究室", issn:"1029-8282",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"listed",
+  scope:"華人本土心理學研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+
+/* ---------- TSSCI 社會學／傳播／公共行政 ---------- */
+{
+  id:"mcr", name:"新聞學研究", en:"Mass Communication Research",
+  pub:"國立政治大學新聞學系", issn:"1016-1007",
+  idx:"TSSCI", tier:"社會學門核心", field:["社會學與傳播"], verified:"listed",
+  scope:"新聞學與傳播研究。", freq:"季刊", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"tjs", name:"臺灣社會學刊", en:"Taiwanese Journal of Sociology",
+  pub:"臺灣社會學會", issn:"1011-2219",
+  idx:"TSSCI", tier:"社會學門核心", field:["社會學與傳播"], verified:"listed",
+  scope:"社會學及其相關領域之學術論文，以及對近年內國內外出版學術專著之評論。",
+  freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"https://www.tjs.org.tw/", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"ts", name:"台灣社會學", en:"Taiwanese Sociology",
+  pub:"中央研究院社會學研究所、國立臺灣大學社會學系", issn:"1680-2969",
+  idx:"TSSCI", tier:"社會學門核心", field:["社會學與傳播"], verified:"listed",
+  scope:"社會學研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"https://www.ios.sinica.edu.tw/", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"sw", name:"社會政策與社會工作學刊", en:"Social Policy & Social Work",
+  pub:"台灣社會政策學會、國立暨南國際大學", issn:"",
+  idx:"TSSCI", tier:"社會學門核心", field:["社會學與傳播"], verified:"listed",
+  scope:"社會政策與社會工作研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"tjpa", name:"公共行政學報", en:"Taiwanese Journal of Public Administration",
+  pub:"國立政治大學公共行政學系", issn:"1561-8080",
+  idx:"TSSCI", tier:"第一級", field:["公共行政與管理"], verified:"listed",
+  scope:"公共行政與公共政策研究。", freq:"一年兩期", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[],
+  src:"2025 年核心期刊名單（政治學門第一級）；本刊另獲 CSSCI 收錄"
+},
+{
+  id:"jhrm", name:"人力資源管理學報", en:"Journal of Human Resource Management",
+  pub:"中華人力資源發展學會", issn:"1026-5309",
+  idx:"TSSCI", tier:"管理學門核心", field:["公共行政與管理"], verified:"listed",
+  scope:"人力資源管理與發展研究。", freq:"季刊", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+{
+  id:"jim", name:"資訊管理學報", en:"Journal of Information Management",
+  pub:"中華民國資訊管理學會", issn:"1608-5752",
+  idx:"TSSCI", tier:"管理學門核心", field:["公共行政與管理"], verified:"listed",
+  scope:"資訊管理研究。", freq:"季刊", intake:"須查官網",
+  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
+  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+},
+
+/* ---------- 教育學門 第三級（非核心，但領域高度相關） ---------- */
+{
+  id:"jtepd", name:"師資培育與教師專業發展期刊", en:"Journal of Teacher Education and Professional Development",
+  pub:"國立彰化師範大學", issn:"2071-3649",
+  idx:"非核心", tier:"第三級", field:["教育學","師資培育"], verified:"official",
+  scope:"師資培育理論與實務、教師專業發展理論與實務、教師教學實務研究及相關學術議題。教育部專案補助發行。",
+  freq:"一年三期（4、8、12 月）", intake:"全年徵稿，隨到隨審",
+  wcZh:"20,000 字", wcEn:"8,000 字",
+  wcNote:"含摘要、關鍵詞、正文、圖表、附註、參考文獻",
+  absZh:"依本刊論文撰寫體例", absEn:"依本刊論文撰寫體例", absNote:"",
+  kw:"依本刊論文撰寫體例", kwNote:"",
+  ref:"APA 最新版",
+  layout:"除「投稿資料表」外，請勿於投稿本文中出現作者姓名或任何足以辨識作者身分之資料。應編輯需要，除有審查人要求外每篇著作以不刊載附錄為原則。",
+  heads:"",
+  review:"雙向匿名審查", timeline:"未載明",
+  fee:"未於稿約中載明", feeType:"unknown",
+  system:"https://www.ipress.tw/J0318", site:"",
+  contact:"",
+  alerts:[
+    "本刊在 2025 年期刊評比為第三級，不屬 TSSCI 核心期刊；但為國內師資培育領域少數專門刊物，適合作為該主題的發表管道。",
+    "一稿多投的定義相當嚴格：包含「與作者其他已發表論文內容逾 30% 相似或相同」。",
+    "參考書目應避免引用過多未出版文獻或學位論文，否則於形式審查時逕予退稿。",
+    "進入審查流程後撤稿，12 個月內不能再投本刊。",
+    "現行版本為 114 年 3 月 21 日第五十次編輯委員會會議通過。"
+  ],
+  src:"《師資培育與教師專業發展期刊》稿約（114.03.21 編輯委員會通過；華藝線上圖書館刊載之官方稿約 PDF）"
+},
+
+/* ---------- SSCI 國際期刊 ---------- */
+{
+  id:"tate", name:"Teaching and Teacher Education", en:"Teaching and Teacher Education",
+  pub:"Elsevier", issn:"0742-051X",
+  idx:"SSCI", tier:"Q1", field:["教育學","師資培育"], verified:"partial", lang:"英文",
+  scope:"教師教育、教師專業發展、教學實務之國際研究。",
+  freq:"一年多期（連續出版）", intake:"隨到隨審",
+  wcZh:"—", wcEn:"8,000–10,000 字",
+  wcNote:"字數含摘要與註腳，不含參考文獻、表、圖與附錄。有最低字數 8,000 字。",
+  absZh:"—", absEn:"≤ 150 字", absNote:"",
+  kw:"依 Elsevier 通則（多為 1–7 個）", kwNote:"",
+  ref:"APA 第 7 版（全稿須一致遵循）",
+  layout:"投稿信（cover letter）須載明字數，並確認全文採用 APA 格式。",
+  heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"Editorial Manager", site:"https://www.sciencedirect.com/journal/teaching-and-teacher-education/publish/guide-for-authors",
+  contact:"",
+  alerts:[
+    "字數有下限（8,000 字），短篇研究不適合投本刊。",
+    "投稿信必須寫出字數並聲明使用 APA 格式，這是本刊明文要求，漏寫容易被退回補件。"
+  ],
+  src:"Elsevier《Teaching and Teacher Education》Guide for Authors（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"cae", name:"Computers & Education", en:"Computers & Education",
+  pub:"Elsevier", issn:"0360-1315",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習"], verified:"partial", lang:"英文",
+  scope:"資訊科技在各級教育之應用與影響的實證研究。",
+  freq:"一年多期（連續出版）", intake:"隨到隨審",
+  wcZh:"—", wcEn:"無硬性上限（多數文章落在 8,000–10,000 字）",
+  wcNote:"本刊未設明文字數上限，但過長稿件不利審查。",
+  absZh:"—", absEn:"≤ 250 字",
+  absNote:"摘要須能獨立閱讀；避免引用文獻與非標準縮寫。",
+  kw:"1–7 個（英文）", kwNote:"",
+  ref:"依 Elsevier 期刊格式規範",
+  layout:"須另備去識別化稿件：本文含參考文獻與表格，但不得出現作者姓名、單位或致謝。",
+  heads:"",
+  review:"雙盲審查（double-anonymized）", timeline:"多數稿件於投稿後 7–14 日內完成編輯台決定",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"Editorial Manager", site:"https://www.sciencedirect.com/journal/computers-and-education/publish/guide-for-authors",
+  contact:"",
+  alerts:[
+    "本刊為雙盲審查，去識別化要做得徹底：致謝、自我引用的寫法、檔案內容資訊都要處理。",
+    "編輯台淘汰率高，且可能將稿件轉介至同集團的姊妹刊（Computers and Education Open、Computers and Education: Artificial Intelligence 等）。"
+  ],
+  src:"Elsevier《Computers & Education》Guide for Authors（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"edurev", name:"Educational Research Review", en:"Educational Research Review",
+  pub:"Elsevier", issn:"1747-938X",
+  idx:"SSCI", tier:"Q1", field:["教育學"], verified:"partial", lang:"英文",
+  scope:"只收教育領域之證據綜整研究（evidence syntheses）：系統性文獻回顧、後設分析等。",
+  freq:"一年多期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"未於可取得之公告中載明", wcNote:"",
+  absZh:"—", absEn:"≤ 250 字",
+  absNote:"摘要須能獨立閱讀；避免引用文獻。",
+  kw:"1–7 個（英文）", kwNote:"",
+  ref:"依 Elsevier 期刊格式規範",
+  layout:"", heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"Editorial Manager", site:"https://www.sciencedirect.com/journal/educational-research-review/publish/guide-for-authors",
+  contact:"",
+  alerts:["本刊只收系統性回顧與後設分析，原始實徵研究一律不收——投稿前請先確認研究類型符合。"],
+  src:"Elsevier《Educational Research Review》Guide for Authors（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"bjet", name:"British Journal of Educational Technology", en:"British Journal of Educational Technology",
+  pub:"Wiley（British Educational Research Association）", issn:"1467-8535",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習"], verified:"partial", lang:"英文",
+  scope:"教育科技之理論、研究與實務。",
+  freq:"一年六期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"5,000–6,000 字",
+  wcNote:"不含參考文獻、摘要、practitioner notes、附錄與補充檔案。如需超出字數，可於致主編信件中提出說明。",
+  absZh:"—", absEn:"依投稿系統規定", absNote:"",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"任何格式皆可，只要全文一致",
+  layout:"稿件須包含：摘要、結構化 Practitioner Notes、introduction、methods、results、conclusions。",
+  heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://bera-journals.onlinelibrary.wiley.com/hub/journal/14678535/forauthors.html",
+  contact:"",
+  alerts:[
+    "字數比多數教育類 SSCI 期刊短得多（5,000–6,000 字），從中文論文改寫時通常要大幅刪減。",
+    "Practitioner Notes 是本刊特有的結構化欄位，用意是讓實務工作者能直接應用研究結果，不能只是把摘要換句話說。",
+    "參考文獻格式不限，這在 SSCI 教育類期刊中少見——但全文必須一致。"
+  ],
+  src:"Wiley/BERA《British Journal of Educational Technology》Author Guidelines（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"jte", name:"Journal of Teacher Education", en:"Journal of Teacher Education",
+  pub:"SAGE（AACTE）", issn:"0022-4871",
+  idx:"SSCI", tier:"Q1", field:["教育學","師資培育"], verified:"official", lang:"英文",
+  scope:"教師教育領域之一般文章與研究論文。不收：專案評鑑、書評、單純描述課程或方案、個人經驗，以及僅做工具開發／驗證而未提供新見解之論文。",
+  freq:"一年五期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"8,000–10,000 字",
+  wcNote:"含參考文獻、表格與圖表。超出或未達此範圍之投稿可能不被接受審查。",
+  absZh:"—", absEn:"≤ 150 字", absNote:"",
+  kw:"自投稿系統提供的選單中選擇", kwNote:"",
+  ref:"APA 第 7 版",
+  layout:"匿名審查：須隱匿作者姓名、機構及身份線索。",
+  heads:"",
+  review:"匿名審查", timeline:"未公告固定時程",
+  fee:"未於投稿指南中載明", feeType:"unknown",
+  system:"http://mc.manuscriptcentral.com/jteachered", site:"https://journals.sagepub.com/author-instructions/jte",
+  contact:"",
+  alerts:[
+    "字數區間是硬門檻：低於 8,000 或高於 10,000 字都可能直接不送審。",
+    "關鍵詞不能自訂，必須從系統選單挑選。",
+    "本刊明列不收的文章型態，投稿前先對照排除清單。"
+  ],
+  src:"SAGE《Journal of Teacher Education》Submission Guidelines（官方頁面）"
+},
+{
+  id:"jcal", name:"Journal of Computer Assisted Learning", en:"Journal of Computer Assisted Learning",
+  pub:"Wiley", issn:"1365-2729",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習"], verified:"partial", lang:"英文",
+  scope:"電腦輔助學習之研究。",
+  freq:"一年六期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"研究論文 < 10,000 字／回顧論文 < 12,000 字", wcNote:"",
+  absZh:"—", absEn:"結構式摘要 200–250 字",
+  absNote:"結構式摘要須含 Background、Objectives、Methods 等分項標題。",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"依 Wiley 期刊規範",
+  layout:"標題以 12 字以內為佳，須含主要關鍵詞。",
+  heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://onlinelibrary.wiley.com/page/journal/13652729/homepage/forauthors.html",
+  contact:"",
+  alerts:["結構式摘要（Background／Objectives／Methods…）是硬性格式，不能寫成一段連續敘述。"],
+  src:"Wiley《Journal of Computer Assisted Learning》Author Guidelines（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"etrd", name:"Educational Technology Research and Development", en:"Educational Technology Research and Development",
+  pub:"Springer（AECT）", issn:"1042-1629",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習"], verified:"partial", lang:"英文",
+  scope:"教育科技之研究與發展。分 Research、Development 等 section。",
+  freq:"一年六期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"超過 8,000 字之稿件除非具特殊重要性，否則不易獲刊",
+  wcNote:"編輯部明確偏好精簡、連貫、清楚呈現的研究論文。",
+  absZh:"—", absEn:"依 Springer 通則（摘要 ≤ 350 字）",
+  absNote:"另有 manuscript synopsis 之要求，約 100 字說明所研究之問題或創新之處。",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"依 Springer 期刊規範（APA 風格）",
+  layout:"", heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"混合模式（hybrid）：接受後可選訂閱制（免費）或 open access（付 APC）", feeType:"hybrid",
+  system:"", site:"https://link.springer.com/journal/11423/submission-guidelines",
+  contact:"",
+  alerts:["本刊有獨特的 manuscript synopsis 要求，投稿前先讀該刊「Directions for Writing a Manuscript Synopsis」。"],
+  src:"Springer《Educational Technology Research and Development》Submission Guidelines（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"eait", name:"Education and Information Technologies", en:"Education and Information Technologies",
+  pub:"Springer（IFIP TC3）", issn:"1360-2357",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習"], verified:"partial", lang:"英文",
+  scope:"資訊科技在教育中的應用；IFIP 教育技術委員會official journal。",
+  freq:"一年多期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"無嚴格字數限制（Springer 通則）",
+  wcNote:"Springer Nature 期刊一般不限制稿件長度，但要求盡可能精簡。",
+  absZh:"—", absEn:"≤ 350 字", absNote:"",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"依 Springer 期刊規範",
+  layout:"", heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"混合模式：訂閱制免費，或 open access APC 約 £2,690／US$3,690／€2,990",
+  feeType:"hybrid",
+  system:"", site:"https://link.springer.com/journal/10639/submission-guidelines",
+  contact:"",
+  alerts:["若不選 open access，走訂閱制發表不需付費——APC 只在選擇 OA 時才產生。"],
+  src:"Springer《Education and Information Technologies》期刊頁面與 Springer Nature APC 公告"
+},
+{
+  id:"ethe", name:"International Journal of Educational Technology in Higher Education",
+  en:"International Journal of Educational Technology in Higher Education (ETHE)",
+  pub:"Springer（Universitat Oberta de Catalunya）", issn:"2365-9440",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習","高等教育"], verified:"partial", lang:"英文",
+  scope:"高等教育中的教育科技研究。",
+  freq:"連續出版", intake:"隨到隨審",
+  wcZh:"—", wcEn:"依投稿指南", wcNote:"",
+  absZh:"—", absEn:"依投稿指南", absNote:"",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"依 Springer 期刊規範",
+  layout:"表格標題 ≤ 15 字置於表上方、表註 ≤ 300 字置於表下方；圖標題 ≤ 15 字、圖說 ≤ 300 字須寫在正文檔案中而非圖檔內。",
+  heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"完全開放取用，作者免付 APC（由 Universitat Oberta de Catalunya 支付）", feeType:"free",
+  oa:true,
+  system:"", site:"https://link.springer.com/journal/41239/submission-guidelines",
+  contact:"",
+  alerts:["這是少數「Q1 + 完全開放取用 + 作者免付費」的教育科技期刊，對沒有出版經費的作者相當友善。文章以 CC BY 授權發表。"],
+  src:"Springer / SpringerOpen《International Journal of Educational Technology in Higher Education》投稿與出版條件頁面"
+},
+{
+  id:"she", name:"Studies in Higher Education", en:"Studies in Higher Education",
+  pub:"Taylor & Francis（SRHE）", issn:"0307-5079",
+  idx:"SSCI", tier:"Q1", field:["教育學","高等教育"], verified:"partial", lang:"英文",
+  scope:"高等教育之政策、實務與研究。",
+  freq:"一年多期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"典型稿件不超過 7,000 字",
+  wcNote:"含表格、參考文獻、圖說與尾註。作者須自行附上字數。",
+  absZh:"—", absEn:"依投稿指南", absNote:"",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"依期刊指定格式；拼寫與標點可用任何一致的體系",
+  layout:"稿件編排順序：標題頁（含致謝、經費補助單位）→ 摘要 → 關鍵詞 → 正文 → 致謝 → 參考文獻 → 附錄。",
+  heads:"",
+  review:"同儕審查", timeline:"未公告固定時程",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://www.tandfonline.com/journals/cshe20",
+  contact:"",
+  alerts:["7,000 字上限「含參考文獻」，實際可用的正文空間比看起來少。"],
+  src:"Taylor & Francis《Studies in Higher Education》Instructions for Authors（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"epr", name:"Educational Psychology Review", en:"Educational Psychology Review",
+  pub:"Springer", issn:"1040-726X",
+  idx:"SSCI", tier:"Q1", field:["教育心理"], verified:"partial", lang:"英文",
+  scope:"教育心理學之回顧性論文、理論論述與後設分析。",
+  freq:"季刊", intake:"隨到隨審",
+  wcZh:"—", wcEn:"依投稿指南", wcNote:"",
+  absZh:"—", absEn:"150–250 字", absNote:"",
+  kw:"依投稿系統規定", kwNote:"",
+  ref:"依 Springer 期刊規範（APA 風格）",
+  layout:"匿名審查：作者姓名、單位及其他可辨識資訊須自稿件中移除。",
+  heads:"",
+  review:"匿名審查", timeline:"未公告固定時程",
+  fee:"混合模式：訂閱制免費，或 open access（付 APC）", feeType:"hybrid",
+  system:"", site:"https://link.springer.com/journal/10648/submission-guidelines",
+  contact:"",
+  alerts:[],
+  src:"Springer《Educational Psychology Review》Submission Guidelines（透過搜尋引擎取得之官方頁面摘錄）"
+},
+{
+  id:"rer", name:"Review of Educational Research", en:"Review of Educational Research",
+  pub:"SAGE（AERA）", issn:"0034-6543",
+  idx:"SSCI", tier:"Q1", field:["教育學"], verified:"listed", lang:"英文",
+  scope:"教育研究之批判性、整合性文獻回顧。AERA 旗艦回顧期刊。",
+  freq:"一年六期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"APA（須查現行版本）",
+  layout:"", heads:"", review:"匿名審查", timeline:"",
+  fee:"須查官網", feeType:"unknown",
+  system:"", site:"https://journals.sagepub.com/author-instructions/rer",
+  contact:"",
+  alerts:["本刊只收文獻回顧與整合性研究，不收原始實徵研究。投稿門檻與退稿率均高。"],
+  src:"SAGE 期刊平台（投稿指南頁面於查證時未能取得完整內容）"
+},
+{
+  id:"li", name:"Learning and Instruction", en:"Learning and Instruction",
+  pub:"Elsevier（EARLI）", issn:"0959-4752",
+  idx:"SSCI", tier:"Q1", field:["教育心理","教育學"], verified:"listed", lang:"英文",
+  scope:"學習、發展、教學與教育之實徵研究。EARLI 官方期刊。",
+  freq:"一年六期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"須查官網", absNote:"",
+  kw:"1–7 個（Elsevier 通則）", kwNote:"",
+  ref:"研究結果之報告須遵循 APA 規範（表格格式、小數位數、交互作用圖等）",
+  layout:"", heads:"", review:"同儕審查", timeline:"",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://www.sciencedirect.com/journal/learning-and-instruction/publish/guide-for-authors",
+  contact:"",
+  alerts:[],
+  src:"Elsevier《Learning and Instruction》Guide for Authors（查證時僅取得部分內容）"
+},
+{
+  id:"ijstem", name:"International Journal of STEM Education", en:"International Journal of STEM Education",
+  pub:"Springer Open", issn:"2196-7822",
+  idx:"SSCI", tier:"Q1", field:["教育學","科學教育"], verified:"listed", lang:"英文",
+  scope:"STEM 教育之跨領域研究。完全開放取用期刊。",
+  freq:"連續出版", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"依 Springer 期刊規範",
+  layout:"", heads:"", review:"同儕審查", timeline:"",
+  fee:"完全開放取用，須付 APC（金額請查官網現行公告）", feeType:"apc",
+  oa:true,
+  system:"", site:"https://link.springer.com/journal/40594/submission-guidelines",
+  contact:"",
+  alerts:["本刊為完全 OA，沒有免付費的訂閱制選項，投稿前務必確認 APC 金額與經費來源。"],
+  src:"Springer Open《International Journal of STEM Education》期刊頁面"
+},
+{
+  id:"ihe", name:"The Internet and Higher Education", en:"The Internet and Higher Education",
+  pub:"Elsevier", issn:"1096-7516",
+  idx:"SSCI", tier:"Q1", field:["教育學","數位學習","高等教育"], verified:"listed", lang:"英文",
+  scope:"網路科技在高等教育之應用研究。",
+  freq:"季刊", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"≤ 250 字（Elsevier 通則）", absNote:"",
+  kw:"1–7 個（Elsevier 通則）", kwNote:"", ref:"依 Elsevier 期刊格式規範",
+  layout:"", heads:"", review:"同儕審查", timeline:"",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://www.sciencedirect.com/journal/the-internet-and-higher-education/publish/guide-for-authors",
+  contact:"", alerts:[],
+  src:"Elsevier 期刊頁面（投稿指南於查證時未能取得完整內容）"
+},
+{
+  id:"ile", name:"Interactive Learning Environments", en:"Interactive Learning Environments",
+  pub:"Taylor & Francis", issn:"1049-4820",
+  idx:"SSCI", tier:"Q2", field:["教育學","數位學習"], verified:"listed", lang:"英文",
+  scope:"互動式學習環境之設計、實作與評估。",
+  freq:"一年多期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網",
+  layout:"", heads:"", review:"同儕審查", timeline:"",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://www.tandfonline.com/journals/nile20",
+  contact:"", alerts:[],
+  src:"Taylor & Francis 期刊頁面（投稿指南於查證時未能取得完整內容）"
+},
+{
+  id:"jecr", name:"Journal of Educational Computing Research", en:"Journal of Educational Computing Research",
+  pub:"SAGE", issn:"0735-6331",
+  idx:"SSCI", tier:"Q2", field:["教育學","數位學習"], verified:"listed", lang:"英文",
+  scope:"教育中的計算科技研究。",
+  freq:"一年八期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"APA（須查現行版本）",
+  layout:"", heads:"", review:"匿名審查", timeline:"",
+  fee:"須查官網", feeType:"unknown",
+  system:"", site:"https://journals.sagepub.com/author-instructions/jec",
+  contact:"", alerts:[],
+  src:"SAGE 期刊平台（投稿指南頁面於查證時未能取得完整內容）"
+},
+{
+  id:"aehe", name:"Assessment & Evaluation in Higher Education", en:"Assessment & Evaluation in Higher Education",
+  pub:"Taylor & Francis", issn:"0260-2938",
+  idx:"SSCI", tier:"Q1", field:["教育學","高等教育","測驗評量"], verified:"listed", lang:"英文",
+  scope:"高等教育之評量與評鑑研究。",
+  freq:"一年八期", intake:"隨到隨審",
+  wcZh:"—", wcEn:"須查官網", wcNote:"",
+  absZh:"—", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"須查官網",
+  layout:"", heads:"", review:"同儕審查", timeline:"",
+  fee:"訂閱制期刊，可選擇 open access（需付 APC）", feeType:"hybrid",
+  system:"", site:"https://www.tandfonline.com/journals/caeh20",
+  contact:"", alerts:[],
+  src:"Taylor & Francis 期刊頁面（投稿指南於查證時未能取得完整內容）"
+}
+];
+
+/* =====================================================================
+   狀態與工具
+   ===================================================================== */
+const S = { view:"browse", q:"", f:{tier:new Set(), field:new Set(), fee:new Set(), verified:new Set()}, picked:new Set(), open:null, clJournal:"" };
+
+const TIERS = [
+  {k:"TSSCI·第一級", t:"TSSCI", tier:"第一級", c:"var(--vermilion)"},
+  {k:"TSSCI·第二級", t:"TSSCI", tier:"第二級", c:"var(--amber)"},
+  {k:"TSSCI·心理學門", t:"TSSCI", tier:"心理學門核心", c:"var(--vermilion)"},
+  {k:"TSSCI·社會學門", t:"TSSCI", tier:"社會學門核心", c:"var(--vermilion)"},
+  {k:"TSSCI·管理學門", t:"TSSCI", tier:"管理學門核心", c:"var(--vermilion)"},
+  {k:"SSCI·Q1", t:"SSCI", tier:"Q1", c:"var(--violet)"},
+  {k:"SSCI·Q2", t:"SSCI", tier:"Q2", c:"var(--indigo)"},
+  {k:"非核心·第三級", t:"非核心", tier:"第三級", c:"var(--ink-4)"}
+];
+const FIELDS = ["教育學","師資培育","課程與教科書","教育心理","輔導諮商","測驗評量","數位學習","科學教育","數學教育","特殊教育","高等教育","教育行政","教育社會學","圖書資訊學","通識教育","社會學與傳播","公共行政與管理"];
+const FEES = [
+  {k:"free", label:"不收費・開放取用"},
+  {k:"paid", label:"有審查費或刊登費"},
+  {k:"hybrid", label:"訂閱制（OA 選配）"},
+  {k:"apc", label:"完全 OA・須付 APC"},
+  {k:"unknown", label:"費用未公開"}
+];
+const VERI = [
+  {k:"official", label:"已讀官方稿約全文"},
+  {k:"partial", label:"官方頁面摘錄"},
+  {k:"listed", label:"僅確認收錄分級"}
+];
+const VLABEL = {official:["●","已核對官方稿約"], partial:["◐","官方頁面摘錄"], listed:["○","僅收錄分級"]};
+
+const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!==undefined)e.innerHTML=h; return e;};
+const esc = s => String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const tierKey = j => `${j.idx}·${j.tier==="第一級"||j.tier==="第二級"||j.tier==="第三級"||j.tier==="Q1"||j.tier==="Q2" ? j.tier : j.tier.replace("核心","")}`;
+
+function matches(j){
+  const q = S.q.trim().toLowerCase();
+  if(q){
+    const hay = [j.name,j.en,j.pub,j.scope,(j.field||[]).join(" "),j.issn,j.tier,j.idx].join(" ").toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  if(S.f.tier.size && !S.f.tier.has(tierKey(j))) return false;
+  if(S.f.field.size && !(j.field||[]).some(f=>S.f.field.has(f))) return false;
+  if(S.f.fee.size && !S.f.fee.has(j.feeType||"unknown")) return false;
+  if(S.f.verified.size && !S.f.verified.has(j.verified)) return false;
+  return true;
+}
+const results = () => J.filter(matches);
+
+/* =====================================================================
+   側邊篩選
+   ===================================================================== */
+function renderSide(){
+  const side = document.getElementById("side");
+  const wrap = document.querySelector(".wrap");
+  if(S.view!=="browse" && S.view!=="compare"){ side.classList.add("hide"); wrap.classList.add("solo"); return; }
+  side.classList.remove("hide"); wrap.classList.remove("solo");
+  side.innerHTML = "";
+
+  const countBy = (fn) => { const m={}; J.forEach(j=>{ const ks=fn(j); (Array.isArray(ks)?ks:[ks]).forEach(k=>{ if(k) m[k]=(m[k]||0)+1; }); }); return m; };
+  const cTier = countBy(tierKey), cField = countBy(j=>j.field||[]), cFee = countBy(j=>j.feeType||"unknown"), cVer = countBy(j=>j.verified);
+
+  const group = (title, items, setName) => {
+    const g = el("div","fgroup");
+    g.appendChild(el("h3",null,esc(title)));
+    const box = el("div","fopts");
+    items.forEach(it=>{
+      if(!it.n) return;
+      const b = el("button","fopt");
+      b.type="button";
+      b.setAttribute("aria-pressed", S.f[setName].has(it.k) ? "true":"false");
+      b.innerHTML = (it.c?`<span class="dot" style="background:${it.c}"></span>`:"") +
+                    `<span>${esc(it.label)}</span><span class="n">${it.n}</span>`;
+      b.onclick = ()=>{ S.f[setName].has(it.k) ? S.f[setName].delete(it.k) : S.f[setName].add(it.k); render(); };
+      box.appendChild(b);
+    });
+    g.appendChild(box);
+    return g;
+  };
+
+  side.appendChild(group("索引與分級", TIERS.map(t=>({k:t.k,label:t.k.replace("·"," "),c:t.c,n:cTier[t.k]||0})), "tier"));
+  side.appendChild(group("學科領域", FIELDS.map(f=>({k:f,label:f,n:cField[f]||0})), "field"));
+  side.appendChild(group("費用型態", FEES.map(f=>({k:f.k,label:f.label,n:cFee[f.k]||0})), "fee"));
+  side.appendChild(group("資料查證程度", VERI.map(v=>({k:v.k,label:v.label,n:cVer[v.k]||0})), "verified"));
+
+  const active = S.f.tier.size+S.f.field.size+S.f.fee.size+S.f.verified.size;
+  if(active){
+    const r = el("button","reset",`清除 ${active} 項篩選`);
+    r.type="button";
+    r.onclick = ()=>{ Object.values(S.f).forEach(s=>s.clear()); render(); };
+    side.appendChild(r);
+  }
+}
+
+/* =====================================================================
+   卡片
+   ===================================================================== */
+function badgeFor(j){
+  const out=[];
+  const cls = j.idx==="SSCI" ? (j.tier==="Q1"?"b-q1":"b-q2")
+            : j.idx==="TSSCI" ? (j.tier==="第二級"?"b-t2":"b-t1")
+            : "b-t3";
+  out.push(`<span class="badge ${cls}">${esc(j.idx)}${j.tier?" · "+esc(j.tier):""}</span>`);
+  if(j.oa) out.push(`<span class="badge b-oa">開放取用</span>`);
+  if(j.feeType==="free") out.push(`<span class="badge b-free">作者免付費</span>`);
+  return out.join("");
+}
+
+function card(j){
+  const b = el("button","card"+(S.picked.has(j.id)?" picked":""));
+  b.type="button";
+  const wc = j.idx==="SSCI" ? (j.wcEn||"—") : (j.wcZh||"—");
+  const ab = j.idx==="SSCI" ? (j.absEn||"—") : (j.absZh||"—");
+  const unk = v => /須查|未載明|未於/.test(v);
+  const v = VLABEL[j.verified];
+  b.innerHTML = `
+    <div class="badges">${badgeFor(j)}</div>
+    <div>
+      <div class="cname">${esc(j.name)}</div>
+      ${j.en && j.en!==j.name ? `<div class="cname-en">${esc(j.en)}</div>`:""}
+    </div>
+    <div class="cpub">${esc(j.pub)}</div>
+    <dl class="facts">
+      <dt>全文上限</dt><dd class="${unk(wc)?"q":""}">${esc(wc)}</dd>
+      <dt>摘要</dt><dd class="${unk(ab)?"q":""}">${esc(ab)}</dd>
+      <dt>文獻格式</dt><dd class="${unk(j.ref||"")?"q":""}">${esc(j.ref||"—")}</dd>
+    </dl>
+    <div class="cfoot">
+      <span class="vstat v-${j.verified}">${v[0]} ${v[1]}</span>
+      <span class="pickbtn" role="button" aria-pressed="${S.picked.has(j.id)}" data-pick="${j.id}">${S.picked.has(j.id)?"已選入比較":"加入比較"}</span>
+    </div>`;
+  b.onclick = (e)=>{
+    const p = e.target.closest("[data-pick]");
+    if(p){ e.stopPropagation(); togglePick(j.id); return; }
+    openDrawer(j.id);
+  };
+  return b;
+}
+
+function togglePick(id){
+  S.picked.has(id) ? S.picked.delete(id) : S.picked.add(id);
+  render();
+}
+
+/* =====================================================================
+   詳情抽屜
+   ===================================================================== */
+function openDrawer(id){
+  const j = J.find(x=>x.id===id); if(!j) return;
+  S.open = id;
+  const d = document.getElementById("drawer");
+  const row = (k,v,sub)=> v ? `<dt>${esc(k)}</dt><dd>${v}${sub?`<small>${esc(sub)}</small>`:""}</dd>` : "";
+  const num = v => `<span class="num">${esc(v)}</span>`;
+  const v = VLABEL[j.verified];
+
+  const links = [];
+  if(j.system) links.push(`<a class="linkbtn" href="${esc(j.system)}" target="_blank" rel="noopener">線上投稿系統 <span class="ar">↗</span></a>`);
+  if(j.site) links.push(`<a class="linkbtn" href="${esc(j.site)}" target="_blank" rel="noopener">期刊官網／投稿指南 <span class="ar">↗</span></a>`);
+
+  d.innerHTML = `
+    <div class="dhead">
+      <div style="flex:1">
+        <div class="badges" style="margin-bottom:7px">${badgeFor(j)}</div>
+        <h2 style="font-family:var(--serif);font-size:20px;line-height:1.35">${esc(j.name)}</h2>
+        ${j.en && j.en!==j.name?`<div class="cname-en" style="font-size:13px">${esc(j.en)}</div>`:""}
+        <div class="cpub" style="margin-top:5px">${esc(j.pub)}${j.issn?` ・ ISSN ${esc(j.issn)}`:""}</div>
+      </div>
+      <button class="x" id="dx" aria-label="關閉">×</button>
+    </div>
+    <div class="dbody">
+      ${j.scope?`<div class="sect"><h4>徵稿範圍</h4><p style="margin:0;font-size:13.5px;line-height:1.7">${esc(j.scope)}</p></div>`:""}
+
+      <div class="sect">
+        <h4>字數與摘要</h4>
+        <dl class="rows">
+          ${row("中文全文", j.wcZh && j.wcZh!=="—" ? num(j.wcZh):"", j.wcNote)}
+          ${row("英文全文", j.wcEn && j.wcEn!=="—" ? num(j.wcEn):"", j.idx==="SSCI"? j.wcNote : "")}
+          ${row("中文摘要", j.absZh && j.absZh!=="—" ? num(j.absZh):"")}
+          ${row("英文摘要", j.absEn && j.absEn!=="—" ? num(j.absEn):"", j.absNote)}
+          ${row("關鍵詞", j.kw?num(j.kw):"", j.kwNote)}
+        </dl>
+      </div>
+
+      <div class="sect">
+        <h4>格式規範</h4>
+        <dl class="rows">
+          ${row("參考文獻", esc(j.ref||"—"))}
+          ${row("版面設定", j.layout?esc(j.layout):"")}
+          ${row("標題層級", j.heads?esc(j.heads):"")}
+        </dl>
+      </div>
+
+      <div class="sect">
+        <h4>流程與時程</h4>
+        <dl class="rows">
+          ${row("出刊頻率", esc(j.freq||"—"))}
+          ${row("收稿方式", esc(j.intake||"—"))}
+          ${row("審查方式", esc(j.review||"—"))}
+          ${row("審查時程", esc(j.timeline||"未載明"))}
+        </dl>
+      </div>
+
+      <div class="sect">
+        <h4>費用</h4>
+        <dl class="rows">${row("收費", esc(j.fee||"—"))}</dl>
+      </div>
+
+      ${(j.alerts&&j.alerts.length)?`<div class="sect"><h4>特別注意</h4>${j.alerts.map(a=>`<div class="note">${esc(a)}</div>`).join("")}</div>`:""}
+
+      ${links.length?`<div class="sect"><h4>投稿入口</h4><div class="linkrow">${links.join("")}</div></div>`:""}
+      ${j.contact?`<div class="sect"><h4>聯絡方式</h4><dl class="rows"><dt>編輯部</dt><dd>${esc(j.contact)}</dd></dl></div>`:""}
+
+      <div class="sect">
+        <h4>資料來源與查證</h4>
+        <div class="srcbox">
+          <div style="margin-bottom:6px"><span class="vstat v-${j.verified}">${v[0]} ${v[1]}</span></div>
+          ${esc(j.src||"")}
+          <div style="margin-top:8px;color:var(--ink-4)">查證日期：2026 年 8 月 28 日。期刊稿約會改版，正式投稿前請以該刊官網現行版本為準。</div>
+        </div>
+      </div>
+    </div>`;
+  d.classList.add("on");
+  document.getElementById("scrim").classList.add("on");
+  document.body.style.overflow = "hidden";
+  d.querySelector("#dx").onclick = closeDrawer;
+  d.querySelector("#dx").focus();
+}
+function closeDrawer(){
+  S.open=null;
+  document.getElementById("drawer").classList.remove("on");
+  document.getElementById("scrim").classList.remove("on");
+  document.body.style.overflow = "";
+}
+
+/* =====================================================================
+   各視圖
+   ===================================================================== */
+function viewBrowse(){
+  const m = document.getElementById("main");
+  const r = results();
+  m.innerHTML = "";
+  const head = el("div","rhead");
+  head.innerHTML = `<span class="rcount">${r.length} / ${J.length} 本期刊</span>
+    <span class="hint">點卡片看完整格式規範 ・ 點「加入比較」並排看差異</span>`;
+  m.appendChild(head);
+  if(!r.length){
+    m.appendChild(el("div","empty","<strong>沒有符合的期刊</strong>試著放寬篩選條件，或改用刊名關鍵字搜尋。"));
+    return;
+  }
+  const g = el("div","grid");
+  r.forEach(j=>g.appendChild(card(j)));
+  m.appendChild(g);
+}
+
+const CMP_ROWS = [
+  ["索引分級", j=>`${j.idx}${j.tier?" "+j.tier:""}`],
+  ["出版者", j=>j.pub],
+  ["中文全文上限", j=>j.wcZh||"—"],
+  ["英文全文上限", j=>j.wcEn||"—"],
+  ["中文摘要", j=>j.absZh||"—"],
+  ["英文摘要", j=>j.absEn||"—"],
+  ["關鍵詞", j=>j.kw||"—"],
+  ["參考文獻格式", j=>j.ref||"—"],
+  ["出刊頻率", j=>j.freq||"—"],
+  ["審查方式", j=>j.review||"—"],
+  ["審查時程", j=>j.timeline||"未載明"],
+  ["費用", j=>j.fee||"—"]
+];
+
+function viewCompare(){
+  const m = document.getElementById("main");
+  const list = J.filter(j=>S.picked.has(j.id));
+  m.innerHTML = "";
+  const head = el("div","rhead");
+  head.innerHTML = `<span class="rcount">已選 ${list.length} 本</span>
+    <span class="hint">回到「瀏覽」用卡片上的「加入比較」增減 ・ 有差異的欄位會標色</span>`;
+  m.appendChild(head);
+
+  if(list.length<2){
+    m.appendChild(el("div","empty","<strong>至少選兩本期刊才能比較</strong>回到「瀏覽」分頁，在卡片右下角點「加入比較」。"));
+    return;
+  }
+  const wrap = el("div","cmp-wrap");
+  const t = el("table","cmp");
+  t.innerHTML = `<thead><tr><th>比較項目</th>${list.map(j=>`<th>${esc(j.name)}</th>`).join("")}</tr></thead>`;
+  const tb = el("tbody");
+  CMP_ROWS.forEach(([label,fn])=>{
+    const vals = list.map(fn);
+    // 標出「與多數不同」的格子；全部互異時整列都標
+    const tally = {}; vals.forEach(v=>tally[v]=(tally[v]||0)+1);
+    const top = Math.max(...Object.values(tally));
+    const odd = v => Object.keys(tally).length>1 && tally[v] < top;
+    const allDiffer = Object.keys(tally).length === vals.length && vals.length>1;
+    tb.innerHTML += `<tr><th>${esc(label)}</th>${vals.map(v=>`<td class="${(allDiffer||odd(v))?"diff":""}">${esc(v)}</td>`).join("")}</tr>`;
+  });
+  t.appendChild(tb);
+  wrap.appendChild(t);
+  m.appendChild(wrap);
+
+  const clr = el("button","reset","清除全部選取");
+  clr.type="button"; clr.style.marginTop="14px"; clr.style.maxWidth="180px";
+  clr.onclick = ()=>{ S.picked.clear(); render(); };
+  m.appendChild(clr);
+}
+
+function checklistFor(j){
+  const g=[];
+  const ok = v => v && !/須查|未載明|未於|^—$/.test(v);
+  const fmt=[];
+  if(ok(j.wcZh) && j.idx!=="SSCI") fmt.push([`中文全文控制在 <span class="v">${esc(j.wcZh)}</span> 以內`, j.wcNote]);
+  if(ok(j.wcEn)) fmt.push([`${j.idx==="SSCI"?"全文":"英文全文"}控制在 <span class="v">${esc(j.wcEn)}</span> 以內`, j.idx==="SSCI"?j.wcNote:""]);
+  if(ok(j.absZh) && j.idx!=="SSCI") fmt.push([`中文摘要 <span class="v">${esc(j.absZh)}</span>`,""]);
+  if(ok(j.absEn)) fmt.push([`${j.idx==="SSCI"?"摘要":"英文摘要"} <span class="v">${esc(j.absEn)}</span>`,""]);
+  if(j.absNote) fmt.push([esc(j.absNote),""]);
+  if(ok(j.kw)) fmt.push([`關鍵詞 <span class="v">${esc(j.kw)}</span>${j.kwNote?"："+esc(j.kwNote):""}`,""]);
+  if(ok(j.ref)) fmt.push([`參考文獻與內文引用一律改為 <span class="v">${esc(j.ref)}</span>`,""]);
+  if(j.layout) fmt.push([esc(j.layout),""]);
+  if(j.heads) fmt.push([`標題層級：${esc(j.heads)}`,""]);
+  if(fmt.length) g.push(["格式規範", fmt]);
+
+  const anon=[[`確認全文、檔案內容與檔名均無作者姓名、服務單位、計畫編號等可辨識資訊`,""],
+              [`自我引用改寫成第三人稱，或暫時匿名處理`,""],
+              [`致謝與經費補助說明先移除，待接受刊登後再補`,""]];
+  if(j.review) anon.unshift([`審查方式：${esc(j.review)}`,""]);
+  g.push(["匿名審查準備", anon]);
+
+  const proc=[];
+  if(j.freq) proc.push([`出刊頻率：${esc(j.freq)}`,""]);
+  if(j.intake) proc.push([`收稿方式：${esc(j.intake)}`,""]);
+  if(j.timeline) proc.push([`預期審查時程：${esc(j.timeline)}`,""]);
+  if(j.fee) proc.push([`費用：<span class="v">${esc(j.fee)}</span>——確認經費來源與核銷方式`,""]);
+  if(j.system) proc.push([`於投稿系統註冊並填妥作者資料：${esc(j.system)}`,""]);
+  if(j.contact) proc.push([`編輯部聯絡方式備查：${esc(j.contact)}`,""]);
+  g.push(["流程與費用", proc]);
+
+  if(j.alerts && j.alerts.length) g.push(["本刊特別要求", j.alerts.map(a=>[esc(a),""])]);
+
+  g.push(["最後一步", [
+    ["對照該刊官網現行版稿約，確認以上規定未改版",""],
+    ["請一位未參與研究的同事讀過摘要與標題",""],
+    ["確認所有共同作者已同意作者排序與投稿版本",""]
+  ]]);
+  return g;
+}
+
+function viewCheck(){
+  const m = document.getElementById("main");
+  m.innerHTML = "";
+  const pick = el("div","cl-pick");
+  const opts = J.slice().sort((a,b)=>a.name.localeCompare(b.name,"zh-Hant"));
+  pick.innerHTML = `<label for="clsel" style="font-size:13.5px;color:var(--ink-3)">選一本期刊，產生投稿前檢查清單：</label>
+    <select id="clsel"><option value="">— 請選擇 —</option>${opts.map(j=>`<option value="${j.id}"${S.clJournal===j.id?" selected":""}>${esc(j.name)}${j.idx==="SSCI"?"（"+esc(j.tier)+"）":""}</option>`).join("")}</select>`;
+  m.appendChild(pick);
+  pick.querySelector("#clsel").onchange = e => { S.clJournal = e.target.value; render(); };
+
+  if(!S.clJournal){
+    m.appendChild(el("div","empty","<strong>尚未選擇期刊</strong>選定後會依該刊實際規定產生逐項清單，可直接勾選使用。"));
+    return;
+  }
+  const j = J.find(x=>x.id===S.clJournal);
+  const sheet = el("div","sheet");
+  const v = VLABEL[j.verified];
+  let html = `<div class="sheet-head">
+      <h2>${esc(j.name)} 投稿前檢查</h2>
+      <p>${esc(j.pub)} ・ ${esc(j.idx)}${j.tier?" "+esc(j.tier):""} ・ 資料查證：${v[1]}</p>
+    </div>`;
+  let n=0;
+  checklistFor(j).forEach(([title,items])=>{
+    html += `<div class="cl-group"><h4>${esc(title)}</h4>`;
+    items.forEach(([label,sub])=>{
+      const id = `cl${j.id}_${n++}`;
+      html += `<div class="cl-item"><input type="checkbox" id="${id}"><label for="${id}">${label}${sub?`<br><span style="color:var(--ink-4);font-size:12.5px">${esc(sub)}</span>`:""}</label></div>`;
+    });
+    html += `</div>`;
+  });
+  html += `<div class="note" style="margin-top:6px"><b>提醒</b>　本清單依 2026 年 8 月 28 日查證之稿約產生。期刊稿約會改版，送出前請再對照該刊官網現行版本。</div>`;
+  sheet.innerHTML = html;
+  m.appendChild(sheet);
+}
+
+function viewApa(){
+  const m = document.getElementById("main");
+  m.innerHTML = `<div class="apa">
+    <div class="apa-card">
+      <h3>內文引用</h3>
+      <p class="lead">APA 第 7 版最大的變動：三位以上作者從第一次引用就簡化。</p>
+      <dl class="apa-rows">
+        <dt>1 位作者</dt><dd>（王小明，2023）／ 王小明（2023）</dd>
+        <dt>2 位作者</dt><dd>括號內用頓號：（王小明、李大同，2023）<br>行文中用「與」：王小明與李大同（2023）<br>英文括號內用 &amp;：(Smith &amp; Jones, 2023)</dd>
+        <dt>3 位以上</dt><dd>第一次引用即簡化：（王小明等人，2023）／ (Smith et al., 2023)</dd>
+        <dt>翻譯著作</dt><dd>（Greenberg &amp; Watson, 2006/2011）——原著年份／譯本年份</dd>
+        <dt>逐字引用</dt><dd>須加頁碼：（王小明，2023，頁 45）／ (Smith, 2023, p. 45)</dd>
+      </dl>
+      <div class="ex">中文稿括號用<span class="hl">全形</span>（　），英文稿括號用<span class="hl">半形</span>( ) 且與作者名之間空一格半形空格。</div>
+    </div>
+
+    <div class="apa-card">
+      <h3>參考文獻體例</h3>
+      <p class="lead">APA 7 取消了出版地，DOI 一律寫成完整網址形式。</p>
+      <dl class="apa-rows">
+        <dt>期刊論文</dt><dd><div class="ex">作者（年）。<span class="hl">篇名</span>。期刊名，卷(期)，起訖頁。https://doi.org/xxxxx
+
+Author, A. A., &amp; Author, B. B. (2023). Title of the article. <span class="hl">Journal Name, 45</span>(3), 210–228. https://doi.org/10.xxxx/xxxxx</div></dd>
+        <dt>專書</dt><dd><div class="ex">作者（年）。<span class="hl">書名</span>。出版商。
+
+Author, A. A. (2023). <span class="hl">Title of the book</span>. Publisher.</div>
+        <small style="display:block;color:var(--ink-3);font-size:12px;margin-top:4px">第 7 版不再寫出版地。</small></dd>
+        <dt>專書章節</dt><dd><div class="ex">作者（年）。章名。載於編者（主編），<span class="hl">書名</span>（頁 23–45）。出版商。
+
+Author, A. A. (2023). Chapter title. In B. B. Editor (Ed.), <span class="hl">Book title</span> (pp. 23–45). Publisher.</div></dd>
+        <dt>學位論文</dt><dd><div class="ex">作者（年）。<span class="hl">論文名稱</span>〔未出版之博士論文〕。校名。</div></dd>
+        <dt>網頁</dt><dd><div class="ex">作者或機構（年，月日）。<span class="hl">網頁標題</span>。網站名稱。https://xxx</div></dd>
+      </dl>
+    </div>
+
+    <div class="apa-card">
+      <h3>中文稿的額外規範</h3>
+      <p class="lead">APA 是英文體例，中文期刊各自補了一套在地規則——這幾項最常被形式審退件。</p>
+      <dl class="apa-rows">
+        <dt>文獻排序</dt><dd>中文文獻在前、外文在後。中文依作者姓氏筆畫排列，外文依字母排列。</dd>
+        <dt>中文文獻英譯</dt><dd>部分期刊（如《測驗學刊》）要求參考文獻中的中文文獻必須加附英文翻譯，這項補做很花時間，開稿前就要決定。</dd>
+        <dt>外來人名</dt><dd>逕用原文呈現。專有名詞若有慣用譯名，第一次出現時以括號標註原文；無慣用譯名則逕用原文。</dd>
+        <dt>年代</dt><dd>一律標西元。</dd>
+        <dt>標點</dt><dd>中文標點全形、英文標點半形；中英文交界處用全形。括號、阿拉伯數字、希臘字母一律半形。</dd>
+      </dl>
+    </div>
+
+    <div class="apa-card">
+      <h3>統計數值與符號</h3>
+      <dl class="apa-rows">
+        <dt>小數位數</dt><dd>以四捨五入取至小數點後第二位為原則。</dd>
+        <dt>小數點前的 0</dt><dd>可能大於 1 的數值要寫 0：0.45、0.03<br>不可能大於 1 的數值（相關係數、機率值、比率）不寫 0：<i>r</i> = .72、<i>p</i> &lt; .001</dd>
+        <dt>斜體</dt><dd>統計符號一律斜體：<i>p</i>、<i>t</i>、<i>F</i>、<i>M</i>、<i>SD</i>、<i>N</i>、<i>n</i><br>例外（不斜體）：希臘字母 α、β、γ 與統計縮寫 ANOVA、LSD、SEM</dd>
+        <dt>空格</dt><dd>運算符號前後各空一格半形：<i>N</i> = 18，<i>p</i> &lt; .001</dd>
+      </dl>
+    </div>
+
+    <div class="apa-card">
+      <h3>圖表</h3>
+      <dl class="apa-rows">
+        <dt>編號與標題</dt><dd>APA 7 起，<span style="color:var(--vermilion-text);font-weight:500">圖與表的編號和標題都置於圖表「上方」</span>，這與第 6 版的圖說在下方不同。標題末不加句號。</dd>
+        <dt>註解</dt><dd>置於圖表下方、靠左對齊、句末加句號。中文稿用「註：」，英文稿用斜體「<i>Note.</i>」</dd>
+        <dt>多重註解順序</dt><dd>一般註解 → 特別註解（以上標 a、b、c 分段）→ 機率註解</dd>
+        <dt>顏色</dt><dd>部分中文期刊（如《課程與教學季刊》）明訂只收黑白圖檔。</dd>
+      </dl>
+    </div>
+
+    <div class="apa-card">
+      <h3>中文標題層級</h3>
+      <p class="lead">這一項不屬 APA，而是中文期刊的共同慣例，各刊字級規定略有差異。</p>
+      <div class="ex">壹、（第一層，多為 16 級粗體置中）
+　一、（第二層，14 級粗體齊左）
+　　（一）（第三層，12 級粗體齊左）
+　　　1.（第四層）
+　　　　(1)（第五層，部分期刊標題後加句號直接接內文）
+　　　　　①（第六層，僅部分期刊使用）</div>
+      <p style="margin:12px 0 0;font-size:13px;color:var(--ink-3)">層次不可省略或跳號。《科學教育學刊》《課程與教學季刊》皆明文要求依序使用。</p>
+    </div>
+  </div>`;
+}
+
+function viewAbout(){
+  const m = document.getElementById("main");
+  const n = k => J.filter(j=>j.verified===k).length;
+  m.innerHTML = `<div class="about">
+    <h3>這份資料是怎麼來的</h3>
+    <p>期刊名單取自國家科學及技術委員會人文社會科學研究中心「臺灣人文及社會科學期刊評比暨核心期刊收錄」官方名單：<strong>2025 年名單</strong>（教育學、政治學、經濟學、區域研究及地理、綜合類，適用 2026 年 1 月 1 日至 2028 年 12 月 31 日）與 <strong>2024 年名單</strong>（藝術學、人類學及族群研究、社會學及社福社工、心理學、法律學、管理學，適用 2025 年 1 月 1 日至 2027 年 12 月 31 日）。</p>
+    <p>格式規範則逐本取自各刊自己公告的稿約、徵稿辦法或撰稿體例。<strong>沒有查到的欄位一律寫「須查官網」或「未載明」，不做推測填補。</strong></p>
+
+    <h3>三種查證程度</h3>
+    <div class="legend">
+      <div><span class="vstat v-official" style="min-width:130px">● 已核對官方稿約</span><span>逐字讀過該刊官方稿約或撰稿體例全文，欄位數字直接來自原文。目前 ${n("official")} 本。</span></div>
+      <div><span class="vstat v-partial" style="min-width:130px">◐ 官方頁面摘錄</span><span>取自該刊官方頁面，但未能取得完整稿約文件（例如出版商網站擋自動存取）。數字可信，但可能有未涵蓋的細項。目前 ${n("partial")} 本。</span></div>
+      <div><span class="vstat v-listed" style="min-width:130px">○ 僅收錄分級</span><span>只確認了收錄狀態與評比級別，格式細節未查證。這類期刊請直接點卡片裡的官網連結。目前 ${n("listed")} 本。</span></div>
+    </div>
+
+    <h3>為什麼有些欄位是空的</h3>
+    <p>Elsevier（ScienceDirect）、Wiley 與部分 SAGE、Taylor &amp; Francis 的作者指南頁面會阻擋自動存取，這些期刊的資料是透過搜尋引擎擷取的官方頁面內容補齊的，因此細項不如中文期刊完整。每張卡片都附了該刊投稿指南的直達連結，需要細節時從那裡進去最快。</p>
+
+    <h3>使用時請記得</h3>
+    <ul>
+      <li><strong>稿約會改版。</strong>本站查證日期為 2026 年 8 月 28 日。正式投稿前，請以該刊官網當下的版本為準——這裡的資料只用來快速篩選與比較，不能取代官方文件。</li>
+      <li><strong>「Q1／Q2」的分區會逐年變動。</strong>本站標示的分區僅供大致定位，實際請以投稿當年度的 JCR 為準；同一本期刊在不同的 category 下分區也可能不同。</li>
+      <li><strong>TSSCI 沒有 Q1／Q2。</strong>臺灣的核心期刊制度用的是第一級、第二級（第三級不屬核心期刊），與 JCR 的四分位分區是兩套不同的東西。</li>
+      <li><strong>字數的計算範圍各刊不同。</strong>有的含參考文獻與圖表、有的不含；有的同時卡字數與頁數（如《教育心理學報》《測驗學刊》）。看數字時要一併看括號裡的計算方式。</li>
+    </ul>
+
+    <h3>怎麼用這個系統</h3>
+    <ul>
+      <li><strong>瀏覽</strong>——用左側篩選縮小範圍，卡片正面就顯示字數、摘要、文獻格式三個最常查的欄位；點卡片看完整規範。</li>
+      <li><strong>比較</strong>——在卡片上點「加入比較」選 2 本以上，並排看差異，有差異的欄位會標色。決定要投哪一本時最好用。</li>
+      <li><strong>檢查清單</strong>——選定期刊後，依該刊實際規定產生逐項清單，可直接勾選。投稿前最後一輪自檢用。</li>
+      <li><strong>APA 7</strong>——常用體例速查，含中文期刊特有的在地規範（文獻排序、中文文獻英譯、全形半形標點）。</li>
+    </ul>
+  </div>`;
+}
+
+/* =====================================================================
+   render
+   ===================================================================== */
+function render(){
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute("aria-selected", b.dataset.view===S.view?"true":"false"));
+  document.getElementById("cmpn").textContent = S.picked.size ? `(${S.picked.size})` : "";
+  document.getElementById("qclr").classList.toggle("hide", !S.q);
+  renderSide();
+  ({browse:viewBrowse, compare:viewCompare, check:viewCheck, apa:viewApa, about:viewAbout})[S.view]();
+}
+
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.onclick = ()=>{ S.view = b.dataset.view; render(); window.scrollTo({top:0,behavior:"instant"}); };
+});
+const qi = document.getElementById("q");
+qi.oninput = e => { S.q = e.target.value; if(S.view!=="browse"&&S.view!=="compare"){S.view="browse";} render(); };
+document.getElementById("qclr").onclick = ()=>{ S.q=""; qi.value=""; qi.focus(); render(); };
+document.getElementById("scrim").onclick = closeDrawer;
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){ if(S.open) closeDrawer(); }
+  if(e.key==="/" && document.activeElement!==qi){ e.preventDefault(); qi.focus(); }
+});
+
+const tb = document.getElementById("theme");
+try{
+  const saved = localStorage.getItem("tsq-theme");
+  if(saved) document.documentElement.setAttribute("data-theme", saved);
+}catch(_){}
+tb.onclick = ()=>{
+  const cur = document.documentElement.getAttribute("data-theme");
+  const isDark = cur ? cur==="dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+  const next = isDark ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try{ localStorage.setItem("tsq-theme", next); }catch(_){}
+};
+
+render();
+</script>
