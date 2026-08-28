@@ -292,6 +292,20 @@ table.cmp .diff{background:var(--indigo-soft)}
 .legend{display:grid; gap:8px; margin:10px 0}
 .legend div{display:flex; gap:9px; align-items:flex-start; font-size:13.5px}
 
+/* ============ credit ============ */
+.credit{border-top:1px solid var(--line); background:var(--surface); margin-top:20px}
+.credit-in{
+  max-width:1560px; margin:0 auto; padding:20px 22px 30px;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px;
+  font-size:12.5px; color:var(--ink-4); line-height:1.7;
+}
+.credit .org{letter-spacing:.02em}
+.credit .sep{color:var(--line-strong)}
+.credit .who{color:var(--ink-3)}
+.credit .who b{font-family:var(--serif); font-weight:600; font-size:14px; color:var(--ink-2); letter-spacing:.02em}
+.credit .asof{margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--ink-4); font-variant-numeric:tabular-nums}
+@media(max-width:700px){ .credit .asof{margin-left:0; flex-basis:100%} .credit .sep{display:none} .credit .who{flex-basis:100%} }
+
 .hide{display:none !important}
 </style>
 
@@ -321,6 +335,15 @@ table.cmp .diff{background:var(--indigo-soft)}
   <aside id="side"></aside>
   <section id="main"></section>
 </div>
+
+<footer class="credit">
+  <div class="credit-in">
+    <span class="org">國立清華大學　教育與學習科技學系</span>
+    <span class="sep">·</span>
+    <span class="who"><b>陳奕安</b> 博士候選人　製作</span>
+    <span class="asof">資料查證基準日 2026-08-28</span>
+  </div>
+</footer>
 
 <div class="scrim" id="scrim"></div>
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="期刊格式細節"></div>
