@@ -296,6 +296,9 @@ table.cmp .diff{background:var(--indigo-soft)}
 .hero .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-4)}
 /* 中文以 em 計寬，ch 是西文 "0" 的寬度，用在中文會嚴重低估 */
 .hero h2{font-family:var(--serif); font-size:clamp(26px,3.4vw,38px); line-height:1.3; letter-spacing:.01em; max-width:20em}
+/* 各子句自成行內塊，換行只發生在子句之間。
+   中文沒有詞間空格，光靠 text-wrap:balance 會把「體例」這種詞從中間拆開。 */
+.hero h2 span{display:inline-block}
 .hero .lede{margin:0; font-size:15.5px; color:var(--ink-2); max-width:62ch; line-height:1.85}
 .hero .metaline{display:flex; flex-wrap:wrap; gap:6px 16px; font-family:var(--mono); font-size:11.5px; color:var(--ink-4); align-items:center}
 .hero .metaline .d{color:var(--line-strong)}
@@ -1888,7 +1891,7 @@ function viewHome(){
   m.innerHTML = `<div class="home">
     <section class="hero">
       <span class="eyebrow">TSSCI ・ SSCI</span>
-      <h2>投稿前要查的格式規定，集中在這一頁</h2>
+      <h2><span>先比過字數和體例，</span><span>再決定投哪一本</span></h2>
       <p class="lede">字數上限、摘要字數、參考文獻體例、審查方式與費用，這些規定散落在各刊的稿約 PDF 裡。這裡逐本整理好，可以篩選、並排比較，也能依選定期刊產生投稿前檢查清單。</p>
       <div class="metaline">
         <span>資料查證基準日 2026-08-28</span><span class="d">·</span>
