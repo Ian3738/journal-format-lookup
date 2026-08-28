@@ -264,6 +264,11 @@ table.cmp .diff{background:var(--indigo-soft)}
 .cl-item label{font-size:13.5px; line-height:1.6; cursor:pointer}
 .cl-item .v{font-family:var(--mono); font-weight:500; color:var(--indigo-text); font-variant-numeric:tabular-nums}
 .cl-item input:checked + label{color:var(--ink-4); text-decoration:line-through; text-decoration-color:var(--line-strong)}
+/* 第三態：本站沒有該刊的規定。不是待辦，也不等於通過。 */
+.cl-item.cl-na{background:var(--surface-2); border-radius:6px; padding:7px 10px; margin:2px 0; border-bottom:0}
+.cl-item.cl-na > span:last-child{font-size:13.5px; line-height:1.6; color:var(--ink-3)}
+.na-mark{font-family:var(--mono); color:var(--ink-4); flex:none; width:15px; text-align:center; margin-top:2px}
+.na{color:var(--ink-4); font-style:italic}
 
 /* ============ apa ============ */
 .apa{max-width:900px; display:flex; flex-direction:column; gap:26px}
@@ -2035,15 +2040,30 @@ function checklistFor(j){
   const g=[];
   const ok = v => v && !/須查|未載明|未於|^—$/.test(v);
   const fmt=[];
+  // 缺資料的項目不能從清單裡消失，否則使用者會以為不必檢查。
+  // 一律留一列標成「本站無資料」，這是與待辦並列的第三態。
+  const na = label => [`${esc(label)}：<span class="na">本站無資料，請自行對照該刊官網</span>`, "", "na"];
   // 字數欄位可能是「15,000 字為上限，如超過以 20,000 字為原則」這種整句，
   // 所以不能套「控制在 X 以內」的句式，否則會變病句
-  if(ok(j.wcZh) && j.idx!=="SSCI") fmt.push([`中文全文字數符合規定：<span class="v">${esc(j.wcZh)}</span>`, j.wcNote]);
-  if(ok(j.wcEn)) fmt.push([`${j.idx==="SSCI"?"全文":"英文全文"}字數符合規定：<span class="v">${esc(j.wcEn)}</span>`, j.idx==="SSCI"?j.wcNote:""]);
-  if(ok(j.absZh) && j.idx!=="SSCI") fmt.push([`中文摘要：<span class="v">${esc(j.absZh)}</span>`,""]);
-  if(ok(j.absEn)) fmt.push([`${j.idx==="SSCI"?"摘要":"英文摘要"}：<span class="v">${esc(j.absEn)}</span>`,""]);
+  if(j.idx!=="SSCI") fmt.push(ok(j.wcZh)
+    ? [`中文全文字數符合規定：<span class="v">${esc(j.wcZh)}</span>`, j.wcNote]
+    : na("中文全文字數"));
+  fmt.push(ok(j.wcEn)
+    ? [`${j.idx==="SSCI"?"全文":"英文全文"}字數符合規定：<span class="v">${esc(j.wcEn)}</span>`, j.idx==="SSCI"?j.wcNote:""]
+    : na(j.idx==="SSCI"?"全文字數":"英文全文字數"));
+  if(j.idx!=="SSCI") fmt.push(ok(j.absZh)
+    ? [`中文摘要：<span class="v">${esc(j.absZh)}</span>`,""]
+    : na("中文摘要字數"));
+  fmt.push(ok(j.absEn)
+    ? [`${j.idx==="SSCI"?"摘要":"英文摘要"}：<span class="v">${esc(j.absEn)}</span>`,""]
+    : na(j.idx==="SSCI"?"摘要字數":"英文摘要字數"));
   if(j.absNote) fmt.push([esc(j.absNote),""]);
-  if(ok(j.kw)) fmt.push([`關鍵詞：<span class="v">${esc(j.kw)}</span>${j.kwNote?"，"+esc(j.kwNote):""}`,""]);
-  if(ok(j.ref)) fmt.push([`參考文獻與內文引用一律改為 <span class="v">${esc(j.ref)}</span>`,""]);
+  fmt.push(ok(j.kw)
+    ? [`關鍵詞：<span class="v">${esc(j.kw)}</span>${j.kwNote?"，"+esc(j.kwNote):""}`,""]
+    : na("關鍵詞數量"));
+  fmt.push(ok(j.ref)
+    ? [`參考文獻與內文引用一律改為 <span class="v">${esc(j.ref)}</span>`,""]
+    : na("參考文獻體例"));
   if(j.layout) fmt.push([esc(j.layout),""]);
   if(j.heads) fmt.push([`標題層級：${esc(j.heads)}`,""]);
   if(fmt.length) g.push(["格式規範", fmt]);
@@ -2094,15 +2114,22 @@ function viewCheck(){
       <h2>${esc(j.name)} 投稿前檢查</h2>
       <p>${esc(j.pub)} ・ ${esc(j.idx)}${j.tier?" "+esc(j.tier):""} ・ 資料查證：${v[1]}</p>
     </div>`;
-  let n=0;
+  let n=0, naCount=0;
   checklistFor(j).forEach(([title,items])=>{
     html += `<div class="cl-group"><h4>${esc(title)}</h4>`;
-    items.forEach(([label,sub])=>{
-      const id = `cl${j.id}_${n++}`;
-      html += `<div class="cl-item"><input type="checkbox" id="${id}"><label for="${id}">${label}${sub?`<br><span style="color:var(--ink-4);font-size:12.5px">${esc(sub)}</span>`:""}</label></div>`;
+    items.forEach(([label,sub,kind])=>{
+      const detail = sub?`<br><span style="color:var(--ink-4);font-size:12.5px">${esc(sub)}</span>`:"";
+      if(kind==="na"){                      // 無資料：不是待辦，不給勾選框
+        naCount++;
+        html += `<div class="cl-item cl-na"><span class="na-mark">—</span><span>${label}${detail}</span></div>`;
+      } else {
+        const id = `cl${j.id}_${n++}`;
+        html += `<div class="cl-item"><input type="checkbox" id="${id}"><label for="${id}">${label}${detail}</label></div>`;
+      }
     });
     html += `</div>`;
   });
+  if(naCount) html += `<div class="note"><b>有 ${naCount} 項本站查不到規定</b>　這幾項標成「本站無資料」，意思是本站手上沒有該刊的數字，不是這幾項不用檢查。請直接開該刊官網的稿約確認。</div>`;
   html += `<div class="note" style="margin-top:6px"><b>提醒</b>　本清單依 2026 年 8 月 28 日查證之稿約產生。期刊稿約會改版，送出前請再對照該刊官網現行版本。</div>`;
   sheet.innerHTML = html;
   m.appendChild(sheet);
