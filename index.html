@@ -357,6 +357,89 @@ table.cmp .diff{background:var(--indigo-soft)}
 .ghead .gn{font-family:var(--mono); font-size:11.5px; color:var(--ink-4); font-variant-numeric:tabular-nums}
 .ghead .gd{font-size:12.5px; color:var(--ink-4); margin-left:auto; text-align:right; max-width:46ch}
 
+/* ============ 稿件檢查 ============ */
+.lint{max-width:880px; display:flex; flex-direction:column; gap:22px}
+.lint-intro h2{font-family:var(--serif); font-size:22px; margin-bottom:8px}
+.lint-intro .lede{margin:0 0 12px; font-size:14.5px; color:var(--ink-2); line-height:1.8; max-width:62ch}
+.note-ok{background:var(--green-soft); border-left-color:var(--green)}
+.note-ok b{color:var(--green-text)}
+.note-bad{background:var(--vermilion-soft); border-left-color:var(--vermilion)}
+.note-bad b{color:var(--vermilion-text)}
+
+.lint-step{border:1px solid var(--line); background:var(--surface); border-radius:var(--r); padding:17px 19px}
+.lint-step h3{font-family:var(--serif); font-size:16.5px; display:flex; align-items:center; gap:9px; margin-bottom:10px}
+.stepn{font-family:var(--mono); font-size:11.5px; background:var(--indigo-soft); color:var(--indigo-text);
+  width:21px; height:21px; border-radius:5px; display:grid; place-items:center; font-weight:600}
+.lint-step select{font-family:inherit; font-size:14px; padding:8px 11px; border-radius:var(--r);
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); width:100%; max-width:420px}
+.lint-raw{margin-top:11px; font-size:12.5px; color:var(--ink-2); background:var(--surface-2);
+  padding:10px 12px; border-radius:8px; line-height:1.65}
+.muted{color:var(--ink-4); font-size:12.5px}
+
+.typebtns{display:flex; flex-wrap:wrap; gap:8px}
+.typebtn{border:1px solid var(--line); background:var(--surface); color:var(--ink-2);
+  padding:9px 13px; border-radius:8px; font-size:13.5px; text-align:left; line-height:1.4}
+.typebtn span{display:block; font-family:var(--mono); font-size:11px; color:var(--ink-4); margin-top:3px}
+.typebtn:hover{border-color:var(--line-strong)}
+.typebtn.on{background:var(--indigo-soft); border-color:var(--indigo); color:var(--indigo-text); font-weight:600}
+.typebtn.on span{color:var(--indigo-text)}
+
+.inrow{display:flex; flex-wrap:wrap; gap:11px; align-items:center; margin-bottom:10px}
+.filebtn{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--line-strong);
+  background:var(--surface-2); color:var(--ink); padding:9px 14px; border-radius:8px; font-size:13.5px; cursor:pointer}
+.filebtn:hover{background:var(--surface-3)}
+.filebtn input{display:none}
+.lint-step textarea{width:100%; font-family:var(--sans); font-size:13.5px; line-height:1.7; padding:11px 13px;
+  border:1px solid var(--line); border-radius:8px; background:var(--surface-2); color:var(--ink); resize:vertical}
+.runbtn{margin-top:11px; border:1px solid var(--indigo); background:var(--indigo); color:#fff;
+  padding:9px 18px; border-radius:8px; font-size:14px; font-weight:500}
+:root[data-theme="dark"] .runbtn{color:var(--ground)}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .runbtn{color:var(--ground)} }
+.runbtn:hover{filter:brightness(1.08)}
+
+.lint-report{display:flex; flex-direction:column; gap:16px}
+.lint-report > h3{font-family:var(--serif); font-size:18px}
+.rblock{border:1px solid var(--line); background:var(--surface); border-radius:var(--r); padding:16px 18px}
+.rblock h4{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-4);
+  font-family:var(--mono); font-weight:600; margin-bottom:11px}
+.rblock p{margin:9px 0 0}
+
+.verdict{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:10px 13px;
+  border-radius:8px; font-size:14px; font-weight:600; margin-bottom:9px}
+.verdict span{font-weight:400; font-size:12.5px; opacity:.9}
+.b-over{background:var(--vermilion-soft); color:var(--vermilion-text)}
+.b-warn{background:var(--amber-soft); color:var(--amber-text)}
+.b-okish{background:var(--green-soft); color:var(--green-text)}
+.b-na{background:var(--surface-2); color:var(--ink-3)}
+
+table.wtab{border-collapse:collapse; width:100%; font-size:13.5px; margin-top:4px}
+table.wtab th{text-align:left; font-weight:400; color:var(--ink-4); padding:6px 10px 6px 0; width:96px}
+table.wtab td{padding:6px 10px 6px 0; font-family:var(--mono); font-variant-numeric:tabular-nums}
+table.wtab td.muted{font-family:var(--sans)}
+table.wtab tr.sum th, table.wtab tr.sum td{border-top:1px solid var(--line); font-weight:600; padding-top:9px}
+
+.hits{display:flex; flex-direction:column; gap:11px}
+.hitgrp{border:1px solid var(--line); border-radius:8px; overflow:hidden}
+.hithead{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; background:var(--surface-2);
+  padding:8px 11px; font-size:13.5px; font-weight:600}
+.hithead span{font-family:var(--mono); font-size:11px; color:var(--ink-4); font-weight:400}
+.hithead em{margin-left:auto; font-style:normal; font-size:12px; color:var(--indigo-text); font-weight:500}
+.hitline{padding:5px 11px; border-top:1px solid var(--line)}
+.hitline code{font-family:var(--mono); font-size:12px; color:var(--ink-2); word-break:break-all}
+
+.anon{display:flex; flex-direction:column; gap:7px}
+.anonline{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; font-size:13.5px;
+  background:var(--amber-soft); padding:8px 11px; border-radius:7px}
+.anonline b{color:var(--amber-text)}
+.anonline code{font-family:var(--mono); font-size:12px}
+
+.layoutbox{background:var(--surface-2); padding:11px 13px; border-radius:8px; font-size:13px;
+  line-height:1.75; color:var(--ink-2); margin-bottom:8px}
+.rblock.unchecked{border-color:var(--line-strong)}
+.rblock.unchecked ul{margin:0; padding-left:19px; font-size:13px; color:var(--ink-2); line-height:1.75}
+.rblock.unchecked li{margin-bottom:5px}
+.rblock.unchecked p{font-size:13px; color:var(--ink-3); font-weight:500}
+
 /* ============ credit ============ */
 .credit{border-top:1px solid var(--line); background:var(--surface); margin-top:20px}
 .credit-in{
@@ -2272,8 +2355,28 @@ function render(){
   document.getElementById("cmpn").textContent = S.picked.size ? `(${S.picked.size})` : "";
   document.getElementById("qclr").classList.toggle("hide", !S.q);
   renderSide();
-  ({home:viewHome, browse:viewBrowse, compare:viewCompare, check:viewCheck, apa:viewApa, about:viewAbout})[S.view]();
+  (VIEWS[S.view] || viewHome)();
 }
+
+// 視圖表開放註冊，讓附加功能住在另一個 <script> 區塊。
+// 那個區塊若因舊瀏覽器不支援某個語法而整塊解析失敗，這裡的查詢功能不受影響
+// （瀏覽器逐一解析各個 script，而解析錯誤發生在執行之前，能力偵測來不及擋）。
+const VIEWS = {home:viewHome, browse:viewBrowse, compare:viewCompare, check:viewCheck, apa:viewApa, about:viewAbout};
+window.__app = {
+  get S(){ return S; }, get J(){ return J; },
+  el, esc, render,
+  registerView(key, fn, tabLabel){
+    VIEWS[key] = fn;
+    if(tabLabel){
+      const tabs = document.querySelector('.tabs');
+      const b = document.createElement('button');
+      b.setAttribute('role','tab'); b.setAttribute('aria-selected','false');
+      b.dataset.view = key; b.textContent = tabLabel;
+      b.onclick = ()=>{ S.view = key; render(); window.scrollTo({top:0}); };
+      tabs.appendChild(b);
+    }
+  }
+};
 
 document.querySelectorAll('.tabs button').forEach(b=>{
   b.onclick = ()=>{ S.view = b.dataset.view; render(); window.scrollTo({top:0,behavior:"instant"}); };
@@ -2309,4 +2412,524 @@ tb.onclick = ()=>{
 };
 
 render();
+</script>
+
+<script>
+/* =====================================================================
+   稿件檢查。獨立區塊：這裡若因舊瀏覽器解析失敗，上面的查詢功能不受影響。
+   規則一律走 new RegExp 字串建構，避免正則實字在解析階段就讓整塊掛掉。
+
+   這個工具不改稿件，只回報位置。理由寫在介面上：改壞了作者多半不會發現。
+   ===================================================================== */
+(function(){
+"use strict";
+const A = window.__app; if(!A) return;
+const {esc, el} = A;
+
+/* ---------- 期刊規定的保守解析 ---------- */
+const HEDGE = /為原則|原則上|至多|以上為宜|為宜|約\s*[\d,]/;
+const num = x => +String(x).replace(/,/g,'');
+
+function parseLimit(raw){
+  if(!raw) return {kind:'none'};
+  const s = String(raw).trim();
+  if(/須查|未載明|未於|依本刊|依投稿|依 |無硬性|無嚴格|^—$/.test(s)) return {kind:'none', raw:s};
+  const pagesM = s.match(/(\d+)\s*頁/);
+  const segs = s.split(/[／/]/).map(x=>x.trim()).filter(Boolean);
+  const types = segs.map(seg=>{
+    const label = seg.replace(/[≤≥<>約]*\s*[\d,]+(\s*[–—~－-]\s*[\d,]+)?\s*字.*$/,'')
+                     .replace(/[（(].*$/,'').replace(/[，、,\s≥≤約]+$/,'').trim() || null;
+    if(HEDGE.test(seg)) return {label, raw:seg, undecidable:true};
+    const r = seg.match(/(\d[\d,]*)\s*[–—~－-]\s*(\d[\d,]*)\s*字/);
+    if(r) return {label, min:Math.min(num(r[1]),num(r[2])), max:Math.max(num(r[1]),num(r[2])), raw:seg};
+    const lo = seg.match(/[≥>]=?\s*(\d[\d,]*)\s*字|(\d[\d,]*)\s*字以上/);
+    if(lo) return {label, min:num(lo[1]||lo[2]), raw:seg};
+    const ns = [];
+    let mm; const re=/(\d[\d,]*)\s*字/g;
+    while((mm=re.exec(seg))!==null) ns.push(num(mm[1]));
+    if(!ns.length) return null;
+    if(ns.length===1) return {label, max:ns[0], raw:seg};
+    return {label, raw:seg, undecidable:true};
+  }).filter(Boolean);
+  if(!types.length) return {kind: pagesM?'pages':'none', pages: pagesM?+pagesM[1]:null, raw:s};
+  return {kind: types.length>1?'byType':'single', types,
+          pages: pagesM?+pagesM[1]:null, raw:s,
+          undecidable: types.every(t=>t.undecidable)};
+}
+function parseCount(raw){
+  if(!raw) return {kind:'none'};
+  const s=String(raw);
+  if(/須查|未載明|依本刊|依投稿/.test(s)) return {kind:'none', raw:s};
+  const ns=[]; let m; const re=/(\d+)/g;
+  while((m=re.exec(s))!==null) ns.push(+m[1]);
+  if(!ns.length) return {kind:'none', raw:s};
+  return {kind:'range', min: ns.length>1?Math.min.apply(null,ns):null, max:Math.max.apply(null,ns), raw:s};
+}
+
+/* ---------- 分段與字數 ---------- */
+const HAN_CLASS = '[\\u3400-\\u4dbf\\u4e00-\\u9fff\\uf900-\\ufaff]';
+function rx(src, flags){ try{ return new RegExp(src, flags); }catch(e){ return null; } }
+const HAN_G = rx(HAN_CLASS, 'g');
+
+function splitSections(text){
+  const out={abstractZh:'', keywords:'', body:'', refs:''};
+  const refM = text.match(/\n\s*(參考文獻|References|REFERENCES)\s*\n/);
+  out.refs = refM ? text.slice(refM.index) : '';
+  const head = refM ? text.slice(0, refM.index) : text;
+  const abM = head.match(/\n\s*(摘\s*要|中文摘要)\s*\n/);
+  const kwM = head.match(/\n\s*(關鍵詞|關鍵字)\s*[：:]/);
+  if(abM && kwM && kwM.index > abM.index){
+    out.abstractZh = head.slice(abM.index+abM[0].length, kwM.index).trim();
+    // kwM.index 指向那一行前面的換行字元，要先跳過空白才切得到整行，
+    // 否則 split('\n')[0] 會拿到換行前的空字串，關鍵詞就變成「找不到」
+    let s0 = kwM.index;
+    while(s0 < head.length && /\s/.test(head.charAt(s0))) s0++;
+    out.keywords = head.slice(s0).split('\n')[0];
+    out.body = head.slice(s0 + out.keywords.length);
+  } else out.body = head;
+  return out;
+}
+function tally(t){
+  const zh = HAN_G ? (t.match(HAN_G)||[]).length : 0;
+  const punct=(t.match(/[，。、；：！？（）「」『』《》〈〉]/g)||[]).length;
+  const en=(t.match(/[A-Za-z][A-Za-z'-]*/g)||[]).length;
+  const nu=(t.match(/\d[\d,.]*/g)||[]).length;
+  return {zh, punct, en, num:nu, total: zh+punct+en+nu};
+}
+function countWords(text){
+  const s=splitSections(text);
+  return {sections:s, body:tally(s.body), refs:tally(s.refs),
+          abstractZh:tally(s.abstractZh), all:tally(text)};
+}
+
+/* ---------- 保護區：這些區段不套中文文字規則 ---------- */
+function protectedZones(text){
+  const z=[]; const add=(a,b,why)=>{ if(b>a) z.push({a,b,why}); }; let m;
+  const refM=text.match(/\n\s*(參考文獻|References|REFERENCES)\s*\n/);
+  if(refM) add(refM.index, text.length, '參考文獻');
+  const ab=text.match(/\n\s*Abstract\s*\n/);
+  if(ab){ const rest=text.slice(ab.index+ab[0].length);
+    const e=rest.search(/\n\s*(Keywords?|關鍵詞|壹|一、)/);
+    add(ab.index, ab.index+ab[0].length+(e<0?rest.length:e), '英文摘要'); }
+  const ap=text.match(/\n\s*(附錄|Appendix)/);
+  if(ap) add(ap.index, text.length, '附錄');
+  const q=/[「『]([^」』]{4,})[」』]/g;
+  while((m=q.exec(text))!==null) add(m.index, m.index+m[0].length, '引文');
+  const u=/(https?:\/\/\S+|10\.\d{4,}\/\S+|[\w.+-]+@[\w.-]+\.\w+)/g;
+  while((m=u.exec(text))!==null) add(m.index, m.index+m[0].length, '網址或 DOI');
+  let at=0;
+  text.split('\n').forEach(line=>{
+    const han=(HAN_G?(line.match(HAN_G)||[]).length:0);
+    if(/[;{}]|<-|\bdata\s*=|\bmodel\s*=/.test(line) && /[A-Za-z]/.test(line) && han<3)
+      add(at, at+line.length, '程式碼或統計語法');
+    // 數學式：像「SE差異 = √(SE₁² + SE₂²)」這種，下標變數名本來就不該補空格
+    else if(/[√∑∏∫≈≠≤≥±×÷]/.test(line) || (/\s=\s/.test(line) && /[²³⁴₀₁₂₃₄₅₆₇₈₉]/.test(line)))
+      add(at, at+line.length, '數學式');
+    at += line.length+1;
+  });
+  return z.sort((x,y)=>x.a-y.a);
+}
+const inZone=(z,i)=>z.some(x=>i>=x.a && i<x.b);
+const maskEnglish = t => t.replace(/[A-Za-z][A-Za-z0-9\s,.;:'"()&/-]{6,}/g, s=>' '.repeat(s.length));
+
+/* ---------- 文字規則：只回報位置，不改字 ---------- */
+const RULES = [
+  {id:'comma',  src:HAN_CLASS+'\\s?,\\s?'+HAN_CLASS, zh:true, msg:'中文之間用了半形逗號', fix:'全形，'},
+  {id:'semi',   src:HAN_CLASS+'\\s?;\\s?'+HAN_CLASS, zh:true, msg:'中文之間用了半形分號', fix:'全形；'},
+  {id:'colon',  src:HAN_CLASS+'\\s?:\\s?'+HAN_CLASS, zh:true, msg:'中文之間用了半形冒號', fix:'全形：'},
+  // 「註.」「表.」「圖.」是圖表註解的標記，不是句尾標點，命中要放掉
+  {id:'period', src:HAN_CLASS+'\\.(?![0-9A-Za-z])',  zh:true, msg:'中文後面接了半形句點', fix:'全形。',
+   skipIf:function(hit){ return '註表圖式例'.indexOf(hit.charAt(0)) >= 0; }},
+  {id:'paren',  src:HAN_CLASS+'\\((?![A-Za-z0-9])',  zh:true, msg:'中文後面接了半形左括號', fix:'全形（'},
+  {id:'ellip',  src:'\\.\\.\\.',                      zh:true, msg:'用三個半形句點當刪節號', fix:'……', raw:true},
+  {id:'etal1',  src:'\\bet\\s+al(?!\\.)\\b',          msg:'et al 少了句點', fix:'et al.'},
+  {id:'etal2',  src:'\\bet\\.\\s?al\\.',              msg:'et.al. 多了一個句點', fix:'et al.'},
+  {id:'p0',     src:'\\bp\\s?[=<>]\\s?0\\.\\d+',      msg:'p 值的小數點前不寫 0', fix:'刪掉那個 0'},
+  {id:'eta0',   src:'(η2|η²)\\s?[=<>]\\s?0\\.\\d+',   msg:'η² 的小數點前不寫 0', fix:'刪掉那個 0'},
+  {id:'doi',    src:'\\bdoi:\\s?10\\.', flags:'gi',   msg:'APA 第 7 版的 DOI 要寫成完整網址', fix:'https://doi.org/10.…', raw:true},
+  {id:'space',  src:'('+HAN_CLASS+')([A-Za-z0-9])|([A-Za-z0-9])('+HAN_CLASS+')', msg:'中文與英數之間少了半形空格', fix:'補一個半形空格'}
+];
+function runRules(text, opts){
+  opts = opts || {};
+  const zones = protectedZones(text);
+  const masked = maskEnglish(text);
+  const hits = [];
+  const skipped = [];
+  for(const r of RULES){
+    if(r.zh && opts.skipZh){ skipped.push(r.msg); continue; }
+    const re = rx(r.src, r.flags || 'g');
+    if(!re){ skipped.push(r.msg + '（這個瀏覽器不支援，已停用）'); continue; }
+    const src = r.raw ? text : (r.zh ? masked : text);
+    let m; re.lastIndex = 0;
+    while((m = re.exec(src)) !== null){
+      if(m[0].length === 0){ re.lastIndex++; continue; }
+      if(!r.raw && inZone(zones, m.index)) continue;
+      if(r.skipIf && r.skipIf(text.substr(m.index, m[0].length))) continue;
+      hits.push({at:m.index, msg:r.msg, fix:r.fix, hit:text.substr(m.index, m[0].length),
+        near: text.substr(Math.max(0, m.index-16), m[0].length+32).replace(/\n/g,' ').trim()});
+    }
+  }
+  return {zones, skipped, hits: hits.sort((a,b)=>a.at-b.at)};
+}
+
+/* ---------- 匿名審查 ---------- */
+function anonymityScan(text, meta){
+  meta = meta || {}; const out=[];
+  const P=[[/本研究(?:由|獲|承)[^\n。]{0,24}(?:補助|經費|支持|計畫)/g,'經費補助說明'],
+           [/(?:MOST|NSTC|NSC)\s?[\d-]{6,}/g,'計畫編號'],
+           [/(?:誌謝|致謝|謝辭)/g,'致謝段落']];
+  for(const [re,what] of P){ let m; re.lastIndex=0;
+    while((m=re.exec(text))!==null) out.push({what, where:'正文', detail:m[0]}); }
+  if(meta.creator) out.push({what:'Word 檔案內容資訊裡的作者', where:'docProps/core.xml', detail:meta.creator, name:true});
+  if(meta.lastModifiedBy) out.push({what:'Word 檔案的最後修改者', where:'docProps/core.xml', detail:meta.lastModifiedBy, name:true});
+  if(meta.company) out.push({what:'Word 檔案裡的單位名稱', where:'docProps/app.xml', detail:meta.company, name:true});
+  if(meta.hasComments) out.push({what:'文件裡還留著審閱註解', where:'word/comments.xml', detail:'請在 Word 中刪除全部註解'});
+  if(meta.hasTracked) out.push({what:'文件裡還有未處理的追蹤修訂', where:'document.xml', detail:'請全部接受或拒絕後再存檔'});
+  if(meta.headerFooter) out.push({what:'頁首或頁尾有文字', where:'header/footer', detail:meta.headerFooter});
+  return out;
+}
+function maskName(s){
+  const t=String(s||'').trim();
+  if(!t) return t;
+  const isHan = rx('^'+HAN_CLASS+'{2,4}$');
+  if(isHan && isHan.test(t)) return t.charAt(0) + '○'.repeat(t.length-1);
+  return t.length<=2 ? t.charAt(0)+'○' : t.slice(0,2)+'○'.repeat(Math.min(4,t.length-2));
+}
+
+/* ---------- 三態判定：永遠不輸出「通過」 ---------- */
+function judge(actual, t){
+  if(!t || t.undecidable) return {state:'unknown'};
+  if(t.max == null && t.min == null) return {state:'unknown'};
+  if(t.min != null && actual < t.min)
+    return {state:'under', why:'低於下限 '+t.min.toLocaleString()+' 字'};
+  if(t.max == null) return {state:'within', why:'已達下限'};
+  const over = actual - t.max;
+  if(Math.abs(over)/t.max <= 0.05)
+    return {state:'borderline', why:'與上限相差在 5% 以內，請以 Word 的字數統計為準'};
+  return over>0 ? {state:'over', why:'超出上限約 '+over.toLocaleString()+' 字'}
+                : {state:'within', why:'距上限還有約 '+(-over).toLocaleString()+' 字'};
+}
+
+/* ---------- .docx 讀取（原生 API，不引函式庫） ---------- */
+let CAN_DOCX = false;
+try { new DecompressionStream('deflate-raw'); CAN_DOCX = true; } catch(e){}
+
+async function zipOpen(buf){
+  const dv=new DataView(buf), u8=new Uint8Array(buf);
+  let eocd=-1, lim=Math.max(0, u8.length-65558);
+  for(let i=u8.length-22; i>=lim; i--) if(dv.getUint32(i,true)===0x06054b50){ eocd=i; break; }
+  if(eocd<0) throw new Error('這不像是 Word 檔。舊版 .doc 或 Pages 檔請先在 Word 另存為 .docx。');
+  const n=dv.getUint16(eocd+10,true);
+  if(n===0xFFFF) throw new Error('這個檔案用了 ZIP64 格式，本工具讀不了。');
+  let p=dv.getUint32(eocd+16,true);
+  const map=new Map(), dec=new TextDecoder();
+  for(let k=0;k<n;k++){
+    if(dv.getUint32(p,true)!==0x02014b50) throw new Error('檔案結構讀不下去，可能已損毀。');
+    const method=dv.getUint16(p+10,true), csize=dv.getUint32(p+20,true);
+    const nlen=dv.getUint16(p+28,true), elen=dv.getUint16(p+30,true), clen=dv.getUint16(p+32,true);
+    const lho=dv.getUint32(p+42,true);
+    map.set(dec.decode(u8.subarray(p+46,p+46+nlen)), {method,csize,lho});
+    p += 46+nlen+elen+clen;
+  }
+  return {dv,u8,map};
+}
+async function zipText(z, name){
+  const e=z.map.get(name); if(!e) return null;
+  const nlen=z.dv.getUint16(e.lho+26,true), elen=z.dv.getUint16(e.lho+28,true);
+  const start=e.lho+30+nlen+elen;
+  const raw=z.u8.subarray(start, start+e.csize);
+  if(e.method===0) return new TextDecoder().decode(raw);
+  if(e.method!==8) throw new Error('不支援的壓縮方式。');
+  const s=new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+  return await new Response(s).text();
+}
+const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+function paragraphsOf(xml){
+  const doc=new DOMParser().parseFromString(xml,'application/xml');
+  if(doc.getElementsByTagName('parsererror').length) throw new Error('Word 檔的內容解析失敗。');
+  const out=[];
+  const ps=doc.getElementsByTagNameNS(W,'p');
+  for(let i=0;i<ps.length;i++){
+    const p=ps[i]; let text='';
+    // 跳過 instrText（Zotero、EndNote 的欄位碼）與 delText（已刪除的追蹤修訂）
+    const walk=node=>{
+      for(let c=node.firstChild;c;c=c.nextSibling){
+        if(c.nodeType!==1) continue;
+        const n=c.localName;
+        if(n==='instrText'||n==='delText'||n==='del'||n==='rPr'||n==='pPr') continue;
+        if(n==='t') text += c.textContent;
+        else if(n==='tab') text += '\t';
+        else if(n==='br'||n==='cr') text += '\n';
+        else walk(c);
+      }
+    };
+    walk(p);
+    out.push(text);
+  }
+  return out;
+}
+async function readDocx(file){
+  const z = await zipOpen(await file.arrayBuffer());
+  const docXml = await zipText(z,'word/document.xml');
+  if(!docXml) throw new Error('這是一個壓縮檔，但裡面沒有 Word 的內容。');
+  let text = paragraphsOf(docXml).join('\n');
+  // 註腳與尾註：有些期刊的字數明文含註腳
+  let notes='';
+  for(const nm of ['word/footnotes.xml','word/endnotes.xml']){
+    const x = await zipText(z,nm).catch(()=>null);
+    if(x) notes += paragraphsOf(x).join('\n')+'\n';
+  }
+  // 頁首頁尾常常留著服務單位
+  let hf='';
+  for(const k of z.map.keys())
+    if(/^word\/(header|footer)\d*\.xml$/.test(k)){
+      const x=await zipText(z,k).catch(()=>null);
+      if(x) hf += paragraphsOf(x).join(' ').trim()+' ';
+    }
+  const core = await zipText(z,'docProps/core.xml').catch(()=>null);
+  const app  = await zipText(z,'docProps/app.xml').catch(()=>null);
+  const pick=(xml,tag)=>{ if(!xml) return ''; const m=xml.match(new RegExp('<'+tag+'[^>]*>([^<]*)</'+tag+'>')); return m?m[1].trim():''; };
+  const zot = /ZOTERO_ITEM|ADDIN EN\.CITE|CITAVI|MENDELEY/.test(docXml);
+  return {
+    text, notes: notes.trim(),
+    meta:{
+      creator: pick(core,'dc:creator'),
+      lastModifiedBy: pick(core,'cp:lastModifiedBy'),
+      company: pick(app,'Company'),
+      hasComments: z.map.has('word/comments.xml'),
+      hasTracked: /<w:ins[\s>]|<w:del[\s>]/.test(docXml),
+      headerFooter: hf.trim().slice(0,80),
+      refManager: zot
+    }
+  };
+}
+
+/* ---------- 介面 ---------- */
+const St = { jid:'', typeIdx:0, lang:'zh', text:'', src:'', meta:null, err:'' };
+
+function limitsOf(j){
+  const isEn = j.idx==='SSCI';
+  return {
+    wc: parseLimit(isEn ? j.wcEn : j.wcZh),
+    ab: parseLimit(isEn ? j.absEn : j.absZh),
+    kw: parseCount(j.kw),
+    isEn
+  };
+}
+const badge = st => ({
+  over:['b-over','超出'], under:['b-over','不足'], borderline:['b-warn','臨界'],
+  within:['b-okish','在範圍內'], unknown:['b-na','無法檢查']
+}[st] || ['b-na','無法檢查']);
+
+function viewLint(){
+  const m = document.getElementById('main');
+  const list = A.J.slice().sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));
+  const j = A.J.find(x=>x.id===St.jid);
+  const L = j ? limitsOf(j) : null;
+  const multi = L && L.wc.kind==='byType';
+
+  let h = '<div class="lint">';
+  h += `<section class="lint-intro">
+    <h2>稿件檢查</h2>
+    <p class="lede">把稿子貼進來或上傳 Word 檔，這裡會算字數、掃出匿名審查可能殘留的個人資訊，
+    再對照本站收錄的規定，告訴你哪幾項可能不合、哪幾項本站根本查不到。</p>
+    <div class="note"><b>它不會改你的檔案</b>　標點與引用格式只會告訴你位置和該在 Word 裡搜尋什麼。
+    改壞了你多半不會發現，所以這一步留給你自己做。也不會產生排好版的稿件，版面的部分給你的是一張設定清單。</div>
+    <div class="note note-ok"><b>檔案不會離開你的電腦</b>　整個過程都在瀏覽器裡跑，沒有上傳到任何伺服器，
+    因為這個網站沒有後端。你可以斷網之後再用一次確認。</div>
+  </section>`;
+
+  h += `<section class="lint-step"><h3><span class="stepn">1</span>選期刊</h3>
+    <select id="lintJ"><option value="">— 請選擇 —</option>${
+      list.map(x=>`<option value="${x.id}"${x.id===St.jid?' selected':''}>${esc(x.name)}${x.idx==='SSCI'?'（'+esc(x.tier)+'）':''}</option>`).join('')
+    }</select>`;
+  if(j){
+    const raws = [];
+    if(L.wc.raw) raws.push('全文 '+esc(L.wc.raw));
+    if(L.ab.raw) raws.push('摘要 '+esc(L.ab.raw));
+    if(L.kw.raw) raws.push('關鍵詞 '+esc(L.kw.raw));
+    h += `<div class="lint-raw">本刊規定原文：${raws.length?raws.join('　｜　'):'本站無資料'}
+      ${j.wcNote?`<br><span class="muted">字數計算範圍：${esc(j.wcNote)}</span>`:''}</div>`;
+  }
+  h += `</section>`;
+
+  if(multi){
+    h += `<section class="lint-step"><h3><span class="stepn">2</span>這篇是哪一種稿件？</h3>
+      <p class="muted">本刊不同稿件類型的字數上限不一樣，先選才能比對。</p>
+      <div class="typebtns">${L.wc.types.map((t,i)=>
+        `<button class="typebtn${i===St.typeIdx?' on':''}" data-type="${i}">${esc(t.label||'未命名類型')}
+          <span>${t.undecidable?'規定語意不唯一':(t.max?t.max.toLocaleString()+' 字':'≥'+t.min.toLocaleString()+' 字')}</span></button>`).join('')}</div>
+    </section>`;
+  }
+
+  h += `<section class="lint-step"><h3><span class="stepn">${multi?3:2}</span>提供稿件</h3>
+    <div class="inrow">
+      ${CAN_DOCX ? `<label class="filebtn">上傳 Word 檔（.docx）<input type="file" id="lintFile" accept=".docx"></label>`
+                 : `<span class="muted">這個瀏覽器不支援直接讀取 Word 檔，請改用貼上。</span>`}
+      <span class="muted">或把全文貼進下面的框</span>
+    </div>
+    <textarea id="lintText" rows="8" placeholder="從 Word 全選複製，貼進來即可。含摘要、關鍵詞、正文與參考文獻。">${esc(St.text)}</textarea>
+    ${St.src?`<div class="muted" style="margin-top:6px">目前來源：${esc(St.src)}</div>`:''}
+    ${St.err?`<div class="note note-bad"><b>讀取失敗</b>　${esc(St.err)}</div>`:''}
+    <button class="runbtn" id="lintRun">開始檢查</button>
+  </section>`;
+
+  if(St.text.trim() && j) h += report(j, L, multi);
+  h += '</div>';
+  m.innerHTML = h;
+
+  const sel=document.getElementById('lintJ');
+  if(sel) sel.onchange = e=>{ St.jid=e.target.value; St.typeIdx=0; A.render(); };
+  m.querySelectorAll('[data-type]').forEach(b=>{
+    b.onclick=()=>{ St.typeIdx=+b.dataset.type; A.render(); };
+  });
+  const ta=document.getElementById('lintText');
+  const run=document.getElementById('lintRun');
+  if(run) run.onclick=()=>{ St.text=ta.value; if(!St.src) St.src='貼上的文字'; St.err=''; A.render(); };
+  const fi=document.getElementById('lintFile');
+  if(fi) fi.onchange=async e=>{
+    const f=e.target.files && e.target.files[0]; if(!f) return;
+    try{
+      const r=await readDocx(f);
+      St.text=r.text + (r.notes?('\n'+r.notes):''); St.meta=r.meta; St.src=f.name; St.err='';
+    }catch(err){ St.err=err.message||String(err); St.meta=null; }
+    A.render();
+  };
+}
+
+function report(j, L, multi){
+  const text = St.text;
+  const wc = countWords(text);
+  const t = L.wc.kind==='byType' ? L.wc.types[St.typeIdx] : (L.wc.types && L.wc.types[0]);
+  const scopeRefs = j.wcNote && /參考文獻/.test(j.wcNote);
+  const used = scopeRefs ? wc.all.total : wc.body.total + wc.abstractZh.total;
+  const jd = judge(used, t);
+  const skipZh = L.isEn || (wc.all.zh / Math.max(1, wc.all.total)) < 0.1;
+  const rules = runRules(text, {skipZh});
+  const anon = anonymityScan(text, St.meta || {});
+  const unchecked = [];
+
+  let h = '<section class="lint-report">';
+  h += `<h3>檢查結果</h3>`;
+
+  // 字數
+  h += `<div class="rblock"><h4>字數</h4>`;
+  if(L.wc.pages){
+    h += `<div class="note note-bad"><b>本刊以頁數為最終標準</b>　規定為 ${L.wc.pages} 頁（含圖表與空白版面）。
+      頁數在瀏覽器裡算不出來，請務必在 Word 裡自行確認。以下字數僅供參考，不代表通過。</div>`;
+    unchecked.push('頁數上限（'+L.wc.pages+' 頁）。瀏覽器算不出頁數，請在 Word 裡確認。');
+  }
+  if(L.wc.kind==='none'){
+    h += `<div class="verdict b-na">無法檢查<span>本站沒有這本期刊的字數規定</span></div>`;
+    unchecked.push('全文字數。本站沒有這本期刊的數字，請自行對照官網。');
+  } else if(L.wc.kind==='pages'){
+    h += `<div class="verdict b-na">不做判定<span>本刊以頁數為準，沒有字數上限可比對</span></div>`;
+    unchecked.push('全文字數。本刊以頁數為準，沒有字數規定可以比對。');
+  } else if(!t || t.undecidable){
+    h += `<div class="verdict b-na">不做判定<span>本刊規定寫成「${esc((t&&t.raw)||L.wc.raw)}」，一句話裡有兩個數字，本站不替你選一個</span></div>`;
+    unchecked.push('全文字數。本刊的規定一句話裡有兩個數字，本站不做判定，請自行認定。');
+  } else {
+    const [cls,label]=badge(jd.state);
+    h += `<div class="verdict ${L.wc.pages?'b-warn':cls}">${esc(label)}<span>${esc(jd.why||'')}</span></div>`;
+  }
+  h += `<table class="wtab"><tbody>
+     <tr><th>摘要</th><td>${wc.abstractZh.total.toLocaleString()} 字</td><td class="muted">${wc.sections.abstractZh?'':'（找不到摘要段落）'}</td></tr>
+     <tr><th>正文</th><td>${wc.body.total.toLocaleString()} 字</td><td class="muted"></td></tr>
+     <tr><th>參考文獻</th><td>${wc.refs.total.toLocaleString()} 字</td><td class="muted">${wc.sections.refs?'':'（找不到參考文獻段落）'}</td></tr>
+     <tr class="sum"><th>本次比對用</th><td>${used.toLocaleString()} 字</td><td class="muted">${scopeRefs?'依本刊規定，已含參考文獻':'依本刊規定，未含參考文獻'}</td></tr>
+     </tbody></table>
+     <p class="muted">中文字數各家算法不同，全形標點算不算就差約一成。這裡的數字只能當估計，接近上限時請以 Word 的字數統計為準。
+     建議第一次使用先拿一份稿子跟 Word 對一次，確認口徑相同。</p></div>`;
+
+  // 摘要與關鍵詞
+  h += `<div class="rblock"><h4>摘要與關鍵詞</h4>`;
+  const abT = L.ab.types && L.ab.types[L.ab.kind==='byType' ? Math.min(St.typeIdx, L.ab.types.length-1) : 0];
+  if(L.ab.kind==='none'){ h += `<div class="verdict b-na">摘要無法檢查<span>本站沒有這本期刊的摘要規定</span></div>`;
+    unchecked.push('摘要字數。本站沒有這本期刊的數字。'); }
+  else if(!wc.sections.abstractZh){ h += `<div class="verdict b-na">摘要無法定位<span>找不到「摘要」到「關鍵詞：」之間的段落，沒有猜</span></div>`;
+    unchecked.push('摘要字數。稿件裡找不到摘要段落，無法比對。'); }
+  else { const aj=judge(wc.abstractZh.total, abT); const [c,l]=badge(aj.state);
+    h += `<div class="verdict ${c}">摘要 ${esc(l)}<span>${wc.abstractZh.total} 字，本刊規定 ${esc(L.ab.raw)}</span></div>`; }
+  const kwLine = wc.sections.keywords || '';
+  if(L.kw.kind==='none'){ h += `<div class="verdict b-na">關鍵詞無法檢查<span>本站沒有這本期刊的規定</span></div>`;
+    unchecked.push('關鍵詞個數。本站沒有這本期刊的數字。'); }
+  else if(!kwLine){ h += `<div class="verdict b-na">關鍵詞無法定位<span>找不到「關鍵詞：」開頭的一行</span></div>`;
+    unchecked.push('關鍵詞個數。稿件裡找不到關鍵詞那一行。'); }
+  else {
+    const n = kwLine.replace(/^[^：:]*[：:]/,'').split(/[、,，;；]/).map(s=>s.trim()).filter(Boolean).length;
+    const okKw = (L.kw.max==null || n<=L.kw.max) && (L.kw.min==null || n>=L.kw.min);
+    h += `<div class="verdict ${okKw?'b-okish':'b-over'}">關鍵詞 ${n} 個<span>本刊規定 ${esc(L.kw.raw)}</span></div>`;
+  }
+  h += `</div>`;
+
+  // 格式問題
+  h += `<div class="rblock"><h4>格式問題　<span class="muted">${skipZh?'（本刊為英文稿，中文標點規則已停用）':''}</span></h4>`;
+  if(!j.ref || !/APA/.test(j.ref||''))
+    h += `<div class="note note-bad"><b>本刊採用「${esc(j.ref||'本站無資料')}」</b>　以下只是 APA 第 7 版的通用檢查，不代表符合本刊體例。請直接看該刊稿約。</div>`;
+  if(St.meta && St.meta.refManager)
+    h += `<div class="note"><b>你的引用由文獻管理軟體產生</b>　請在 Zotero 或 EndNote 的樣式設定裡改，直接改文字不會生效。</div>`;
+  if(rules.zones.length)
+    h += `<p class="muted">已略過 ${rules.zones.length} 個區段不做文字檢查：${[...new Set(rules.zones.map(z=>z.why))].join('、')}。引文與參考文獻裡的寫法不該被自動判定為錯。</p>`;
+  if(!rules.hits.length){
+    h += `<p class="muted">這幾條規則沒有發現問題。這不等於格式正確，只代表這幾項自動檢查沒有命中。</p>`;
+  } else {
+    const grouped = {};
+    rules.hits.forEach(x=>{ (grouped[x.msg]=grouped[x.msg]||[]).push(x); });
+    h += `<div class="hits">`;
+    Object.keys(grouped).forEach(k=>{
+      const g=grouped[k];
+      h += `<div class="hitgrp"><div class="hithead">${esc(k)}<span>${g.length} 處</span>
+        <em>在 Word 裡改成：${esc(g[0].fix)}</em></div>`;
+      g.slice(0,6).forEach(x=>h += `<div class="hitline"><code>${esc(x.near)}</code></div>`);
+      if(g.length>6) h += `<div class="muted" style="padding:2px 10px">還有 ${g.length-6} 處</div>`;
+      h += `</div>`;
+    });
+    h += `</div>`;
+  }
+  if(rules.skipped.length) unchecked.push('以下規則本次未執行：'+rules.skipped.join('、'));
+  h += `</div>`;
+
+  // 匿名審查
+  h += `<div class="rblock"><h4>匿名審查殘留</h4>`;
+  if(!St.meta) unchecked.push('Word 檔案內嵌的作者資訊、審閱註解與追蹤修訂。貼上純文字看不到這些，要上傳 .docx 才驗得到。');
+  if(!anon.length){
+    h += `<p class="muted">已掃過${St.meta?'正文、檔案內容資訊、頁首頁尾、註解與追蹤修訂':'正文'}，沒有命中。
+      這不等於已完成匿名化：圖片內容、圖片的 EXIF、檔名、以及截圖裡的資料夾路徑本工具都看不到。</p>`;
+  } else {
+    h += `<div class="anon">${anon.map(x=>
+      `<div class="anonline"><b>${esc(x.what)}</b><code>${esc(x.name?maskName(x.detail):x.detail)}</code><span class="muted">${esc(x.where)}</span></div>`
+    ).join('')}</div>
+    <p class="muted">姓名已遮蔽顯示。檔案內容資訊那幾項在 Word 的「檔案 → 資訊 → 檢查文件」裡清除。</p>`;
+  }
+  unchecked.push('圖片內容、圖片 EXIF、檔名本身、截圖裡的路徑。這些本工具看不到。');
+  h += `</div>`;
+
+  // 版面設定
+  h += `<div class="rblock"><h4>版面設定　<span class="muted">請在 Word 裡這樣設定</span></h4>`;
+  if(j.layout){
+    h += `<div class="layoutbox">${esc(j.layout)}</div>`;
+    if(j.heads) h += `<div class="layoutbox">標題層級：${esc(j.heads)}</div>`;
+    h += `<p class="muted">在「版面配置」與「樣式」面板裡改，大約五分鐘。本工具不會替你排版，因為重排會弄丟你的圖表與文獻欄位。</p>`;
+  } else {
+    h += `<div class="verdict b-na">本站無資料<span>這本期刊的版面規定本站沒有收錄，請看官網稿約</span></div>`;
+    unchecked.push('版面設定。本站沒有收錄這本期刊的版面規定。');
+  }
+  h += `</div>`;
+
+  // 未檢查的項目
+  h += `<div class="rblock unchecked"><h4>本次沒有檢查的項目</h4>
+    <ul>${unchecked.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+    <p>工具沒有報錯，不代表稿件沒有問題。</p></div>`;
+
+  const links=[];
+  if(j.system) links.push(`<a class="linkbtn" href="${esc(j.system)}" target="_blank" rel="noopener">投稿系統 <span class="ar">↗</span></a>`);
+  if(j.site) links.push(`<a class="linkbtn" href="${esc(j.site)}" target="_blank" rel="noopener">期刊官網 <span class="ar">↗</span></a>`);
+  h += `<div class="note" style="margin-top:4px"><b>最後一步還是要你自己做</b>　本站資料查證基準日為 2026-08-28，稿約會改版。
+    送出前請對照該刊官網的現行稿約。${links.length?'<div class="linkrow" style="margin-top:9px">'+links.join('')+'</div>':''}</div>`;
+  h += '</section>';
+  return h;
+}
+
+A.registerView('lint', viewLint, '稿件檢查');
+})();
 </script>
