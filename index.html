@@ -2848,11 +2848,41 @@ const LINE_LABEL = {240:'單行間距', 360:'1.5 倍行高', 480:'2 倍行高'};
 /* ---------- 介面 ---------- */
 const St = { jid:'', typeIdx:0, lang:'zh', text:'', src:'', meta:null, err:'', doc:null,
              fmt:null, fmtMsg:'', busy:false };
-// 這個環境能不能讓頁面自己觸發下載。Artifact 的檢視器會封鎖，GitHub Pages 版不會。
-const CAN_DOWNLOAD = (function(){
-  try{ return typeof window.claude === 'undefined' && typeof URL.createObjectURL === 'function'; }
+/* 存檔有兩條路：
+   一般網頁（GitHub Pages）用 <a download>；
+   Artifact 檢視器封鎖頁面自行下載，要走它的 downloads 能力，由檢視者確認後才存。 */
+const IN_ARTIFACT = (function(){
+  try{ return typeof window.claude !== 'undefined' && typeof window.claude.use === 'function'; }
   catch(e){ return false; }
 })();
+let DL = null, DL_SETTLED = !IN_ARTIFACT;
+if(IN_ARTIFACT){
+  window.claude.use('downloads').then(function(d){
+    DL = d; DL_SETTLED = true;
+    if(A.S.view === 'lint') A.render();     // 能力晚到，補畫一次按鈕
+  }).catch(function(){ DL_SETTLED = true; if(A.S.view==='lint') A.render(); });
+}
+const canSave = () => IN_ARTIFACT ? !!DL : true;
+
+async function saveFile(blob, name){
+  if(IN_ARTIFACT){
+    if(!DL) throw new Error('這個檢視環境不提供存檔。');
+    await DL.save({filename:name, data:blob});   // Blob 是複製的，原物件不會被清空
+    return;
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+}
+const SAVE_ERR = {
+  declined:'你取消了存檔。檔案沒有留下，可以再按一次。',
+  too_large:'檔案超過 16 MB，這個環境存不了。請改用 GitHub Pages 版。',
+  rate_limited:'剛才的存檔提示還沒關閉，請稍等一下再按。',
+  rejected_extension:'這個環境不接受 .docx 檔。請改用 GitHub Pages 版。',
+  extension_not_enabled:'這個環境目前不開放 .docx 存檔。請改用 GitHub Pages 版。'
+};
 
 function limitsOf(j){
   const isEn = j.idx==='SSCI';
@@ -3114,10 +3144,12 @@ function report(j, L, multi){
     h += `<div class="note note-bad"><b>這份文件有 ${St.doc.sectCount} 個章節設定</b>
       通常表示中間有橫向頁面或不同的頁面配置（例如放大表格那幾頁）。
       全部套用同一組邊界會把那些頁面弄壞，所以這份檔案不提供自動套用，請在 Word 裡逐節處理。</div>`;
-  } else if(!CAN_DOWNLOAD){
-    h += `<div class="note"><b>這個檢視環境不能讓網頁自己觸發下載</b>
+  } else if(!DL_SETTLED){
+    h += `<div class="note"><span class="muted">正在確認這個環境能不能存檔…</span></div>`;
+  } else if(!canSave()){
+    h += `<div class="note"><b>這個檢視環境不提供存檔</b>
       請改用 <a href="https://ian3738.github.io/journal-format-lookup/" target="_blank" rel="noopener">GitHub Pages 版</a>，
-      功能相同且可以直接存檔。</div>`;
+      功能相同且可以直接存下檔案。</div>`;
   } else {
     h += `<button class="runbtn" id="fmtBtn"${St.busy?' disabled':''}>${St.busy?'處理中…':'套用版面並下載'}</button>`;
     if(St.fmtMsg) h += `<div class="note note-ok" style="margin-top:10px">${St.fmtMsg}</div>`;
@@ -3179,11 +3211,7 @@ function wireFormat(root){
 
       const base = (St.src||'稿件.docx').replace(/\.docx$/i,'');
       const name = base + '_' + (A.J.find(x=>x.id===St.jid)||{}).name + '格式.docx';
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = name; document.body.appendChild(a); a.click();
-      document.body.removeChild(a);
-      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+      await saveFile(blob, name);
 
       const kb = (blob.size/1048576).toFixed(2);
       St.fmtMsg = '已產生 <b>'+esc(name)+'</b>（'+kb+' MB）。'+
@@ -3194,7 +3222,9 @@ function wireFormat(root){
         ' 請在 Word 裡開一次確認再送出。';
     }catch(err){
       St.fmtMsg = '';
-      St.err = '產生失敗：' + (err.message||String(err));
+      // 存檔被檢視者取消不算失敗，也不該把已產生的內容說成壞掉
+      const code = err && err.code;
+      St.err = SAVE_ERR[code] || ('產生失敗：' + ((err && err.message) || String(err)));
     }
     St.busy = false; A.render();
   };
