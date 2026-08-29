@@ -702,26 +702,29 @@ const J = [
 {
   id:"ber", name:"教育研究集刊", en:"Bulletin of Educational Research",
   pub:"國立臺灣師範大學教育學系", issn:"1028-8708",
-  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"partial",
-  scope:"教育哲史、教育社會學、教育行政與政策、課程與教學等；亦歡迎比較教育、各級教育等其他教育相關領域來稿。",
-  freq:"季刊", intake:"全年徵稿",
-  wcZh:"學術論文 25,000 字／研究紀要・學術評論 15,000 字",
-  wcEn:"學術論文 8,000 字／研究紀要・學術評論 5,000 字",
-  wcNote:"以此為原則",
-  absZh:"≤ 350 字", absEn:"≤ 200 字", absNote:"",
-  kw:"中英文各 3–5 個", kwNote:"",
-  ref:"中文依雙葉書局《教育論文格式》；英文依 APA 第 7 版",
-  layout:"編排順序：中文摘要 → 英文摘要 → 正文（當頁註）→ 參考文獻 → 附錄。",
+  idx:"TSSCI", tier:"第一級", field:["教育學"], verified:"official",
+  scope:"課程與教學、教育政策與行政、教育哲史、教育社會學四大領域，亦歡迎討論各教育階段議題之論文，研究方法不拘。分研究論文、學術評論、議題／實務評論、研究紀要四類。",
+  freq:"一年四期（3、6、9、12 月底）", intake:"全年收稿，隨到隨審",
+  wcZh:"研究論文・學術評論・議題／實務評論 25,000 字／研究紀要 20,000 字",
+  wcEn:"研究論文・學術評論・議題／實務評論 10,000 字／研究紀要 8,000 字",
+  wcNote:"各類型均為全文字數上限。",
+  absZh:"1,000–1,500 字", absEn:"≤ 700 字", absNote:"中、英文摘要均須分點敘寫五項：(1) 研究目的 (2) 主要理論或概念架構 (3) 研究設計／方法／對象 (4) 研究發現或結論 (5) 理論或實務創見／貢獻／建議。若有不適用部分，請填寫「不適用」。",
+  kw:"中英文各 5–7 個", kwNote:"",
+  ref:"最新版 APA 格式；不符者本刊得退稿或請作者修改後再投",
+  layout:"首頁為中文標題、摘要與關鍵詞，第二頁為英文標題、摘要與關鍵詞。編排順序：中文摘要、英文摘要、正文（註解採當頁註）、參考文獻、附錄。",
   heads:"",
-  review:"匿名審查", timeline:"投稿後原則上五個月內奉覆採用與否",
-  fee:"未於可取得之公告中載明", feeType:"unknown",
+  review:"匿名審查；由編輯委員聘請有關學者專家二人審查", timeline:"稿件原則上於預審通過後三個月內回覆初步審查結果",
+  fee:"行政處理費 NT$2,000（US$70，預審通過後繳交）；刊登費：有經費補助 NT$5,000（US$170）／無補助 NT$3,000（US$100）", feeType:"paid",
   system:"http://jrs.edubook.com.tw/BER/index.zul", site:"",
   contact:"edber@deps.ntnu.edu.tw ・ +886-2-77493892",
   alerts:[
+    "中文摘要要 1,000–1,500 字，比多數期刊長得多，而且必須分五點敘寫（研究目的、理論或概念架構、研究設計方法對象、研究發現或結論、理論或實務創見）。不適用的項目要寫「不適用」，不能省略。",
+    "中文參考文獻須英譯，英譯後格式依 APA 最新版；其他外文得用原文呈現，毋須翻譯為英文。",
     "致謝詞請於通知接受刊登後再加上，置於正文後，長度不超過 60 字。",
-    "本刊網站於查證時正在改版，舊網址 bulletin.ed.ntnu.edu.tw 之稿約頁面已失效。投稿前請務必向編輯部索取現行版撰稿原則。"
+    "正文及中英文摘要中請勿出現任何個人資料，暴露個人身分者逕予退稿。",
+    "審查階段無正當理由撤稿，兩年內不接受投稿，且不退還行政處理費。"
   ],
-  src:"《教育研究集刊》撰稿原則（2022 年 7 月 1 日起適用）官方頁面摘錄"
+  src:"《教育研究集刊》徵稿辦法（高等教育出版官方期刊頁面全文）"
 },
 {
   id:"cerq", name:"當代教育研究季刊", en:"Contemporary Educational Research Quarterly",
@@ -840,15 +843,15 @@ const J = [
   heads:"",
   review:"預審 → 決審", timeline:"未載明",
   fee:"2026 年 5 月 1 日起：審查費 NT$3,000（預審通過後通知）、刊登費 NT$6,000（決審通過後通知）", feeType:"paid",
-  system:"", site:"",
-  contact:"jepr@tea.ntue.edu.tw ・ 02-27321104 分機 82014、82231",
+  system:"https://jepr.ntue.edu.tw/JEPR/contents/login.jsp", site:"",
+  contact:"jepr@tea.ntue.edu.tw ・ 02-27321104 分機 82014、82232",
   alerts:[
     "收費制度自 2026 年 5 月 1 日起實施，刊登費 NT$6,000 是目前所收錄期刊中較高者，投稿前請確認經費來源。",
     "英文文章或英文摘要如需專業編修，編修費用由作者負擔。",
     "若來稿作者群為二人以上，一律以登錄系統投稿者為通訊作者。",
     "本刊另獲 EBSCO、ProQuest 與中文社會科學引文索引（CSSCI）收錄。"
   ],
-  src:"《教育實踐與研究》稿約（華藝線上圖書館刊載之官方稿約 PDF）"
+  src:"《教育實踐與研究》稿約（華藝線上圖書館刊載之官方稿約 PDF）與高等教育出版官方徵稿頁面"
 },
 {
   id:"joemls", name:"教育資料與圖書館學", en:"Journal of Educational Media & Library Sciences",
@@ -903,35 +906,42 @@ const J = [
 {
   id:"epf", name:"教育政策論壇", en:"Educational Policy Forum",
   pub:"國立暨南國際大學教育政策與行政學系", issn:"1560-8298",
-  idx:"TSSCI", tier:"第一級", field:["教育學","教育行政"], verified:"partial",
-  scope:"當前國內外教育政策和教育行政之理論與實務問題。",
-  freq:"季刊", intake:"全年徵稿",
-  wcZh:"未於可取得之公告中載明", wcEn:"未於可取得之公告中載明", wcNote:"",
-  absZh:"未載明", absEn:"未載明", absNote:"",
-  kw:"未載明", kwNote:"",
-  ref:"APA 第 7 版",
+  idx:"TSSCI", tier:"第一級", field:["教育學","教育行政"], verified:"official",
+  scope:"國內外教育政策與教育行政相關之創新學術論文。接受國內外學者、大學教師與研究生、研究機構研究人員、各級教育行政人員、中小學與幼兒園教師及關心教育事務者投稿。",
+  freq:"一年四期（2、5、8、11 月）", intake:"隨到分批送審",
+  wcZh:"20,000 字為限", wcEn:"8,000 字為限", wcNote:"含摘要、正文、參考文獻、附錄等。",
+  absZh:"徵稿辦法未載明", absEn:"徵稿辦法未載明", absNote:"",
+  kw:"徵稿辦法未載明", kwNote:"",
+  ref:"APA 第 7 版；中文參考文獻須附英文翻譯",
   layout:"", heads:"",
-  review:"匿名審查", timeline:"未載明",
-  fee:"未於可取得之公告中載明", feeType:"unknown",
+  review:"匿名雙審；編輯小組預審後送校內外 2–3 位學者進行初複審", timeline:"未載明",
+  fee:"審查費 NT$2,000（2021 年 11 月 1 日起）；刊登費：臺灣 NT$3,000／海外 US$100", feeType:"paid",
   system:"https://hedu.cloudreview.tw/EPFORUM", site:"http://www.epf.ncnu.edu.tw/epf/",
   contact:"epforum@mail.ncnu.edu.tw ・ 049-2910960 轉 2761、3605",
-  alerts:["投稿資料表電子檔須另寄至 epforum@mail.ncnu.edu.tw。字數與摘要規定請向編輯部索取現行徵稿辦法。"],
-  src:"高等教育出版《教育政策論壇》徵稿頁面"
+  alerts:[
+    "中文參考文獻必須附英文翻譯，這項補做很花時間，開稿前就要決定。",
+    "本刊採「隨到分批送審」，不是隨到隨審，送審時程要把分批的節奏算進去。",
+    "摘要字數與關鍵詞數量徵稿辦法未載明，請向編輯部索取撰稿體例確認。"
+  ],
+  src:"《教育政策論壇》徵稿辦法（高等教育出版官方期刊頁面全文）"
 },
 {
   id:"tjse", name:"臺灣教育社會學研究", en:"Taiwan Journal of Sociology of Education",
   pub:"臺灣教育社會學學會", issn:"1680-2004",
-  idx:"TSSCI", tier:"第一級", field:["教育學","教育社會學"], verified:"listed",
-  scope:"教育社會學領域之學術論文。國內教育社會學專門刊物之先驅。",
+  idx:"TSSCI", tier:"第一級", field:["教育學","教育社會學"], verified:"official",
+  scope:"教育社會學及相關學科的學術論文，理論、量化或質性取徑皆可。分研究論文、研究議題討論、研究紀要、書評四類。",
   freq:"一年兩期（6、12 月）", intake:"隨到隨審",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"",
-  absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網",
-  layout:"", heads:"", review:"匿名審查", timeline:"",
-  fee:"須查官網", feeType:"unknown",
-  system:"", site:"https://www.tase.url.tw/",
-  contact:"",
-  alerts:[], src:"2025 年核心期刊名單；臺灣教育社會學學會官網"
+  wcZh:"研究論文 25,000 字／研究議題討論 15,000 字／研究紀要 15,000 字／書評 7,000 字", wcEn:"研究論文 10,000 字／研究議題討論 5,000 字／研究紀要 5,000 字／書評 3,500 字", wcNote:"均包括摘要、註腳、附錄和參考文獻。",
+  absZh:"≤ 500 字", absEn:"≤ 300 字", absNote:"",
+  kw:"中英文各 3–5 個", kwNote:"", ref:"未於徵稿辦法中指定版本",
+  layout:"Microsoft Word 橫向排列，中文使用繁體字。首頁後依序為中文摘要、英文摘要、正文、註釋、附錄、參考文獻。", heads:"", review:"匿名審查；聘請 2–3 位學者專家審查", timeline:"未載明",
+  fee:"審查不收費；英文摘要編修費 NT$500", feeType:"paid",
+  system:"https://reurl.cc/1Kg5Kp", site:"https://www.tase.url.tw/",
+  contact:"tase052263411@gmail.com",
+  alerts:[
+    "審查不收審查費，只有英文摘要若需編修才收 500 元，在收費期刊中相對友善。",
+    "徵稿辦法未指定參考文獻格式版本，撰稿前請向編輯部確認或參考近期刊出論文。"
+  ], src:"《臺灣教育社會學研究》徵稿辦法（高等教育出版官方期刊頁面全文）"
 },
 {
   id:"jep-nccu", name:"教育與心理研究", en:"Journal of Education & Psychology",
@@ -1005,39 +1015,51 @@ const J = [
 {
   id:"ijdlt", name:"數位學習科技期刊", en:"International Journal on Digital Learning Technology",
   pub:"臺灣數位學習與內容學會", issn:"2071-260X",
-  idx:"TSSCI", tier:"第二級", field:["教育學","數位學習"], verified:"partial",
-  scope:"提供數位學習產業、學校教師及研究人員交流之園地。歡迎中英文投稿。",
-  freq:"季刊", intake:"全年徵稿",
-  wcZh:"5,000–15,000 字", wcEn:"5,000–15,000 字",
-  wcNote:"含摘要、關鍵字、正文、圖表、註解、參考文獻、附錄",
-  absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"依本刊論文撰寫體例",
-  layout:"", heads:"", review:"匿名審查", timeline:"未載明",
-  fee:"須查官網", feeType:"unknown",
-  system:"https://pss.ijdlt.com/", site:"http://www.teldca.org/",
-  contact:"eijdlt@gmail.com",
-  alerts:["本刊字數規定有下限（5,000 字），短篇實務性文章不適用。"],
-  src:"高等教育出版《數位學習科技期刊》徵稿頁面與論文撰寫體例"
+  idx:"TSSCI", tier:"第二級", field:["教育學","數位學習"], verified:"official",
+  scope:"數位學習產業、學校教師及研究人員之交流園地，歡迎中英文投稿。",
+  freq:"一年四期（1、4、7、10 月底）", intake:"全年徵稿",
+  wcZh:"5,000–15,000 字", wcEn:"8,000 字",
+  wcNote:"含摘要、關鍵字、正文、圖表、註解、參考文獻、附錄。",
+  absZh:"徵稿辦法未載明", absEn:"徵稿辦法未載明", absNote:"",
+  kw:"徵稿辦法未載明", kwNote:"", ref:"詳細格式請參考本期刊之撰寫體例",
+  layout:"", heads:"", review:"雙向匿名審查", timeline:"收到正確格式投稿後 3 個月內完成第一輪審查，約半年內交付評審意見",
+  fee:"徵稿辦法未提及審查費或刊登費；依國際期刊慣例不支付稿酬", feeType:"unknown",
+  system:"http://pss.ijdlt.com/pssCI/", site:"http://www.teldca.org/",
+  contact:"eijdlt@gmail.com ・ 03-422-7151 分機 35235（國立中央大學資工系）",
+  alerts:[
+    "本刊字數有下限（中文 5,000 字），短篇實務性文章不適用。",
+    "摘要字數與關鍵詞數量請參考該刊「撰寫體例」，本站尚未取得。"
+  ],
+  src:"《數位學習科技期刊》徵稿辦法（高等教育出版官方期刊頁面全文）"
 },
 {
   id:"jse-ncue", name:"特殊教育學報", en:"Journal of Special Education",
   pub:"國立彰化師範大學特殊教育學系", issn:"2074-5583",
-  idx:"TSSCI", tier:"第二級", field:["教育學","特殊教育"], verified:"listed",
-  scope:"特殊教育相關研究。", freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
-  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+  idx:"TSSCI", tier:"第二級", field:["教育學","特殊教育"], verified:"official",
+  scope:"與特殊教育有關之學術性論文，以實徵性研究為主。凡翻譯、一般性文獻評述或實務報告等恕不刊載。", freq:"半年刊（6 月 30 日、12 月 31 日出刊）", intake:"全年開放徵稿",
+  wcZh:"25,000 字", wcEn:"7,500 字", wcNote:"中文稿以每頁 35 行、每行 36 字、二欄式計算，超過者恕不接受。", absZh:"≤ 500 字", absEn:"≤ 250 字", absNote:"英文摘要含篇名、摘要與關鍵字，置於參考文獻之後。以英文撰寫者請附中文摘要於文後。",
+  kw:"依撰稿體例", kwNote:"", ref:"APA 格式", layout:"A4 橫式書寫，上下邊、左右邊各留 2.5 公分。中文 12 號新細明體，英文 12 號 Times New Roman。線上投稿檔案大小勿超過 20MB。", heads:"壹、緒論　貳、文獻探討　參、研究方法　肆、結果與討論　伍、結論與建議",
+  review:"雙向匿名審查；一篇稿件至少由兩位專家學者審查，審查委員以校外專家為主", timeline:"未載明", fee:"未於稿約中載明；不另付稿酬，致贈當期學報一冊、抽印本十份及 PDF 檔", feeType:"unknown",
+  system:"http://www.journals.com.tw/jsped", site:"https://sites.google.com/view/ncuespecjournal", contact:"jsped@cc2.ncue.edu.tw ・ (04) 7232105 轉 2404~2407", alerts:[
+    "圖表方向與 APA 第 7 版不同：本刊規定圖的「下方」書明圖號與圖名，表格的「上方」書明表號與表名。別直接套 APA 的圖表都放上方。",
+    "審稿委員職級對應：作者為助理教授由助理教授以上審查，副教授由副教授以上，教授由教授職級審查。",
+    "來稿經審查通過後或再次審查中不得撤稿，若撤銷兩年內不接受其投稿。",
+    "學位論文改寫投稿的作者排序，首為學生、次為指導教授；學位論文若為專案報告改寫，本刊不予接受。",
+    "文稿若不依規定，則不予送審。"
+  ], src:"《特殊教育學報》稿約須知（國立彰化師範大學特殊教育學系官方稿約 PDF 全文）"
 },
 {
   id:"er-nknu", name:"教育學刊", en:"Educational Review",
   pub:"國立高雄師範大學教育學系", issn:"1563-3527",
-  idx:"TSSCI", tier:"第二級", field:["教育學"], verified:"listed",
-  scope:"教育理論與實務相關研究。", freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
-  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+  idx:"TSSCI", tier:"第二級", field:["教育學"], verified:"official",
+  scope:"教育基礎理論、課程與教學、教育政策與行政、心理輔導與測驗統計四大領域之學術論著。", freq:"一年兩期（6、12 月）", intake:"全年徵稿",
+  wcZh:"20,000 字為上限", wcEn:"10,000 字為上限", wcNote:"含摘要、關鍵字、正文、圖表、註解、參考文獻、附錄。", absZh:"≤ 500 字", absEn:"≤ 300 字", absNote:"",
+  kw:"中英文各 3–5 個", kwNote:"依筆劃（英文依字母）順序排列。", ref:"APA 最新版；中文文獻置前、英外文置後", layout:"中文新細明體 12 點，英文 Times New Roman 12 點。標題加黑粗體；中文標題全黑，英文標題首字及專有名詞大寫。", heads:"一、→（一）→ 1. →（1）（四層次）",
+  review:"匿名審查；經二至三位學者專家審查及編輯委員會審議通過後採用", timeline:"未載明", fee:"審稿費：中文 NT$1,000、英文 NT$2,000；刊登費 NT$2,000", feeType:"paid",
+  system:"https://hedu.cloudreview.tw/er/", site:"", contact:"edureview@mail.nknu.edu.tw ・ 07-7172930 轉 2152 或 2157", alerts:[
+    "審稿費與刊登費分開收：中文稿審稿費 1,000 元、刊登費 2,000 元，投稿前先確認經費。",
+    "每位作者至多投一篇；若為合著，至多兩篇。"
+  ], src:"《教育學刊》撰稿須知（國立高雄師範大學教育學系官方投稿系統頁面全文）"
 },
 {
   id:"ej-cuhk", name:"教育學報", en:"Education Journal",
@@ -1052,12 +1074,15 @@ const J = [
 {
   id:"tjme", name:"臺灣數學教育期刊", en:"Taiwan Journal of Mathematics Education",
   pub:"國立臺灣師範大學數學系、臺灣數學教育學會", issn:"2312-5810",
-  idx:"TSSCI", tier:"第二級", field:["教育學","數學教育"], verified:"listed",
-  scope:"數學教育相關研究。", freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
-  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2025 年核心期刊名單"
+  idx:"TSSCI", tier:"第二級", field:["教育學","數學教育"], verified:"partial",
+  scope:"數學教育相關研究。國立臺灣師範大學數學系與台灣數學教育學會共同發行，採電子方式發行。", freq:"一年兩期（4、10 月）", intake:"全年徵稿，隨到隨審",
+  wcZh:"20,000 字為上限", wcEn:"10,000 字為上限", wcNote:"包含論文全文、中英文摘要、圖表、附註、參考文獻、附錄等。", absZh:"須查官網", absEn:"須查官網", absNote:"",
+  kw:"須查官網", kwNote:"", ref:"中文文稿依本刊論文撰寫體例；英文文稿、引用英文文獻與數學符號公式依 APA 第 7 版", layout:"Microsoft Word 98 以上繁體中文處理。單行行距、12pt 字體；採斜體而不用底線（網址除外）；圖解、圖示與表格放在文中恰當位置。", heads:"",
+  review:"匿名審查", timeline:"未載明", fee:"須查官網", feeType:"unknown",
+  system:"https://ojs.lib.ntnu.edu.tw/index.php/tjme", site:"http://tjme.math.ntnu.edu.tw/", contact:"", alerts:[
+    "本刊為電子期刊，一年只出兩期（4 月與 10 月），投稿前要把出刊節奏算進時程。",
+    "摘要字數與關鍵詞數量須查該刊「論文撰寫體例」文件，本站尚未取得。"
+  ], src:"《臺灣數學教育期刊》投稿須知（期刊 OJS 官方頁面）；摘要與關鍵詞規定尚未取得"
 },
 
 /* ---------- TSSCI 心理學門（2024 年名單） ---------- */
@@ -1145,12 +1170,17 @@ const J = [
 {
   id:"cjp", name:"中華心理學刊", en:"Chinese Journal of Psychology",
   pub:"台灣心理學會", issn:"1013-9656",
-  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"listed",
-  scope:"心理學各領域之實徵研究。", freq:"季刊", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"APA（須查現行版本）", layout:"", heads:"",
-  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"official",
+  scope:"原創性之中英文心理學論文，以實徵研究為主。回顧國內外研究或評述當代心理學重要議題之論文，以及對基本心智運作有啟示之個案報告亦在考慮之列。文獻回顧須整合相關實徵研究並有理論貢獻。", freq:"季刊（3、6、9、12 月）", intake:"全年徵稿",
+  wcZh:"研究論文 20,000 字／研究報告 10,000 字／註冊研究計畫書 5,000–10,000 字", wcEn:"研究論文 8,000 字／研究報告 5,000 字／註冊研究計畫書 3,000–5,000 字", wcNote:"指正文字數上限。稿件內容含首頁、中英文摘要與關鍵字、正文、參考文獻與表圖。", absZh:"≤ 500 字", absEn:"≤ 400 字", absNote:"無論中文或英文論文，皆須提供中文摘要與英文摘要，並分別書寫於不同頁。",
+  kw:"中英文各 3–5 個", kwNote:"中英文摘要後均須分別附三至五個關鍵詞。", ref:"APA 第 7 版；中文部分依本刊體例。參考文獻須加註 DOI。", layout:"中文 12 號細明體、1.5 倍行距；英文 Times New Roman 12pt、double space。A4 直式紙橫向書寫，上下邊界 2.4 cm、左右邊界 2.5 cm，每頁排頁碼。", heads:"",
+  review:"匿名審查；論文首頁與稿件正文須分開上傳", timeline:"未載明", fee:"未於投稿須知中載明", feeType:"unknown",
+  system:"http://www.ipress.tw/J0028", site:"", contact:"cjpsy2007@gmail.com", alerts:[
+    "逐頁短標（running head）須在 12 個中文字或 40 個英文字母以內。",
+    "中文文獻必須英文化：在中文之後加上英文翻譯，並以中括號區隔。",
+    "統計符號一律斜體，數學符號兩端各空一格，例如 N = 320、t(26) = 3.69、p < .05。",
+    "註冊研究（registered reports）可先投研究計畫書，資料是否支持假設不影響刊登與否。"
+  ], src:"《中華心理學刊》投稿須知（2020 年 9 月修訂版；華藝線上圖書館刊載之官方稿約 PDF）"
 },
 {
   id:"agc", name:"輔導與諮商學報", en:"The Archive of Guidance & Counseling",
@@ -1165,22 +1195,29 @@ const J = [
 {
   id:"rap", name:"應用心理研究", en:"Research in Applied Psychology",
   pub:"台灣應用心理學會、應用心理研究雜誌社", issn:"1560-9251",
-  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"listed",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"official",
   scope:"應用心理學相關研究。", freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  wcZh:"20,000 字為限", wcEn:"未載明", wcNote:"來稿文長以兩萬字為限。", absZh:"≤ 400 字", absEn:"≤ 150 字", absNote:"",
+  kw:"中英文各 5 個為限", kwNote:"列於摘要下方。", ref:"須查官網", layout:"", heads:"",
   review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+  system:"", site:"", contact:"appliedpsyj@gmail.com", alerts:[
+    "來稿須檢附「作者投稿表格」，務必提供頁首短標，10 字內。",
+    "投稿前須確實完成本刊「自我檢查表」。",
+    "本刊享有稿件首次刊印權，著作權仍歸作者所有。"
+  ], src:"《應用心理研究》投稿須知（第 83 期，2025 冬；華藝線上圖書館刊載之官方稿約 PDF）"
 },
 {
   id:"ipr", name:"本土心理學研究", en:"Indigenous Psychological Research in Chinese Societies",
   pub:"國立臺灣大學心理學系本土心理學研究室", issn:"1029-8282",
-  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"listed",
+  idx:"TSSCI", tier:"心理學門核心", field:["教育心理"], verified:"official",
   scope:"華人本土心理學研究。", freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  wcZh:"靶子論文 30,000 字為宜／研究論文・焦點論文及其他 30,000 字為限／研究筆記・簡短報告 10,000 字為限", wcEn:"須查官網", wcNote:"字數計算包含正文、註釋、參考文獻、末頁資料、附錄及圖表。", absZh:"≤ 400 字", absEn:"≤ 250 字", absNote:"接受刊登後另須附 600–1,000 字英文長摘要，須含問題意識、研究方法、核心發現與重要貢獻。",
+  kw:"中文 ≤ 6 個；英文依字母順序", kwNote:"中文關鍵詞依筆劃順序排列。", ref:"APA 第 7 版", layout:"中文稿 1.5 倍行距，英文稿 2 倍行距。中文表名與圖名以粗體呈現，英文表名與圖名以斜體呈現、2 倍行高。", heads:"",
   review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+  system:"", site:"", contact:"", alerts:[
+    "本刊有「靶子論文」的評論體例，投稿前先確認自己要投的文章類型。",
+    "首頁須載明投稿日期及全文字數；修正稿另須載明修正次數、回覆日期及最新字數。"
+  ], src:"《本土心理學研究》稿約（華藝線上圖書館刊載之官方稿約 PDF）"
 },
 
 /* ---------- TSSCI 社會學／傳播／公共行政 ---------- */
@@ -1197,13 +1234,17 @@ const J = [
 {
   id:"tjs", name:"臺灣社會學刊", en:"Taiwanese Journal of Sociology",
   pub:"臺灣社會學會", issn:"1011-2219",
-  idx:"TSSCI", tier:"社會學門核心", field:["社會學與傳播"], verified:"listed",
-  scope:"社會學及其相關領域之學術論文，以及對近年內國內外出版學術專著之評論。",
+  idx:"TSSCI", tier:"社會學門核心", field:["社會學與傳播"], verified:"official",
+  scope:"社會學相關論文。分研究論文、研究紀要、研究議題討論、書評四類。",
   freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  wcZh:"研究論文 25,000 字以內／研究紀要 18,000 字以內／研究議題討論 18,000 字以內／書評 5,000 字以內", wcEn:"須查官網", wcNote:"", absZh:"≤ 500 字", absEn:"≤ 200 字", absNote:"",
+  kw:"中英文各 ≤ 5 個", kwNote:"", ref:"須查官網", layout:"稿件順序：首頁、中文摘要與關鍵詞、英文摘要與關鍵詞、正文、附錄、參考書目。論文首頁須註明論文題目、論文類別、稿件字數、作者姓名、任職機構及職稱。", heads:"",
   review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"https://www.tjs.org.tw/", contact:"", alerts:[], src:"2024 年核心期刊名單"
+  system:"", site:"https://www.tjs.org.tw/", contact:"", alerts:[
+    "投稿若為簡體中文，請先自行轉換為正體中文。",
+    "書評須於來稿前來信與編委會確認所欲評論之書籍，書單由編委會列出。",
+    "專題投稿須含至少三篇、至多七篇論文，其中至少三篇研究論文，並須先提交計畫書經編委會審查通過。"
+  ], src:"《臺灣社會學刊》投稿須知（華藝線上圖書館刊載之官方稿約 PDF）"
 },
 {
   id:"ts", name:"台灣社會學", en:"Taiwanese Sociology",
@@ -1228,33 +1269,41 @@ const J = [
 {
   id:"tjpa", name:"公共行政學報", en:"Taiwanese Journal of Public Administration",
   pub:"國立政治大學公共行政學系", issn:"1561-8080",
-  idx:"TSSCI", tier:"第一級", field:["公共行政與管理"], verified:"listed",
+  idx:"TSSCI", tier:"第一級", field:["公共行政與管理"], verified:"official",
   scope:"公共行政與公共政策研究。", freq:"一年兩期", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
+  wcZh:"20,000 字為限（含附錄）", wcEn:"10,000 字", wcNote:"", absZh:"≤ 500 字", absEn:"300 字", absNote:"",
+  kw:"中英文各 5 個", kwNote:"分別列於中英文摘要之下。", ref:"須查官網", layout:"中文文稿：第二頁為論文題目、中文摘要、中文關鍵詞，文末為英文摘要與英文關鍵詞；英文文稿順序相反。第二頁起請勿出現作者資訊。須附所有列名作者簽署之著作權讓與書。", heads:"",
   review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
   system:"", site:"", contact:"", alerts:[],
-  src:"2025 年核心期刊名單（政治學門第一級）；本刊另獲 CSSCI 收錄"
+  src:"《公共行政學報》投稿須知（華藝線上圖書館刊載之官方稿約 PDF）"
 },
 {
   id:"jhrm", name:"人力資源管理學報", en:"Journal of Human Resource Management",
   pub:"中華人力資源發展學會", issn:"1026-5309",
-  idx:"TSSCI", tier:"管理學門核心", field:["公共行政與管理"], verified:"listed",
-  scope:"人力資源管理與發展研究。", freq:"季刊", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
-  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+  idx:"TSSCI", tier:"管理學門核心", field:["公共行政與管理"], verified:"official",
+  scope:"人力資源管理與發展研究。", freq:"一年兩期（6、12 月底）", intake:"隨到隨審，無截稿日期限制",
+  wcZh:"20,000 字為限（含圖表）", wcEn:"須查官網", wcNote:"匿名全文檔包括摘要頁、正文、參考文獻，須依序編列頁碼。", absZh:"≤ 300 字", absEn:"≤ 300 字", absNote:"摘要應包含研究問題與目的、研究方法、研究發現。",
+  kw:"中英文各 5 個為限", kwNote:"", ref:"APA 第 7 版；徵稿格式未規定事宜一律參照 APA 第 7 版。", layout:"", heads:"",
+  review:"二位（或以上）審稿人評審", timeline:"未載明", fee:"未於徵稿格式中載明；本刊不付稿酬", feeType:"unknown",
+  system:"http://www.ipress.tw/J0019", site:"", contact:"", alerts:[
+    "本刊每年只出兩期（6 月與 12 月底），投稿前要把出刊節奏算進時程。",
+    "內文請著重人力資源管理之實務意涵，這是本刊明文要求。"
+  ], src:"《人力資源管理學報》徵稿格式（華藝線上圖書館刊載之官方稿約 PDF）"
 },
 {
   id:"jim", name:"資訊管理學報", en:"Journal of Information Management",
   pub:"中華民國資訊管理學會", issn:"1608-5752",
-  idx:"TSSCI", tier:"管理學門核心", field:["公共行政與管理"], verified:"listed",
-  scope:"資訊管理研究。", freq:"季刊", intake:"須查官網",
-  wcZh:"須查官網", wcEn:"須查官網", wcNote:"", absZh:"須查官網", absEn:"須查官網", absNote:"",
-  kw:"須查官網", kwNote:"", ref:"須查官網", layout:"", heads:"",
-  review:"匿名審查", timeline:"", fee:"須查官網", feeType:"unknown",
-  system:"", site:"", contact:"", alerts:[], src:"2024 年核心期刊名單"
+  idx:"TSSCI", tier:"管理學門核心", field:["公共行政與管理"], verified:"official",
+  scope:"資訊管理研究。", freq:"季刊（1、4、7、10 月底）", intake:"全年徵稿",
+  wcZh:"以不超過 A4 紙張 25 頁為原則", wcEn:"以不超過 A4 紙張 25 頁為原則", wcNote:"以頁數計，非字數。超過 25 頁者每頁加收刊登費。", absZh:"≤ 300 字", absEn:"≤ 300 字", absNote:"中英文摘要應包括研究動機、研究問題與目的、研究方法及研究發現。",
+  kw:"5 個為限", kwNote:"", ref:"須查官網", layout:"內文中文採標楷體、英文採 Times New Roman，皆 12 點字型、單行間距。標題頁包括中英文論文名稱、中英文服務機構名稱、中英文摘要、中英文關鍵詞與領域主題（擇一）。", heads:"",
+  review:"兩位專家審查", timeline:"收到正確格式之投稿後四個月內完成第一輪審查", fee:"刊登費每篇 NT$5,000（資管學會會員 NT$3,000）／25 頁，每超過一頁加收 NT$500", feeType:"paid",
+  system:"", site:"", contact:"submit.jim@gmail.com", alerts:[
+    "本刊以頁數為準（A4 25 頁），超頁要加錢，排版時就要控制。",
+    "表的名稱置於表上方，圖的名稱置於圖下方。這與 APA 第 7 版把圖表標題都放上方的規定不同，別套錯。",
+    "參考文獻中文列於前、英文列於後，按姓氏筆畫或字母順序排列。",
+    "投稿以 E-mail 寄至 submit.jim@gmail.com，須包含封面頁、標題頁、正文三個檔案。"
+  ], src:"《資訊管理學報》投稿須知（華藝線上圖書館刊載之官方稿約 PDF）"
 },
 
 /* ---------- 教育學門 第三級（非核心，但領域高度相關） ---------- */
@@ -2455,7 +2504,14 @@ function parseLimit(raw){
   const s = String(raw).trim();
   if(/須查|未載明|未於|依本刊|依投稿|依 |無硬性|無嚴格|^—$/.test(s)) return {kind:'none', raw:s};
   const pagesM = s.match(/(\d+)\s*頁/);
-  const segs = s.split(/[／/]/).map(x=>x.trim()).filter(Boolean);
+  // 只在「…字／」之後切分。稿件類型的名稱本身可能含斜線（例如
+  // 「議題／實務評論」），直接用斜線切會把類型名稱切成兩半。
+  const MARK = '@@SEG@@';
+  // 切分點是「…字（為宜／為限之類的收尾）／」，不是任意斜線。
+  // 稿件類型的名稱本身可能含斜線（「議題／實務評論」），
+  // 而「字」與斜線之間也常夾著「為宜」「為限」這類修飾詞。
+  const segs = s.replace(/(字(?:為宜|為限|為原則|以內|以下|以上|為上限)?)\s*[／/]\s*/g, '$1' + MARK)
+                .split(MARK).map(x=>x.trim()).filter(Boolean);
   const types = segs.map(seg=>{
     const label = seg.replace(/[≤≥<>約]*\s*[\d,]+(\s*[–—~－-]\s*[\d,]+)?\s*字.*$/,'')
                      .replace(/[（(].*$/,'').replace(/[，、,\s≥≤約]+$/,'').trim() || null;
@@ -2938,7 +2994,10 @@ function viewLint(){
       <p class="muted">本刊不同稿件類型的字數上限不一樣，先選才能比對。</p>
       <div class="typebtns">${L.wc.types.map((t,i)=>
         `<button class="typebtn${i===St.typeIdx?' on':''}" data-type="${i}">${esc(t.label||'未命名類型')}
-          <span>${t.undecidable?'規定語意不唯一':(t.max?t.max.toLocaleString()+' 字':'≥'+t.min.toLocaleString()+' 字')}</span></button>`).join('')}</div>
+          <span>${t.undecidable ? '規定語意不唯一'
+            : (t.max==null ? '≥ '+t.min.toLocaleString()+' 字'
+            : (t.min!=null ? t.min.toLocaleString()+'–'+t.max.toLocaleString()+' 字'
+                           : t.max.toLocaleString()+' 字'))}</span></button>`).join('')}</div>
     </section>`;
   }
 
